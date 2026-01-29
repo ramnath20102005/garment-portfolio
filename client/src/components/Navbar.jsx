@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import "./compo_css/Navbar.css";
 
 function Navbar() {
@@ -11,13 +11,41 @@ function Navbar() {
         </Link>
 
         <ul className="navbar-menu">
-          <li><Link to="/" className="nav-link">Home</Link></li>
-          <li><Link to="/about" className="nav-link">About</Link></li>
-          <li><Link to="/products" className="nav-link">Products</Link></li>
-          <li><Link to="/facilities" className="nav-link">Facilities</Link></li>
-          <li><Link to="/exports" className="nav-link">Exports</Link></li>
-          <li><Link to="/sustainability" className="nav-link">Sustainability</Link></li>
-          <li><Link to="/contact" className="nav-link nav-link-cta">Contact Us</Link></li>
+          <li>
+            <NavLink to="/" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              About
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/products" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              Products
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/facilities" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              Facilities
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/exports" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              Exports
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/sustainability" className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}>
+              Sustainability
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/contact" className={({ isActive }) => (isActive ? "nav-link nav-link-cta active" : "nav-link nav-link-cta")}>
+              Contact Us
+            </NavLink>
+          </li>
         </ul>
       </div>
     </nav>

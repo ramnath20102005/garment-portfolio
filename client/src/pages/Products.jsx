@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./page_css/Products.css";
+import ScrollAnimatedSection from "../components/ScrollAnimatedSection";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -18,138 +19,71 @@ function Products() {
       });
   }, []);
 
-  // Fallback products if database is empty
   const displayProducts = products.length > 0 ? products : [
-    {
-      _id: "1",
-      name: "Premium Cotton T-Shirts",
-      category: "Casual Wear",
-      description: "High-quality 100% cotton t-shirts available in various colors and sizes. Perfect for everyday wear with superior comfort and durability."
-    },
-    {
-      _id: "2",
-      name: "Formal Dress Shirts",
-      category: "Formal Wear",
-      description: "Elegant dress shirts crafted from premium fabrics. Ideal for corporate and formal occasions with impeccable tailoring."
-    },
-    {
-      _id: "3",
-      name: "Denim Jeans",
-      category: "Casual Wear",
-      description: "Stylish and durable denim jeans with modern fits. Made from high-grade denim with excellent color retention."
-    },
-    {
-      _id: "4",
-      name: "Sports & Activewear",
-      category: "Athletic",
-      description: "Performance-focused athletic wear with moisture-wicking technology. Designed for comfort during intense physical activities."
-    },
-    {
-      _id: "5",
-      name: "Kids' Apparel",
-      category: "Children",
-      description: "Comfortable and safe clothing for children. Made with soft, skin-friendly fabrics and vibrant designs."
-    },
-    {
-      _id: "6",
-      name: "Women's Fashion",
-      category: "Women's Wear",
-      description: "Trendy and elegant women's clothing including dresses, tops, and more. Combining style with comfort."
-    }
+    { _id: "1", name: "Artisanal Cotton Series", category: "Knitwear", description: "High-density 100% cotton garments with proprietary pre-wash finishing." },
+    { _id: "2", name: "Corporate Structured Shirts", category: "Formal", description: "Impeccable tailoring meets breathable premium textiles for the modern workspace." },
+    { _id: "3", name: "Resilient Denim Workwear", category: "Denim", description: "Traditional heavy-duty denim reimagined with modern ergonomic fits." },
+    { _id: "4", name: "Technical Active Series", category: "Performance", description: "Precision-engineered apparel for high-impact physical performance." },
+    { _id: "5", name: "Soft-Touch Childrenswear", category: "Kids", description: "Hypoallergenic fabrics designed for ultimate comfort and durability." },
+    { _id: "6", name: "Conceptual Womenswear", category: "Fashion", description: "Limited edition silhouettes blending architectural design with wearable grace." }
   ];
 
   return (
     <div className="products">
-      {/* Page Header */}
-      <section className="products-header">
+      {/* Header Section */}
+      <section className="section section-light products-header">
         <div className="container">
-          <h1 className="page-title">Our Products</h1>
-          <p className="page-subtitle">
-            Premium quality garments for every occasion and market segment
-          </p>
+          <ScrollAnimatedSection animation="animate-fade-in-up">
+            <span className="editorial-label">Catalogue 2026</span>
+            <h1 className="page-title">The Collection.</h1>
+            <p className="page-subtitle">
+              A curated selection of garment architectures across six specialized categories.
+            </p>
+            <div className="section-divider"></div>
+          </ScrollAnimatedSection>
         </div>
       </section>
 
-      {/* Product Categories Overview */}
-      <section className="categories-overview">
-        <div className="container">
-          <h2 className="section-title">Product Categories</h2>
-          <div className="categories-grid">
-            <div className="category-badge">Casual Wear</div>
-            <div className="category-badge">Formal Wear</div>
-            <div className="category-badge">Athletic Wear</div>
-            <div className="category-badge">Children's Apparel</div>
-            <div className="category-badge">Women's Fashion</div>
-            <div className="category-badge">Custom Orders</div>
-          </div>
-        </div>
-      </section>
-
-      {/* Products Grid */}
-      <section className="products-section">
+      {/* Grid Container */}
+      <section className="section section-muted products-section">
         <div className="container">
           {loading ? (
-            <div className="loading">
-              <div className="spinner"></div>
-              <p>Loading products...</p>
-            </div>
+            <div className="loading"><div className="spinner"></div></div>
           ) : (
-            <>
-              <div className="products-grid">
-                {displayProducts.map(product => (
-                  <div key={product._id} className="product-card">
-                    <div className="product-header">
+            <div className="products-grid">
+              {displayProducts.map((product, idx) => (
+                <ScrollAnimatedSection key={product._id} animation="animate-fade-in-up" delay={idx % 3 + 1}>
+                  <div className="product-card">
+                    <div className="product-visual"></div>
+                    <div className="product-info">
                       <span className="product-category">{product.category}</span>
-                    </div>
-                    <div className="product-content">
                       <h3 className="product-name">{product.name}</h3>
                       <p className="product-description">{product.description}</p>
-                    </div>
-                    <div className="product-footer">
-                      <button className="btn-inquiry">Request Quote</button>
+                      <button className="btn-editorial">Request Details</button>
                     </div>
                   </div>
-                ))}
-              </div>
-
-              {displayProducts.length === 0 && !loading && (
-                <div className="no-products">
-                  <p>No products available at the moment.</p>
-                  <p>Please contact us for custom manufacturing inquiries.</p>
-                </div>
-              )}
-            </>
+                </ScrollAnimatedSection>
+              ))}
+            </div>
           )}
         </div>
       </section>
 
-      {/* Custom Manufacturing CTA */}
-      <section className="custom-manufacturing">
+      {/* Bespoke Section */}
+      <section className="section section-dark bespoke-cta">
         <div className="container">
-          <h2>Need Custom Manufacturing?</h2>
-          <p>
-            We specialize in custom garment manufacturing tailored to your specific
-            requirements. From design to delivery, we handle it all.
-          </p>
-          <div className="custom-features">
-            <div className="custom-feature">
-              <span className="feature-check">✓</span>
-              <span>Custom Designs & Patterns</span>
+          <ScrollAnimatedSection animation="animate-scale-in">
+            <div className="bespoke-grid">
+              <div className="bespoke-text">
+                <h2 className="section-title">Bespoke Production</h2>
+                <p>Custom manufacturing tailored to precise brand specifications—from initial sketch to global distribution.</p>
+                <a href="/contact" className="btn btn-secondary" style={{ borderColor: 'var(--bg-light)', color: 'var(--bg-light)' }}>Initiate Protocol</a>
+              </div>
+              <div className="bespoke-visual">
+                <div className="line-art"></div>
+              </div>
             </div>
-            <div className="custom-feature">
-              <span className="feature-check">✓</span>
-              <span>Flexible Order Quantities</span>
-            </div>
-            <div className="custom-feature">
-              <span className="feature-check">✓</span>
-              <span>Private Labeling Available</span>
-            </div>
-            <div className="custom-feature">
-              <span className="feature-check">✓</span>
-              <span>Quality Assurance Guaranteed</span>
-            </div>
-          </div>
-          <a href="/contact" className="btn btn-primary">Contact Us for Custom Orders</a>
+          </ScrollAnimatedSection>
         </div>
       </section>
     </div>

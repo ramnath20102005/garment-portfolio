@@ -17,114 +17,95 @@ function Home() {
   return (
     <div className="home">
       {/* Hero Section */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1 className="hero-title">
-            {company ? company.name : "Premium Garments"}
-          </h1>
-          <p className="hero-subtitle">
-            {company ? company.description : "Excellence in Manufacturing & Global Export"}
-          </p>
-          <p className="hero-detail">
-            {company && `Established in ${company.establishedYear} • Located in ${company.location}`}
-          </p>
-          <div className="hero-cta">
-            <Link to="/products" className="btn btn-primary">Explore Products</Link>
-            <Link to="/contact" className="btn btn-secondary">Get in Touch</Link>
-          </div>
-        </div>
-        <div className="hero-overlay"></div>
-      </section>
-
-      {/* Features Section */}
-      <section className="features">
+      <section className="section section-light hero">
         <div className="container">
-          <h2 className="section-title">Why Choose Us</h2>
-          <p className="section-subtitle">
-            Leading the industry with innovation, quality, and reliability
-          </p>
-
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">🏭</div>
-              <h3>State-of-the-Art Facilities</h3>
-              <p>
-                Modern manufacturing infrastructure equipped with cutting-edge
-                technology and automated production lines for superior quality.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">🌍</div>
-              <h3>Global Export Network</h3>
-              <p>
-                Serving clients across 40+ countries with reliable logistics,
-                timely delivery, and comprehensive export documentation support.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">✓</div>
-              <h3>Quality Assurance</h3>
-              <p>
-                ISO 9001 certified processes with rigorous quality control at
-                every stage, ensuring products meet international standards.
-              </p>
-            </div>
-
-            <div className="feature-card">
-              <div className="feature-icon">🌱</div>
-              <h3>Sustainable Practices</h3>
-              <p>
-                Committed to eco-friendly manufacturing with GOTS certification,
-                organic materials, and responsible production methods.
-              </p>
+          <div className="hero-grid">
+            <ScrollAnimatedSection animation="animate-fade-in-left">
+              <div className="hero-content">
+                <span className="hero-label">The Foundation</span>
+                <h1 className="hero-title">
+                  {company ? company.name : "Premium Garments"}
+                </h1>
+                <p className="hero-tagline">
+                  Where Heritage Meets modern craftsmanship.
+                </p>
+                <p className="hero-subtitle">
+                  {company ? company.description : "Excellence in manufacturing and global export since 1995."}
+                </p>
+                <div className="hero-cta">
+                  <Link to="/products" className="btn btn-primary">Our Collection</Link>
+                  <Link to="/about" className="btn btn-secondary">The Story</Link>
+                </div>
+              </div>
+            </ScrollAnimatedSection>
+            <div className="hero-visual">
+              <div className="visual-block"></div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Statistics Section */}
-      <ScrollAnimatedSection animation="animate-scale-in">
-        <section className="statistics">
-          <div className="container">
+      {/* Philosophy Section */}
+      <section className="section section-muted philosophy">
+        <div className="container">
+          <ScrollAnimatedSection animation="animate-fade-in-up">
+            <div className="editorial-header">
+              <h2 className="section-title">01 / Philosophy</h2>
+              <div className="section-divider"></div>
+            </div>
+
+            <div className="features-grid">
+              <div className="feature-card">
+                <h3>Scalable Precision</h3>
+                <p>Advanced infrastructure optimized for high-volume, high-quality production cycles.</p>
+              </div>
+              <div className="feature-card">
+                <h3>Global Dialogue</h3>
+                <p>Seamless logistics ensuring your vision reaches 40+ international markets.</p>
+              </div>
+              <div className="feature-card">
+                <h3>Ethically Sourced</h3>
+                <p>Committed to GOTS-certified sustainable practices across our supply chain.</p>
+              </div>
+            </div>
+          </ScrollAnimatedSection>
+        </div>
+      </section>
+
+      {/* Stats Block */}
+      <section className="section section-dark statistics">
+        <div className="container">
+          <ScrollAnimatedSection animation="animate-scale-in">
             <div className="stats-grid">
               <div className="stat-item">
-                <div className="stat-number">30+</div>
-                <div className="stat-label">Years of Excellence</div>
+                <span className="stat-number">30+</span>
+                <span className="stat-label">Years of Mastery</span>
               </div>
               <div className="stat-item">
-                <div className="stat-number">40+</div>
-                <div className="stat-label">Countries Served</div>
+                <span className="stat-number">500K+</span>
+                <span className="stat-label">Monthly Capacity</span>
               </div>
               <div className="stat-item">
-                <div className="stat-number">500K+</div>
-                <div className="stat-label">Units Monthly</div>
-              </div>
-              <div className="stat-item">
-                <div className="stat-number">98%</div>
-                <div className="stat-label">Client Satisfaction</div>
+                <span className="stat-number">98%</span>
+                <span className="stat-label">Client Trust</span>
               </div>
             </div>
-          </div>
-        </section>
-      </ScrollAnimatedSection>
+          </ScrollAnimatedSection>
+        </div>
+      </section>
 
-      {/* Call to Action */}
-      <ScrollAnimatedSection animation="animate-fade-in-up">
-        <section className="cta-section">
-          <div className="container">
-            <h2>Ready to Partner With Us?</h2>
-            <p>
-              Join hundreds of satisfied clients worldwide who trust us for their
-              garment manufacturing needs.
-            </p>
-            <Link to="/contact" className="btn btn-primary btn-large">
-              Start Your Project Today
-            </Link>
-          </div>
-        </section>
-      </ScrollAnimatedSection>
+      {/* Final CTA */}
+      <section className="section section-light final-cta">
+        <div className="container">
+          <ScrollAnimatedSection animation="animate-fade-in-up">
+            <div className="cta-box">
+              <h2 className="section-title">Initiate a Project</h2>
+              <p>Join the elite global brands that trust us for their garment manufacturing.</p>
+              <Link to="/contact" className="btn btn-primary btn-large">Request Partnership</Link>
+            </div>
+          </ScrollAnimatedSection>
+        </div>
+      </section>
     </div>
   );
 }

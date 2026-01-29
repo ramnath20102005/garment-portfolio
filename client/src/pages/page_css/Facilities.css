@@ -1,363 +1,121 @@
 /*
- * Facilities Page CSS - Premium Glassmorphism Design
- * 
- * Design Philosophy:
- * - Soft gradient background
- * - Frosted glass feature boxes
- * - Professional manufacturing showcase
- * - Smooth hover animations
+ * Facilities Page CSS - Editorial Fashion (Refined Separation)
  */
 
-/* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
-
 .facilities {
-    min-height: 100vh;
-    background: linear-gradient(180deg, #cfe6ff 0%, #fbe1d3 100%);
-    background-attachment: fixed;
+    overflow-x: hidden;
 }
 
-/* Page Header */
-.facilities-header {
-    padding: 4rem 0 3rem;
-    text-align: center;
-    animation: fadeInDown 0.8s ease-out;
+.facilities-header .page-title {
+    font-size: 5.5rem;
 }
 
-@keyframes fadeInDown {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.page-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-}
-
-.page-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.2rem;
-    color: #5a6c7d;
-    font-weight: 400;
-}
-
-/* Container */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-
-/* Facilities Overview */
-.facilities-overview {
-    padding: 3rem 0;
-    animation: fadeIn 1s ease-out 0.2s both;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
-}
-
+/* Infrastructure Overview */
 .overview-content {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
-    padding: 3rem;
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 3rem;
-    align-items: center;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 100px;
+    align-items: start;
 }
 
 .overview-text h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.2rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    color: #2c3e50;
-}
-
-.overview-text p {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: #5a6c7d;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
+    font-size: 3rem;
+    margin-bottom: 32px;
 }
 
 .overview-stats {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 48px;
 }
 
 .facility-stat {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 2rem;
-    border-radius: 20px;
-    text-align: center;
-    border: 1px solid rgba(52, 152, 219, 0.2);
-    transition: all 0.3s ease;
+    border-left: 1px solid var(--text-primary);
+    padding-left: 32px;
 }
 
-.facility-stat:hover {
-    transform: translateX(8px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(52, 152, 219, 0.15);
-}
-
-.stat-icon {
-    font-size: 2.5rem;
+.facility-stat .stat-number {
     display: block;
-    margin-bottom: 1rem;
+    font-size: 4rem;
+    font-family: 'Playfair Display', serif;
+    line-height: 1;
+    margin-bottom: 8px;
 }
 
-.stat-number {
-    display: block;
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #3498db, #2980b9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 0.5rem;
+.facility-stat .stat-label {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-secondary);
 }
 
-.stat-label {
-    display: block;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
-    color: #5a6c7d;
-    font-weight: 500;
+/* Technology Grid */
+.tech-header {
+    margin-bottom: 80px;
 }
 
-/* Facility Features */
-.facility-features {
-    padding: 3rem 0;
-    animation: fadeIn 1.2s ease-out 0.4s both;
-}
-
-.section-title {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-}
-
-.section-subtitle {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    text-align: center;
-    color: #5a6c7d;
-    margin-bottom: 3rem;
-    font-weight: 400;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 2rem;
-}
-
-.feature-box {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 2.5rem;
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    transition: all 0.4s ease;
-}
-
-.feature-box:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
-    background: rgba(255, 255, 255, 0.65);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-}
-
-.feature-box h3 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-}
-
-.feature-box p {
-    font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    line-height: 1.7;
-    color: #5a6c7d;
-    margin-bottom: 1.5rem;
-    font-weight: 400;
-}
-
-.feature-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.feature-list li {
-    padding: 0.6rem 0;
-    padding-left: 1.8rem;
-    position: relative;
-    font-family: 'Inter', sans-serif;
-    color: #5a6c7d;
-    font-size: 0.95rem;
-    font-weight: 400;
-}
-
-.feature-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #3498db;
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-/* Technology Section */
-.technology-section {
-    padding: 3rem 0;
-    animation: fadeIn 1.4s ease-out 0.6s both;
+.tech-header p {
+    font-size: 1.25rem;
+    opacity: 0.7;
 }
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
 }
 
 .tech-card {
-    background: rgba(255, 255, 255, 0.55);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 2rem;
-    border-radius: 20px;
-    border: 1px solid rgba(52, 152, 219, 0.2);
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    padding: 48px;
+    border: 1px solid var(--border-dark);
+    position: relative;
 }
 
-.tech-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 12px 32px rgba(52, 152, 219, 0.15);
-    border-color: rgba(52, 152, 219, 0.4);
+.tech-index {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    opacity: 0.4;
 }
 
 .tech-card h4 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #2c3e50;
+    font-size: 1.8rem;
+    margin-bottom: 16px;
+    color: var(--text-light);
 }
 
 .tech-card p {
-    font-family: 'Inter', sans-serif;
+    opacity: 0.7;
     font-size: 0.95rem;
-    line-height: 1.7;
-    color: #5a6c7d;
-    font-weight: 400;
 }
 
-/* Call to Action */
-.facility-cta {
-    padding: 4rem 0 5rem;
+/* Visit Box */
+.visit-box {
     text-align: center;
-    animation: fadeIn 1.6s ease-out 0.8s both;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.facility-cta h2 {
-    font-family: 'Poppins', sans-serif;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: #2c3e50;
+.visit-box h2 {
+    font-size: 3.5rem;
+    margin-bottom: 24px;
 }
 
-.facility-cta p {
-    font-family: 'Inter', sans-serif;
-    font-size: 1.1rem;
-    color: #5a6c7d;
-    margin-bottom: 2rem;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    line-height: 1.7;
-    font-weight: 400;
+.visit-box p {
+    font-size: 1.25rem;
+    margin-bottom: 48px;
+    color: var(--text-secondary);
 }
 
-.btn {
-    padding: 1rem 2.2rem;
-    border-radius: 25px;
-    text-decoration: none;
-    font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-    color: #ffffff;
-    box-shadow: 0 8px 20px rgba(52, 152, 219, 0.3);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 12px 28px rgba(52, 152, 219, 0.4);
-}
-
-/* Responsive Design */
 @media (max-width: 1024px) {
-    .overview-content {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .page-title {
-        font-size: 2.2rem;
-    }
-
-    .overview-content {
-        padding: 2rem;
-        border-radius: 20px;
-    }
-
-    .features-grid,
     .tech-grid {
         grid-template-columns: 1fr;
+    }
+
+    .overview-content {
+        grid-template-columns: 1fr;
+        gap: 60px;
     }
 }
