@@ -24,12 +24,18 @@ function Facilities() {
                     <div className="overview-content">
                         <ScrollAnimatedSection animation="animate-fade-in-left">
                             <div className="overview-text">
-                                <h2>Scale & Verticality</h2>
+                                <h2>Knitting & Processing</h2>
                                 <p>
-                                    Spanning over 200,000 square feet of modern production space,
-                                    our facilities are vertically integrated to control every facet
-                                    of the garment lifecycle.
+                                    Located in the heart of Tiruppur, our facility is optimized for
+                                    high-volume knitted garment production. We use advanced circular
+                                    knitting machinery to produce premium banian cloth and cotton blends.
                                 </p>
+                            </div>
+                        </ScrollAnimatedSection>
+
+                        <ScrollAnimatedSection animation="animate-fade-in-up">
+                            <div className="facility-visual">
+                                <img src="/facilities.jpeg" alt="V R Fashions Facility" />
                             </div>
                         </ScrollAnimatedSection>
 
@@ -61,8 +67,8 @@ function Facilities() {
                         <div className="tech-grid">
                             <div className="tech-card">
                                 <span className="tech-index">01</span>
-                                <h4>CAD Integration</h4>
-                                <p>Automated cutting and pattern optimization for zero-waste production.</p>
+                                <h4>Advanced Knitting</h4>
+                                <p>High-speed circular and flat knitting machines for superior fabric texture.</p>
                             </div>
                             <div className="tech-card">
                                 <span className="tech-index">02</span>

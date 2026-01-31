@@ -29,22 +29,31 @@ function Exports() {
 
             <div className="markets-grid">
               <div className="market-card">
-                <span className="market-geo">NA</span>
-                <h3>North America</h3>
+                <span className="market-geo">FR</span>
+                <h3>France</h3>
                 <div className="section-divider"></div>
-                <p>US & Canadian retail hubs with direct-to-warehouse logistics.</p>
+                <p>
+                  <strong>Partners:</strong> Sahinler SA, Sky Brands, Wewin Knit Fashions.
+                  <br />Focus: Premium knitwear distribution.
+                </p>
               </div>
               <div className="market-card">
-                <span className="market-geo">EU</span>
-                <h3>European Union</h3>
+                <span className="market-geo">USA</span>
+                <h3>USA</h3>
                 <div className="section-divider"></div>
-                <p>Strict compliance with GRS and REACH chemical standards.</p>
+                <p>
+                  <strong>Partners:</strong> VSF Corp dba Infinity.
+                  <br />Focus: Global retail and logistics excellence.
+                </p>
               </div>
               <div className="market-card">
-                <span className="market-geo">APAC</span>
-                <h3>Asia Pacific</h3>
+                <span className="market-geo">POL / UAE</span>
+                <h3>Poland & UAE</h3>
                 <div className="section-divider"></div>
-                <p>Fast-turnaround models for the high-frequency Australian market.</p>
+                <p>
+                  <strong>Partners:</strong> Rahtha Impex (PL), Miral Experiences LLC (UAE).
+                  <br />Focus: Specialized merchandise and apparel trading.
+                </p>
               </div>
             </div>
           </ScrollAnimatedSection>

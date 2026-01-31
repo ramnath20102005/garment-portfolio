@@ -1,0 +1,233 @@
+/*
+ * Manager Dashboard CSS - Professional Application Style
+ * Optimized for Sidebar Layout integration
+ */
+
+.manager-dashboard {
+    /* Main container is now handled by ManagerLayout, so we reset some constraints */
+    max-width: 100%;
+    padding: 0;
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Header Section (Now simplified as topbar handles global header) --- */
+.manager-header {
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.manager-header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.manager-header .user-info {
+    display: none;
+    /* User info is now in top sidebar/topbar */
+}
+
+/* --- Overview Stats --- */
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.stat-card {
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px;
+    padding: 24px;
+    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.stat-card:hover {
+    border-color: var(--text-tertiary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+}
+
+.stat-card .label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+}
+
+.stat-card .value {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1;
+    font-family: 'Inter', sans-serif;
+    /* Modern san-serif match */
+}
+
+/* --- Recent Content & Quick Actions --- */
+.dashboard-content {
+    display: grid;
+    grid-template-columns: 1fr;
+    /* Full width flow since sidebar handles Nav */
+    gap: 40px;
+}
+
+@media(min-width: 1280px) {
+    .dashboard-content {
+        grid-template-columns: 2fr 1fr;
+        /* Add sidebar column only on very wide screens */
+    }
+}
+
+.content-section {
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.content-section h2 {
+    font-size: 1.25rem;
+    margin: 0 0 24px 0;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.recent-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.recent-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: background-color 0.2s ease;
+}
+
+.recent-item:last-child {
+    border-bottom: none;
+}
+
+.item-info .name {
+    display: block;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.item-info .meta {
+    font-size: 0.8rem;
+    color: var(--text-tertiary);
+}
+
+/* --- Status Badges --- */
+.status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.status-draft {
+    background-color: #f1f3f5;
+    color: #868e96;
+}
+
+.status-pending,
+.status-pendingapproval {
+    background-color: #e7f5ff;
+    color: #1971c2;
+}
+
+.status-published,
+.status-approved {
+    background-color: #ebfbee;
+    color: #2f9e44;
+}
+
+.status-rejected {
+    background-color: #fff5f5;
+    color: #e03131;
+}
+
+/* --- Quick Actions (Legacy sidebar, now helpful links) --- */
+.quick-actions {
+    /* Since we have the main sidebar, this is now a "What's Next" panel */
+    background: white;
+    padding: 24px;
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    height: fit-content;
+}
+
+.quick-actions h2 {
+    font-size: 1.1rem;
+    margin: 0 0 20px 0;
+    color: var(--text-primary);
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: white;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--bg-muted);
+    color: var(--text-primary);
+    border-color: var(--text-tertiary);
+}
+
+.action-btn.logout {
+    margin-top: 24px;
+    border-color: #ffe3e3;
+    color: #e03131;
+    background-color: #fff5f5;
+}
+
+.action-btn.logout:hover {
+    background-color: #e03131;
+    color: white;
+    border-color: #e03131;
+}

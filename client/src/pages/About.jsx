@@ -8,9 +8,9 @@ function About() {
       <section className="section-light about-header">
         <div className="container">
           <ScrollAnimatedSection animation="animate-fade-in-up">
-            <h1 className="page-title">Refining Heritage.</h1>
+            <h1 className="page-title">V R fashions.</h1>
             <p className="page-subtitle">
-              Three decades of excellence in garment manufacturing and global export.
+              Excellence in knitted garments and global cotton apparel manufacturing.
             </p>
             <div className="section-divider"></div>
           </ScrollAnimatedSection>
@@ -26,15 +26,16 @@ function About() {
                 <h2>Our Story</h2>
                 <div className="section-divider"></div>
                 <p>
-                  Founded in 1995, Premium Garments began as a small family-owned
-                  manufacturing unit with a vision to deliver world-class quality garments
-                  to international markets. Over the past three decades, we have grown into
-                  a leading manufacturer and exporter, serving clients across 40+ countries.
+                  Led by Mohan, V R fashions has established itself as a premier destination
+                  for high-quality knitted garments. Based in the textile hub of Tiruppur,
+                  we specialize in a wide range of cotton-based apparel, from traditional
+                  banian cloth to modern streetwear.
                 </p>
                 <p>
-                  Our journey has been marked by continuous innovation, unwavering commitment
-                  to quality, and a deep understanding of global fashion trends. Today, we
-                  operate state-of-the-art facilities equipped with cutting-edge technology.
+                  Our expertise lies in the nuanced manufacturing of trousers, hoodies,
+                  nightwear, and t-shirts. We pride ourselves on our collaborative approach,
+                  especially with our custom-designed t-shirts that are tailored to the
+                  exact specifications of our international partners in Poland, France, the USA, and UAE.
                 </p>
               </div>
             </ScrollAnimatedSection>
@@ -42,16 +43,16 @@ function About() {
             <ScrollAnimatedSection animation="animate-fade-in-right">
               <div className="story-stats">
                 <div className="story-stat">
-                  <span className="stat-value">1995</span>
+                  <span className="stat-value">2005</span>
                   <span className="stat-text">Established</span>
                 </div>
                 <div className="story-stat">
-                  <span className="stat-value">2000+</span>
-                  <span className="stat-text">Employees</span>
+                  <span className="stat-value">500+</span>
+                  <span className="stat-text">Skilled Artisans</span>
                 </div>
                 <div className="story-stat">
-                  <span className="stat-value">40+</span>
-                  <span className="stat-text">Countries</span>
+                  <span className="stat-value">6</span>
+                  <span className="stat-text">Major Buyer Nations</span>
                 </div>
               </div>
             </ScrollAnimatedSection>

@@ -77,11 +77,11 @@ function Contact() {
               <div className="contact-details-editorial">
                 <div className="detail-item">
                   <h4>The Hub</h4>
-                  <p>123 Manufacturing District<br />Global Industrial Zone, State 4001</p>
+                  <p>S.F#85,86 VIVEKANDHA NAGAR,<br />Dharapuram Main Rd, KOVILVALI, Tiruppur, Tamil Nadu 641606</p>
                 </div>
                 <div className="detail-item">
                   <h4>Hotline</h4>
-                  <p>+1 (555) 123-4567</p>
+                  <p>+91 98947 61456</p>
                 </div>
                 <div className="social-nexus">
                   <h4>Nexus</h4>

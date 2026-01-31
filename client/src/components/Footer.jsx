@@ -6,10 +6,10 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3 className="footer-title">Premium Garments</h3>
+          <h3 className="footer-title">V R fashions</h3>
           <p className="footer-description">
-            Leading manufacturer and exporter of premium quality garments,
-            serving global markets with excellence since 1995.
+            Specializing in high-quality knitted garments. Led by Mohan, we deliver
+            excellence to global markets with a focus on cotton-based apparel.
           </p>
           <div className="footer-certifications">
             <span className="cert-badge">ISO 9001</span>
@@ -41,16 +41,15 @@ function Footer() {
         <div className="footer-section">
           <h4 className="footer-heading">Contact Info</h4>
           <ul className="footer-contact">
-            <li>📧 info@premiumgarments.com</li>
-            <li>📞 +1 (555) 123-4567</li>
-            <li>📍 Industrial Zone, Manufacturing Hub</li>
-            <li>🌐 www.premiumgarments.com</li>
+            <li>📧 contact@vrfashions.com</li>
+            <li>📞 +91 98947 61456</li>
+            <li>📍 S.F#85,86 VIVEKANDHA NAGAR, Dharapuram Main Rd, KOVILVALI, Tiruppur, Tamil Nadu 641606</li>
           </ul>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <p>&copy; 2026 Premium Garments. All rights reserved.</p>
+        <p>&copy; 2026 V R fashions. All rights reserved.</p>
         <div className="footer-legal">
           <a href="#privacy">Privacy Policy</a>
           <span>•</span>

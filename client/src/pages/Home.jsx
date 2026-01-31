@@ -24,13 +24,13 @@ function Home() {
               <div className="hero-content">
                 <span className="hero-label">The Foundation</span>
                 <h1 className="hero-title">
-                  {company ? company.name : "Premium Garments"}
+                  V R fashions
                 </h1>
                 <p className="hero-tagline">
-                  Where Heritage Meets modern craftsmanship.
+                  Precision in Knitted Garments.
                 </p>
                 <p className="hero-subtitle">
-                  {company ? company.description : "Excellence in manufacturing and global export since 1995."}
+                  {company ? company.description : "Premier manufacturer of cotton-related apparel, specialized in banian cloth, specialty collections, and custom designed t-shirts."}
                 </p>
                 <div className="hero-cta">
                   <Link to="/products" className="btn btn-primary">Our Collection</Link>
@@ -39,6 +39,7 @@ function Home() {
               </div>
             </ScrollAnimatedSection>
             <div className="hero-visual">
+              <img src="/vr.jpeg" alt="V R fashions Facility" className="hero-img" />
               <div className="visual-block"></div>
             </div>
           </div>
@@ -56,16 +57,16 @@ function Home() {
 
             <div className="features-grid">
               <div className="feature-card">
-                <h3>Scalable Precision</h3>
-                <p>Advanced infrastructure optimized for high-volume, high-quality production cycles.</p>
+                <h3>Global Trade Node</h3>
+                <p>Strategic partnerships with Sahinler SA (FR), Infinity (USA), and Rahtha Impex (PL).</p>
               </div>
               <div className="feature-card">
-                <h3>Global Dialogue</h3>
-                <p>Seamless logistics ensuring your vision reaches 40+ international markets.</p>
+                <h3>Product Excellence</h3>
+                <p>Expertise in Boys T-Shirts, Sweatshirts, Girls PJ Sets, and Ladies Long Dresses.</p>
               </div>
               <div className="feature-card">
-                <h3>Ethically Sourced</h3>
-                <p>Committed to GOTS-certified sustainable practices across our supply chain.</p>
+                <h3>Custom Design</h3>
+                <p>T-shirts custom designed by buyers, brought to life with precision Tiruppur craftsmanship.</p>
               </div>
             </div>
           </ScrollAnimatedSection>
@@ -78,16 +79,16 @@ function Home() {
           <ScrollAnimatedSection animation="animate-scale-in">
             <div className="stats-grid">
               <div className="stat-item">
-                <span className="stat-number">30+</span>
-                <span className="stat-label">Years of Mastery</span>
+                <span className="stat-number">20+</span>
+                <span className="stat-label">Years of Expertise</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number">500K+</span>
-                <span className="stat-label">Monthly Capacity</span>
+                <span className="stat-number">200K+</span>
+                <span className="stat-label">Monthly Units</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number">98%</span>
-                <span className="stat-label">Client Trust</span>
+                <span className="stat-number">100%</span>
+                <span className="stat-label">Quality Commitment</span>
               </div>
             </div>
           </ScrollAnimatedSection>
@@ -100,7 +101,7 @@ function Home() {
           <ScrollAnimatedSection animation="animate-fade-in-up">
             <div className="cta-box">
               <h2 className="section-title">Initiate a Project</h2>
-              <p>Join the elite global brands that trust us for their garment manufacturing.</p>
+              <p>Partner with V R fashions for industry-leading knitted garment manufacturing.</p>
               <Link to="/contact" className="btn btn-primary btn-large">Request Partnership</Link>
             </div>
           </ScrollAnimatedSection>

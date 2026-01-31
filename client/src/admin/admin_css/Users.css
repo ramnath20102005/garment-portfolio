@@ -1,0 +1,103 @@
+/*
+ * Users Management - Editorial Control Panel
+ */
+
+.users-container {
+    padding: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.users-header {
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--text-primary);
+    padding-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.users-header h1 {
+    font-size: 4rem;
+    letter-spacing: -2px;
+}
+
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.user-row {
+    display: grid;
+    grid-template-columns: 80px 1fr 200px 150px;
+    align-items: center;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    transition: all 0.3s ease;
+}
+
+.user-row:hover {
+    padding-left: 20px;
+    background: var(--bg-muted);
+}
+
+.user-avatar {
+    width: 48px;
+    height: 48px;
+    background: var(--bg-dark);
+    color: var(--text-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+}
+
+.user-info .name {
+    display: block;
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 4px;
+}
+
+.user-info .username {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.user-role {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.user-actions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-icon {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    padding: 8px 16px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
+
+.btn-icon:hover {
+    background: var(--text-primary);
+    color: var(--bg-light);
+}
+
+.btn-delete:hover {
+    background: #e03131;
+    border-color: #e03131;
+}

@@ -1,0 +1,135 @@
+/*
+ * Login CSS - Premium Editorial Fashion Design
+ */
+
+.login-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg-muted);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-page::before {
+    content: 'PORTFOLIO';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Playfair Display', serif;
+    font-size: 25vw;
+    font-weight: 600;
+    color: var(--text-primary);
+    opacity: 0.03;
+    pointer-events: none;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.login-card {
+    background-color: var(--bg-light);
+    width: 100%;
+    max-width: 450px;
+    padding: 60px 50px;
+    border: 1px solid var(--border-subtle);
+    position: relative;
+    z-index: 2;
+    box-shadow: 20px 20px 0 var(--text-primary);
+    animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(40px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.login-header {
+    margin-bottom: 48px;
+    text-align: center;
+}
+
+.login-header h1 {
+    font-size: 3rem;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+}
+
+.login-header p {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-secondary);
+}
+
+.login-form .form-group {
+    margin-bottom: 32px;
+}
+
+.login-form label {
+    display: block;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 16px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--border-subtle);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.login-form input:focus {
+    outline: none;
+    border-bottom-color: var(--text-primary);
+}
+
+.login-btn {
+    width: 100%;
+    padding: 18px;
+    background-color: var(--text-primary);
+    color: var(--bg-light);
+    border: 1px solid var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    margin-top: 16px;
+}
+
+.login-btn:hover {
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.login-error {
+    background-color: #fff5f5;
+    color: #e03131;
+    padding: 12px;
+    font-size: 0.85rem;
+    margin-bottom: 24px;
+    text-align: center;
+    border: 1px solid #ffc9c9;
+}

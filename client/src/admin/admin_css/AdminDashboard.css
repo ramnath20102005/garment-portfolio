@@ -1,0 +1,136 @@
+/*
+ * Admin Dashboard - Editorial Control Panel
+ */
+
+.dashboard-container {
+    padding: 60px 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 60px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 24px;
+}
+
+.dashboard-header h1 {
+    font-size: 4rem;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.admin-badge {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.75rem;
+    background: var(--text-primary);
+    color: var(--bg-light);
+    padding: 4px 12px;
+    margin-bottom: 8px;
+    display: inline-block;
+}
+
+/* Stats Overview */
+.stats-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 32px;
+    margin-bottom: 80px;
+}
+
+.stat-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-subtle);
+    padding: 40px;
+    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.stat-card:hover {
+    border-color: var(--text-primary);
+    transform: translateY(-5px);
+    box-shadow: 10px 10px 0px var(--border-subtle);
+}
+
+.stat-card .label {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.stat-card .value {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+/* Action Sections */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+}
+
+.content-block {
+    background: var(--bg-muted);
+    padding: 40px;
+    border: 1px solid var(--border-subtle);
+}
+
+.content-block h2 {
+    font-size: 2rem;
+    margin-bottom: 32px;
+    letter-spacing: -0.5px;
+}
+
+/* Logout / Navigation */
+.admin-actions {
+    display: flex;
+    gap: 16px;
+}
+
+.btn-admin {
+    padding: 12px 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    border: 1px solid var(--text-primary);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-admin:hover {
+    background: var(--text-primary);
+    color: var(--bg-light);
+}
+
+.logout-btn {
+    border-color: #e03131;
+    color: #e03131;
+}
+
+.logout-btn:hover {
+    background: #e03131;
+    color: white;
+}

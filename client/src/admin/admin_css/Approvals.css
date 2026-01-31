@@ -1,0 +1,191 @@
+/* Approvals Page - Editorial Style */
+
+.approvals-container {
+    padding: 60px 5%;
+    height: calc(100vh - 20px);
+    overflow: hidden;
+    background-color: var(--bg-light);
+}
+
+.approvals-header {
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 20px;
+}
+
+.approvals-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    margin: 0 0 8px 0;
+}
+
+.approvals-header p {
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+}
+
+.approvals-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 40px;
+    height: calc(100% - 150px);
+}
+
+.submissions-list {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    overflow-y: auto;
+    padding: 24px;
+}
+
+.submission-card {
+    padding: 24px;
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.submission-card:last-child {
+    border-bottom: none;
+}
+
+.submission-card:hover {
+    background: var(--bg-muted);
+}
+
+.submission-card.active {
+    background: var(--bg-muted);
+    border-left: 4px solid var(--text-primary);
+}
+
+.sub-meta {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.submission-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+    font-family: 'Playfair Display', serif;
+}
+
+.submission-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.submission-detail {
+    background: #ffffff;
+    border: 1px solid var(--border-subtle);
+    padding: 60px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: 20px;
+}
+
+.data-snapshot {
+    background: var(--bg-light);
+    padding: 40px;
+    margin-bottom: 40px;
+}
+
+.snapshot-row {
+    display: flex;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.snapshot-row:last-child {
+    border-bottom: none;
+}
+
+.snapshot-row .key {
+    flex: 0 0 200px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+}
+
+.snapshot-row .value {
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.approval-form {
+    margin-top: auto;
+    border-top: 1px solid var(--border-subtle);
+    padding-top: 40px;
+}
+
+.approval-form label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.approval-form textarea {
+    width: 100%;
+    height: 120px;
+    padding: 16px;
+    border: 1px solid var(--border-subtle);
+    background: var(--bg-light);
+    font-family: inherit;
+    font-size: 1rem;
+    margin-bottom: 24px;
+}
+
+.form-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.approve-btn,
+.reject-btn {
+    flex: 1;
+    padding: 16px;
+    border: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.approve-btn {
+    background-color: var(--text-primary);
+    color: #ffffff;
+}
+
+.reject-btn {
+    background-color: transparent;
+    border: 1px solid var(--admin-danger);
+    color: var(--admin-danger);
+}
+
+.approve-btn:hover,
+.reject-btn:hover {
+    opacity: 0.7;
+}

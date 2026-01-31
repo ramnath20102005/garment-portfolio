@@ -1,6 +1,9 @@
 const express = require("express");
 const Product = require("../models/Product");
 
+const auth = require("../middleware/auth");
+const role = require("../middleware/role");
+
 const router = express.Router();
 
 // GET all products
@@ -13,8 +16,8 @@ router.get("/", async (req, res) => {
   }
 });
 
-// POST product (temporary – demo)
-router.post("/", async (req, res) => {
+// POST product (Protected: Manager & Admin)
+router.post("/", auth, role(["MANAGER", "ADMIN"]), async (req, res) => {
   try {
     const product = new Product(req.body);
     await product.save();

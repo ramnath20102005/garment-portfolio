@@ -19,14 +19,35 @@ function Products() {
       });
   }, []);
 
-  const displayProducts = products.length > 0 ? products : [
-    { _id: "1", name: "Artisanal Cotton Series", category: "Knitwear", description: "High-density 100% cotton garments with proprietary pre-wash finishing." },
-    { _id: "2", name: "Corporate Structured Shirts", category: "Formal", description: "Impeccable tailoring meets breathable premium textiles for the modern workspace." },
-    { _id: "3", name: "Resilient Denim Workwear", category: "Denim", description: "Traditional heavy-duty denim reimagined with modern ergonomic fits." },
-    { _id: "4", name: "Technical Active Series", category: "Performance", description: "Precision-engineered apparel for high-impact physical performance." },
-    { _id: "5", name: "Soft-Touch Childrenswear", category: "Kids", description: "Hypoallergenic fabrics designed for ultimate comfort and durability." },
-    { _id: "6", name: "Conceptual Womenswear", category: "Fashion", description: "Limited edition silhouettes blending architectural design with wearable grace." }
+  const defaultProducts = [
+    { name: "Boys T-Shirt", image: "/boys-t-shirt.jpg" },
+    { name: "Boys Hooded Sweat Shirt", image: "/boys_hood.jpeg" },
+    { name: "Boys Sweatshirt", image: "/boys_hood.jpeg" },
+    { name: "Girls Pyjama Sets", image: "/girls_pyjamas1.jpg.jpeg" },
+    { name: "Ladies Long Dress", image: "/long_sleeve1.jpg.jpeg" },
+    { name: "Adult Brown Moose Series", image: "/brown_moos.jpeg" },
+    { name: "Womens PJ Set", image: "/women_pj_set.jpg" }
   ];
+
+  const displayProducts = products.length > 0
+    ? products.map(p => {
+      if (!p.image) {
+        const match = defaultProducts.find(dp =>
+          p.name.toLowerCase().includes(dp.name.toLowerCase()) ||
+          dp.name.toLowerCase().includes(p.name.toLowerCase())
+        );
+        return { ...p, image: match ? match.image : "/vr.jpeg" };
+      }
+      return p;
+    })
+    : [
+      { _id: "1", name: "Boys T-Shirt", category: "Kids", description: "High-quality knitted t-shirts, custom designed to buyer specifications.", image: "/boys-t-shirt.jpg" },
+      { _id: "2", name: "Boys Hooded Sweat Shirt", category: "Outerwear", description: "Premium cotton-blend hoodies with durable stitching and soft finish.", image: "/boys_hood.jpeg" },
+      { _id: "3", name: "Girls Pyjama Sets", category: "Sleepwear", description: "Breathable and comfortable sleep sets designed for youthful elegance.", image: "/girls_pyjamas1.jpg.jpeg" },
+      { _id: "4", name: "Ladies Long Dress", category: "Womenswear", description: "Fashion-forward long dresses crafted from the finest knitted cotton.", image: "/long_sleeve1.jpg.jpeg" },
+      { _id: "5", name: "Adult Brown Moose Series", category: "Specialty", description: "Our exclusive specialty series designed for international merchandise.", image: "/brown_moos.jpeg" },
+      { _id: "6", name: "Womens PJ Set", category: "Sleepwear", description: "Luxury loungewear sets combining style with ultimate overnight comfort.", image: "/women_pj_set.jpg" }
+    ];
 
   return (
     <div className="products">
@@ -54,7 +75,9 @@ function Products() {
               {displayProducts.map((product, idx) => (
                 <ScrollAnimatedSection key={product._id} animation="animate-fade-in-up" delay={idx % 3 + 1}>
                   <div className="product-card">
-                    <div className="product-visual"></div>
+                    <div className="product-visual">
+                      <img src={product.image} alt={product.name} />
+                    </div>
                     <div className="product-info">
                       <span className="product-category">{product.category}</span>
                       <h3 className="product-name">{product.name}</h3>

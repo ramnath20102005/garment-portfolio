@@ -6,8 +6,8 @@ function Navbar() {
     <nav className="navbar">
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
-          <span className="logo-text">Premium Garments</span>
-          <span className="logo-tagline">Excellence in Manufacturing</span>
+          <span className="logo-text">V R fashions</span>
+          <span className="logo-tagline">Excellence in Knitted Garments</span>
         </Link>
 
         <ul className="navbar-menu">

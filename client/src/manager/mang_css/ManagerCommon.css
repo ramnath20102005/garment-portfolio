@@ -1,0 +1,132 @@
+/*
+ * Manager Common UI Elements
+ */
+
+.manager-page-content {
+    padding: 60px 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    animation: fadeIn 0.8s ease;
+}
+
+.page-title-block {
+    margin-bottom: 60px;
+}
+
+.page-title-block h2 {
+    font-size: 3.5rem;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
+.page-title-block p {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+/* Management Tables */
+.mgmt-table-container {
+    width: 100%;
+    border: 1px solid var(--border-subtle);
+    background: white;
+}
+
+.mgmt-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mgmt-table th {
+    text-align: left;
+    padding: 20px;
+    border-bottom: 1px solid var(--text-primary);
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+}
+
+.mgmt-table td {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 0.9rem;
+}
+
+.mgmt-table tr:hover td {
+    background-color: var(--bg-muted);
+}
+
+/* Management Forms */
+.mgmt-form {
+    display: grid;
+    gap: 32px;
+    max-width: 800px;
+}
+
+.form-row {
+    display: grid;
+    gap: 8px;
+}
+
+.form-row label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+}
+
+.form-row input,
+.form-row textarea,
+.form-row select {
+    padding: 16px;
+    border: 1px solid var(--border-subtle);
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    background: var(--bg-light);
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+    outline: none;
+    border-color: var(--text-primary);
+}
+
+.form-actions {
+    display: flex;
+    gap: 16px;
+    margin-top: 24px;
+}
+
+.btn-save {
+    padding: 14px 40px;
+    background: var(--text-primary);
+    color: var(--bg-light);
+    border: 1px solid var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-save:hover {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.btn-secondary {
+    padding: 14px 40px;
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}

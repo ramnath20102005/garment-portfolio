@@ -1,0 +1,262 @@
+/* Manager Layout - Professional Dashboard Style */
+.manager-layout {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-light);
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* --- Top Bar --- */
+.manager-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    height: 64px;
+    background-color: white;
+    border-bottom: 1px solid var(--border-subtle);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.menu-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle:hover {
+    background-color: var(--bg-muted);
+}
+
+.app-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.brand-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--text-primary);
+}
+
+.brand-divider {
+    color: var(--text-tertiary);
+    font-weight: 300;
+}
+
+.brand-context {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: var(--text-primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.user-profile .username {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+/* --- Sidebar --- */
+.sidebar-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1040;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.sidebar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.manager-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 280px;
+    background-color: white;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border-right: 1px solid var(--border-subtle);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.05);
+}
+
+.manager-sidebar.open {
+    transform: translateX(0);
+}
+
+.sidebar-header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    border-bottom: 1px solid var(--border-subtle);
+}
+
+.sidebar-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.sidebar-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 24px 0;
+}
+
+.nav-group {
+    margin-bottom: 24px;
+    padding: 0 16px;
+}
+
+.group-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-tertiary);
+    margin-bottom: 8px;
+    padding-left: 12px;
+    font-weight: 600;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+    margin-bottom: 4px;
+}
+
+.nav-item:hover {
+    background-color: var(--bg-muted);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background-color: #f8f9fa;
+    /* Light gray bg */
+    color: var(--text-primary);
+    font-weight: 500;
+    border-left: 3px solid var(--text-primary);
+    border-radius: 0 6px 6px 0;
+    /* Boxy look */
+}
+
+.nav-item.active svg {
+    color: var(--text-primary);
+}
+
+.sidebar-footer {
+    padding: 16px;
+    border-top: 1px solid var(--border-subtle);
+    background-color: #fcfcfc;
+}
+
+.logout-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    background: none;
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    cursor: pointer;
+    color: var(--admin-danger);
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #fff5f5;
+}
+
+/* --- Main Content --- */
+.manager-main {
+    flex: 1;
+    padding: 32px 5%;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    /* Optional: Keep sidebar always open on large screens? 
+       User requested "toggle", but usually dashboard sidebars are fixed on desktop.
+       Given the prompt "Sidebar slides from left -> right", implies toggle.
+       But standard behavior is persistent on desktop, toggle on mobile.
+       Let's stick to toggle-only as requested ("hamburger menu... sidebar slides"),
+       which gives max screen real estate. 
+    */
+}
