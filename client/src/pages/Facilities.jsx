@@ -42,11 +42,11 @@ function Facilities() {
                         <ScrollAnimatedSection animation="animate-fade-in-right">
                             <div className="overview-stats">
                                 <div className="facility-stat">
-                                    <span className="stat-number">200K</span>
+                                    <span className="stat-number">200</span>
                                     <span className="stat-label">Square Feet</span>
                                 </div>
                                 <div className="facility-stat">
-                                    <span className="stat-number">15+</span>
+                                    <span className="stat-number">7+</span>
                                     <span className="stat-label">Active Lines</span>
                                 </div>
                             </div>

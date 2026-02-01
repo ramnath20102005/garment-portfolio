@@ -43,11 +43,11 @@ function About() {
             <ScrollAnimatedSection animation="animate-fade-in-right">
               <div className="story-stats">
                 <div className="story-stat">
-                  <span className="stat-value">2005</span>
+                  <span className="stat-value">2020</span>
                   <span className="stat-text">Established</span>
                 </div>
                 <div className="story-stat">
-                  <span className="stat-value">500+</span>
+                  <span className="stat-value">30+</span>
                   <span className="stat-text">Skilled Artisans</span>
                 </div>
                 <div className="story-stat">

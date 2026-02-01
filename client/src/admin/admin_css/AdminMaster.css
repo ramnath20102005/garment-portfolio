@@ -245,6 +245,28 @@
     opacity: 0.8;
 }
 
+.insight-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    min-width: 200px;
+}
+
+.insight-stat span {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+.insight-stat strong {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
 .admin-loading,
 .admin-error {
     background-color: var(--bg-light);
@@ -255,4 +277,132 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    border: 1px solid var(--admin-border);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    margin-bottom: 30px;
+}
+
+.modal-header h2 {
+    font-family: var(--admin-header-font);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.admin-form-group {
+    margin-bottom: 20px;
+}
+
+.admin-form-group label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: var(--admin-text-secondary);
+}
+
+.admin-input,
+.admin-select-full {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--admin-border);
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.admin-input:focus,
+.admin-select-full:focus {
+    border-color: var(--admin-text-primary);
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 40px;
+}
+
+.btn-secondary {
+    background: transparent;
+    border: 1px solid var(--admin-border);
+    padding: 10px 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--admin-text-primary);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+/* Dropdown Menu */
+.dropdown-container {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: white;
+    border: 1px solid var(--admin-border);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    z-index: 100;
+    min-width: 150px;
+}
+
+.dropdown-item {
+    padding: 12px 16px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.dropdown-item:hover {
+    background: var(--bg-muted);
+}
+
+.dropdown-item.danger {
+    color: var(--admin-danger);
 }

@@ -10,6 +10,11 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  email: {
+    type: String,
+    unique: true,
+    sparse: true
+  },
   role: {
     type: String,
     enum: ['ADMIN', 'MANAGER'],
@@ -17,6 +22,11 @@ const UserSchema = new mongoose.Schema({
   },
   name: {
     type: String
+  },
+  status: {
+    type: String,
+    enum: ['VERIFIED', 'PENDING', 'REJECTED'],
+    default: 'VERIFIED'
   },
   joinedDate: {
     type: Date,
