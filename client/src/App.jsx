@@ -18,6 +18,7 @@ import AdminDashboard from "./admin/AdminDashboard";
 import Users from "./admin/Users";
 import Approvals from "./admin/Approvals";
 import AdminLayout from "./admin/AdminLayout";
+import Insights from "./admin/Insights";
 import ManagerLayout from "./manager/ManagerLayout";
 import ManagerDashboard from "./manager/ManagerDashboard";
 import CompanyManagement from "./manager/CompanyManagement";
@@ -83,6 +84,7 @@ function App() {
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/users" element={<Users />} />
             <Route path="/admin/approvals" element={<Approvals />} />
+            <Route path="/admin/insights" element={<Insights />} />
           </Route>
         </Route>
 

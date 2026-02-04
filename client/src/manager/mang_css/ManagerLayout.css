@@ -1,7 +1,4 @@
-/* Manager Layout - Professional Dashboard Style
- * Highly Responsive & Fluid Design
- */
-
+/* Manager Layout - Professional Dashboard Style */
 .manager-layout {
     display: flex;
     flex-direction: column;
@@ -11,102 +8,82 @@
     overflow-x: hidden;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Top Bar - Fluid & Responsive                                               */
-/* -------------------------------------------------------------------------- */
+/* --- Top Bar --- */
 .manager-topbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 clamp(16px, 3vw, 24px);
-    height: clamp(56px, 10vw, 64px);
+    padding: 0 24px;
+    height: 64px;
     background-color: white;
     border-bottom: 1px solid var(--border-subtle);
     position: sticky;
     top: 0;
     z-index: 1000;
-    transition: height 0.3s ease;
 }
 
 .topbar-left {
     display: flex;
     align-items: center;
-    gap: clamp(12px, 2vw, 16px);
-    flex: 1;
-    min-width: 0; /* Prevent flex overflow */
+    gap: 16px;
 }
 
 .menu-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    padding: clamp(6px, 1vw, 8px);
+    padding: 4px;
     border-radius: 4px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 40px;
-    min-height: 40px;
-    flex-shrink: 0;
 }
 
-.menu-toggle svg {
-    width: clamp(20px, 4vw, 24px);
-    height: clamp(20px, 4vw, 24px);
+.menu-toggle:hover {
+    background-color: var(--bg-muted);
 }
 
 .app-brand {
     display: flex;
     align-items: center;
-    gap: clamp(8px, 2vw, 12px);
-    flex-shrink: 1;
-    min-width: 0;
-    overflow: hidden;
+    gap: 12px;
 }
 
 .brand-name {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: clamp(1.1rem, 2.5vw, 1.25rem);
+    font-size: 1.25rem;
     color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .brand-divider {
     color: var(--text-tertiary);
     font-weight: 300;
-    flex-shrink: 0;
 }
 
 .brand-context {
-    font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: clamp(0.5px, 0.15vw, 1px);
+    letter-spacing: 1px;
     color: var(--text-secondary);
     font-weight: 500;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .topbar-right {
     display: flex;
     align-items: center;
-    flex-shrink: 0;
 }
 
 .user-profile {
     display: flex;
     align-items: center;
-    gap: clamp(8px, 1.5vw, 10px);
+    gap: 10px;
 }
 
 .user-profile .avatar {
-    width: clamp(32px, 6vw, 36px);
-    height: clamp(32px, 6vw, 36px);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     background-color: var(--text-primary);
     color: white;
@@ -114,23 +91,16 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: clamp(0.75rem, 1.8vw, 0.9rem);
-    flex-shrink: 0;
+    font-size: 0.9rem;
 }
 
 .user-profile .username {
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
+    font-size: 0.9rem;
     font-weight: 500;
     color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 150px;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Sidebar - Fluid & Responsive                                               */
-/* -------------------------------------------------------------------------- */
+/* --- Sidebar --- */
 .sidebar-overlay {
     position: fixed;
     top: 0;
@@ -141,7 +111,7 @@
     z-index: 1040;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease;
     backdrop-filter: blur(2px);
 }
 
@@ -155,7 +125,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: clamp(260px, 40vw, 280px);
+    width: 280px;
     background-color: white;
     z-index: 1050;
     transform: translateX(-100%);
@@ -171,23 +141,19 @@
 }
 
 .sidebar-header {
-    height: clamp(56px, 10vw, 64px);
+    height: 64px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 clamp(16px, 3vw, 24px);
+    padding: 0 24px;
     border-bottom: 1px solid var(--border-subtle);
-    flex-shrink: 0;
 }
 
 .sidebar-header h3 {
-    font-size: clamp(0.9rem, 2vw, 1rem);
+    font-size: 1rem;
     font-weight: 600;
     margin: 0;
     color: var(--text-primary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
 .close-btn {
@@ -195,74 +161,55 @@
     border: none;
     cursor: pointer;
     color: var(--text-secondary);
-    padding: clamp(6px, 1vw, 8px);
-    border-radius: 4px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 40px;
-    min-height: 40px;
-    flex-shrink: 0;
-}
-
-.close-btn svg {
-    width: clamp(18px, 3vw, 20px);
-    height: clamp(18px, 3vw, 20px);
 }
 
 .sidebar-content {
     flex: 1;
     overflow-y: auto;
-    overflow-x: hidden;
-    padding: clamp(16px, 3vw, 24px) 0;
-    -webkit-overflow-scrolling: touch;
+    padding: 24px 0;
 }
 
 .nav-group {
-    margin-bottom: clamp(16px, 3vw, 24px);
-    padding: 0 clamp(12px, 2vw, 16px);
+    margin-bottom: 24px;
+    padding: 0 16px;
 }
 
 .group-label {
-    font-size: clamp(0.7rem, 1.4vw, 0.75rem);
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: clamp(0.8px, 0.15vw, 1px);
+    letter-spacing: 1px;
     color: var(--text-tertiary);
-    margin-bottom: clamp(6px, 1vw, 8px);
-    padding-left: clamp(8px, 1.5vw, 12px);
+    margin-bottom: 8px;
+    padding-left: 12px;
     font-weight: 600;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
-    gap: clamp(10px, 2vw, 12px);
-    padding: clamp(10px, 2vw, 12px) clamp(10px, 2vw, 12px);
+    gap: 12px;
+    padding: 10px 12px;
     text-decoration: none;
     color: var(--text-secondary);
     border-radius: 6px;
-    font-size: clamp(0.85rem, 1.8vw, 0.9rem);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 0.9rem;
+    transition: all 0.2s;
     margin-bottom: 4px;
-    min-height: 44px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
 
-.nav-item svg {
-    width: clamp(18px, 3vw, 20px);
-    height: clamp(18px, 3vw, 20px);
-    flex-shrink: 0;
+.nav-item:hover {
+    background-color: var(--bg-muted);
+    color: var(--text-primary);
 }
 
 .nav-item.active {
     background-color: #f8f9fa;
+    /* Light gray bg */
     color: var(--text-primary);
     font-weight: 500;
     border-left: 3px solid var(--text-primary);
     border-radius: 0 6px 6px 0;
+    /* Boxy look */
 }
 
 .nav-item.active svg {
@@ -270,10 +217,9 @@
 }
 
 .sidebar-footer {
-    padding: clamp(12px, 2.5vw, 16px);
+    padding: 16px;
     border-top: 1px solid var(--border-subtle);
     background-color: #fcfcfc;
-    flex-shrink: 0;
 }
 
 .logout-btn {
@@ -281,45 +227,50 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: clamp(8px, 1.5vw, 10px);
-    padding: clamp(12px, 2.5vw, 14px);
+    gap: 10px;
+    padding: 12px;
     background: none;
     border: 1px solid var(--border-subtle);
     border-radius: 6px;
     cursor: pointer;
     color: var(--admin-danger);
-    font-size: clamp(0.8rem, 1.8vw, 0.9rem);
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    min-height: 44px;
-    font-family: inherit;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
 }
 
-.logout-btn svg {
-    width: clamp(16px, 3vw, 18px);
-    height: clamp(16px, 3vw, 18px);
-    flex-shrink: 0;
+.logout-btn:hover {
+    background-color: #fff5f5;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Main Content - Fluid & Responsive                                          */
-/* -------------------------------------------------------------------------- */
+/* --- Main Content --- */
 .manager-main {
     flex: 1;
-    padding: clamp(24px, 5vw, 32px) clamp(16px, 4vw, 5%);
+    padding: 32px 5%;
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
 }
 
-/* -------------------------------------------------------------------------- */
-/* Mobile Specific (320px - 479px)                                            */
-/* -------------------------------------------------------------------------- */
-@media (max-width: 479px) {
-    .brand-context {
-        display: none;
+/* ============================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ============================================ */
+
+/* Mobile: 360px - 767px */
+@media (max-width: 767px) {
+    .manager-topbar {
+        padding: 0 16px;
+        height: 56px;
     }
 
-    .brand-divider {
+    .topbar-left {
+        gap: 12px;
+    }
+
+    .brand-name {
+        font-size: 1.1rem;
+    }
+
+    .brand-context {
         display: none;
     }
 
@@ -327,9 +278,101 @@
         display: none;
     }
 
+    .user-profile .avatar {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    /* Sidebar - Full width on mobile */
     .manager-sidebar {
         width: 100%;
-        max-width: 90vw;
+        max-width: 300px;
+    }
+
+    .sidebar-header {
+        height: 56px;
+        padding: 0 20px;
+    }
+
+    .sidebar-header h3 {
+        font-size: 0.9rem;
+    }
+
+    .sidebar-content {
+        padding: 20px 0;
+    }
+
+    .nav-group {
+        margin-bottom: 20px;
+        padding: 0 12px;
+    }
+
+    .group-label {
+        font-size: 0.7rem;
+        padding-left: 10px;
+    }
+
+    .nav-item {
+        padding: 12px 10px;
+        gap: 10px;
+        font-size: 0.85rem;
+        min-height: 48px;
+    }
+
+    .sidebar-footer {
+        padding: 16px 12px;
+    }
+
+    .logout-btn {
+        padding: 14px;
+        font-size: 0.85rem;
+        min-height: 48px;
+    }
+
+    /* Main content */
+    .manager-main {
+        padding: 24px 16px;
+    }
+}
+
+/* Tablet: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .manager-topbar {
+        padding: 0 24px;
+        height: 60px;
+    }
+
+    .brand-context {
+        font-size: 0.75rem;
+    }
+
+    .manager-sidebar {
+        width: 280px;
+    }
+
+    .manager-main {
+        padding: 28px 4%;
+    }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+    /* Keep existing desktop styles */
+}
+
+/* Landscape mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+    .manager-topbar {
+        height: 52px;
+    }
+
+    .sidebar-header {
+        height: 52px;
+    }
+
+    .manager-sidebar {
+        max-width: 260px;
     }
 
     .sidebar-content {
@@ -341,133 +384,14 @@
     }
 }
 
-/* -------------------------------------------------------------------------- */
-/* Small Mobile (480px - 767px)                                               */
-/* -------------------------------------------------------------------------- */
-@media (min-width: 480px) and (max-width: 767px) {
-    .brand-context {
-        display: none;
-    }
-
-    .user-profile .username {
-        display: none;
-    }
-
-    .manager-sidebar {
-        max-width: 320px;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Tablet (768px - 1023px)                                                    */
-/* -------------------------------------------------------------------------- */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .manager-sidebar {
-        width: 280px;
-    }
-
-    .brand-context {
-        font-size: 0.75rem;
-    }
-
-    .user-profile .username {
-        max-width: 120px;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Desktop (1024px+)                                                          */
-/* -------------------------------------------------------------------------- */
-@media (min-width: 1024px) {
-    .manager-sidebar {
-        width: 280px;
-    }
-
-    .user-profile .username {
-        max-width: 150px;
-    }
-
-    .manager-main {
-        max-width: 1500px;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Large Desktop (1440px+)                                                    */
-/* -------------------------------------------------------------------------- */
-@media (min-width: 1440px) {
-    .manager-topbar {
-        padding: 0 32px;
-    }
-
-    .manager-main {
-        max-width: 1600px;
-        padding: 40px 5%;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Landscape Mobile                                                           */
-/* -------------------------------------------------------------------------- */
-@media (max-width: 767px) and (orientation: landscape) {
-    .manager-topbar {
-        height: 52px;
-    }
-
-    .sidebar-header {
-        height: 52px;
-    }
-
-    .manager-sidebar {
-        max-width: 280px;
-    }
-
-    .sidebar-content {
-        padding: 12px 0;
-    }
-
-    .nav-group {
-        margin-bottom: 12px;
-    }
-
-    .nav-item {
-        padding: 8px 10px;
-        min-height: 40px;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Hover Effects (Desktop Only)                                               */
-/* -------------------------------------------------------------------------- */
-@media (hover: hover) {
-    .menu-toggle:hover {
-        background-color: var(--bg-muted);
-    }
-
-    .close-btn:hover {
-        background-color: var(--bg-muted);
-    }
-
-    .nav-item:hover {
-        background-color: var(--bg-muted);
-        color: var(--text-primary);
-        transform: translateX(2px);
-    }
-
-    .logout-btn:hover {
-        background-color: #fff5f5;
-        border-color: var(--admin-danger);
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Touch Device Optimizations                                                 */
-/* -------------------------------------------------------------------------- */
+/* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
+
     .menu-toggle,
     .close-btn {
-        min-width: 48px;
-        min-height: 48px;
+        min-width: 44px;
+        min-height: 44px;
+        padding: 10px;
     }
 
     .nav-item {
@@ -475,137 +399,26 @@
         padding: 14px 12px;
     }
 
-    .logout-btn {
-        min-height: 52px;
-        padding: 16px;
-    }
-
-    /* Active/tap states */
-    .menu-toggle:active,
-    .close-btn:active {
-        background-color: var(--bg-muted);
-        transform: scale(0.95);
-    }
-
-    .nav-item:active {
-        background-color: #f0f0f0;
-        transform: translateX(2px);
-    }
-
-    .logout-btn:active {
-        background-color: #ffe5e5;
-        transform: scale(0.98);
-    }
-
-    /* Remove hover effects */
+    /* Remove hover effects on touch devices */
     .menu-toggle:hover,
     .close-btn:hover,
     .nav-item:hover,
     .logout-btn:hover {
         background-color: transparent;
         color: inherit;
-        transform: none;
-    }
-}
-
-/* -------------------------------------------------------------------------- */
-/* Accessibility Improvements                                                 */
-/* -------------------------------------------------------------------------- */
-@media (prefers-reduced-motion: reduce) {
-    .manager-sidebar,
-    .sidebar-overlay,
-    .menu-toggle,
-    .close-btn,
-    .nav-item,
-    .logout-btn {
-        transition-duration: 0.01ms !important;
-    }
-}
-
-/* Focus states for keyboard navigation */
-.menu-toggle:focus-visible,
-.close-btn:focus-visible,
-.nav-item:focus-visible,
-.logout-btn:focus-visible {
-    outline: 2px solid var(--text-primary);
-    outline-offset: 2px;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Prevent Layout Shift                                                       */
-/* -------------------------------------------------------------------------- */
-.manager-layout,
-.manager-topbar,
-.manager-sidebar,
-.manager-main {
-    max-width: 100%;
-}
-
-.brand-name,
-.brand-context,
-.user-profile .username,
-.sidebar-header h3 {
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Smooth Transitions                                                         */
-/* -------------------------------------------------------------------------- */
-.manager-sidebar,
-.sidebar-overlay,
-.nav-item,
-.menu-toggle,
-.close-btn,
-.logout-btn {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* -------------------------------------------------------------------------- */
-/* Safe Area Insets (for notched devices)                                     */
-/* -------------------------------------------------------------------------- */
-@supports (padding: max(0px)) {
-    .manager-topbar {
-        padding-left: max(clamp(16px, 3vw, 24px), env(safe-area-inset-left));
-        padding-right: max(clamp(16px, 3vw, 24px), env(safe-area-inset-right));
     }
 
-    .manager-sidebar {
-        padding-bottom: env(safe-area-inset-bottom);
+    /* Add active/tap states instead */
+    .menu-toggle:active,
+    .close-btn:active {
+        background-color: var(--bg-muted);
     }
-}
 
-/* -------------------------------------------------------------------------- */
-/* Z-index Management                                                         */
-/* -------------------------------------------------------------------------- */
-.manager-topbar {
-    z-index: 1000;
-}
+    .nav-item:active {
+        background-color: #f0f0f0;
+    }
 
-.sidebar-overlay {
-    z-index: 1040;
-}
-
-.manager-sidebar {
-    z-index: 1050;
-}
-
-/* -------------------------------------------------------------------------- */
-/* Scrollbar Styling (Webkit browsers)                                        */
-/* -------------------------------------------------------------------------- */
-.sidebar-content::-webkit-scrollbar {
-    width: 6px;
-}
-
-.sidebar-content::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.sidebar-content::-webkit-scrollbar-thumb {
-    background: var(--border-subtle);
-    border-radius: 3px;
-}
-
-.sidebar-content::-webkit-scrollbar-thumb:hover {
-    background: var(--text-tertiary);
+    .logout-btn:active {
+        background-color: #ffe5e5;
+    }
 }

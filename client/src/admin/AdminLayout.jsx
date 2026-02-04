@@ -11,7 +11,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Settings,
-  Database
+  Database,
+  TrendingUp
 } from "lucide-react";
 import "./admin_css/AdminLayout.css";
 
@@ -93,6 +94,7 @@ const AdminLayout = ({ adminTitle }) => {
             </div>
             <div className="group-content">
               <NavItem to="/admin" icon={LayoutDashboard} label="Executive Insights" end />
+              <NavItem to="/admin/insights" icon={TrendingUp} label="Operational Insights" />
               <NavItem to="/admin/approvals" icon={ShieldCheck} label="Governance & Approvals" />
               <NavItem to="/admin/users" icon={Users} label="Management Directory" />
             </div>

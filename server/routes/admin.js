@@ -133,7 +133,8 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
             value: getRandomInt(20000, 100000) // Dummy contribution for demo
         }));
 
-        // 10. AUDIT & SECURITY
+        // 10. AUDIT & Pending Submissions
+        // For the heatmap, we keep using Activity log
         const activityHeatmap = await Activity.aggregate([
             {
                 $group: {
@@ -145,10 +146,42 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
             { $limit: 30 }
         ]);
 
+        // For the "Governance & Submission Protocol" table, we want ACTUAL Pending submissions
+        const pendingSubmissions = await Submission.find({ status: 'Pending' })
+            .populate('managerId', 'username') // Note: Submission model uses managerId, not userId usually, but let's check.
+            // Actually, based on previous Context, Submission model uses `managerId`.
+            // But Activity model uses `userId`.
+            // The frontend expects `sub.userId.username`.
+            // We need to map `managerId` to `userId` in the response to satisfy the frontend.
+            .sort({ createdAt: -1 })
+            .limit(10);
+
+        const formattedPendingSubmissions = pendingSubmissions.map(sub => ({
+            _id: sub._id,
+            userId: sub.managerId, // Mapping managerId to userId for frontend compatibility
+            entityType: sub.entityType,
+            createdAt: sub.createdAt,
+            action: 'Submitted', // Hardcode action so the frontend filter (a.action === 'Submitted') passes
+            status: 'Pending'
+        }));
+
+        // For the "Recent Activity" table (Audit), we might want a different list, 
+        // but the frontend uses `stats.auditData.recent` for BOTH the "Governance" table (filtered) 
+        // AND the "Neural Node Audit" table (unfiltered/raw).
+        // This is a conflict in the frontend design.
+        // The "Governance" section filters for `action === 'Submitted'`.
+        // The "Neural Node Audit" section shows everything.
+        // Solution: Return a combined list or separate lists. 
+        // Since I cannot easily change the frontend structure without risk, and the user specifically asked about the "Governance" table missing data:
+        // I will prepend the formatted pending submissions to the recent activity list.
+
         const recentActivity = await Activity.find()
             .populate('userId', 'username')
             .sort({ createdAt: -1 })
             .limit(10);
+
+        // Combine: Pending Submissions (priority) + Recent Activities
+        const combinedRecent = [...formattedPendingSubmissions, ...recentActivity];
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -187,7 +220,7 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
             },
             auditData: {
                 heatmap: activityHeatmap.map(h => ({ date: h._id, count: h.count })),
-                recent: recentActivity
+                recent: combinedRecent
             }
         });
     } catch (err) {

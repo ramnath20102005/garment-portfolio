@@ -78,7 +78,7 @@ const AdminDashboard = () => {
   if (error || !stats) return <div className="admin-error">Alert: {error || "Core Node Offline"}</div>;
 
   // Responsive chart configuration
-  const chartMargins = isMobile 
+  const chartMargins = isMobile
     ? { top: 10, right: 10, left: -20, bottom: 5 }
     : { top: 20, right: 30, left: 0, bottom: 5 };
 
@@ -152,8 +152,8 @@ const AdminDashboard = () => {
                     ))}
                   </Pie>
                   <Tooltip contentStyle={{ fontSize: axisFontSize }} />
-                  <Legend 
-                    verticalAlign="bottom" 
+                  <Legend
+                    verticalAlign="bottom"
                     wrapperStyle={{ fontSize: legendFontSize }}
                   />
                 </PieChart>
@@ -179,8 +179,8 @@ const AdminDashboard = () => {
                     <td>{new Date(sub.createdAt).toLocaleDateString()}</td>
                     <td><span className="status-badge status-pending">Pending</span></td>
                     <td>
-                      <button 
-                        className="view-btn" 
+                      <button
+                        className="view-btn"
                         onClick={() => window.location.href = '/admin/approvals'}
                       >
                         Review
@@ -212,39 +212,39 @@ const AdminDashboard = () => {
             <div style={{ width: '100%', height: isMobile ? 250 : 320, minHeight: isMobile ? 250 : 320 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={stats.financialData.trend} margin={chartMargins}>
-                  <CartesianGrid 
-                    strokeDasharray="3 3" 
-                    stroke="var(--border-subtle)" 
-                    vertical={false} 
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="var(--border-subtle)"
+                    vertical={false}
                   />
-                  <XAxis 
-                    dataKey="date" 
-                    stroke="var(--admin-text-secondary)" 
+                  <XAxis
+                    dataKey="date"
+                    stroke="var(--admin-text-secondary)"
                     fontSize={axisFontSize}
                     angle={isMobile ? -45 : 0}
                     textAnchor={isMobile ? "end" : "middle"}
                     height={isMobile ? 60 : 30}
                   />
-                  <YAxis 
-                    stroke="var(--admin-text-secondary)" 
+                  <YAxis
+                    stroke="var(--admin-text-secondary)"
                     fontSize={axisFontSize}
                   />
                   <Tooltip contentStyle={{ fontSize: axisFontSize }} />
                   <Legend wrapperStyle={{ fontSize: legendFontSize }} />
-                  <Line 
-                    type="monotone" 
-                    dataKey="revenue" 
-                    stroke="#2e2e2c" 
+                  <Line
+                    type="monotone"
+                    dataKey="revenue"
+                    stroke="#2e2e2c"
                     strokeWidth={isMobile ? 1.5 : 2}
                     dot={{ r: isMobile ? 3 : 4 }}
                     activeDot={{ r: isMobile ? 5 : 6 }}
                   />
-                  <Line 
-                    type="monotone" 
-                    dataKey="expenses" 
-                    stroke="#c92a2a" 
+                  <Line
+                    type="monotone"
+                    dataKey="expenses"
+                    stroke="#c92a2a"
                     strokeWidth={isMobile ? 1.5 : 2}
-                    strokeDasharray="5 5" 
+                    strokeDasharray="5 5"
                     dot={{ r: isMobile ? 2 : 3 }}
                   />
                 </LineChart>
@@ -256,30 +256,30 @@ const AdminDashboard = () => {
             <div style={{ width: '100%', height: isMobile ? 250 : 320, minHeight: isMobile ? 250 : 320 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={stats.supplyChainData.exportTrend} margin={chartMargins}>
-                  <CartesianGrid 
-                    strokeDasharray="3 3" 
-                    stroke="var(--border-subtle)" 
-                    vertical={false} 
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="var(--border-subtle)"
+                    vertical={false}
                   />
-                  <XAxis 
-                    dataKey="date" 
-                    stroke="var(--admin-text-secondary)" 
+                  <XAxis
+                    dataKey="date"
+                    stroke="var(--admin-text-secondary)"
                     fontSize={axisFontSize}
                     angle={isMobile ? -45 : 0}
                     textAnchor={isMobile ? "end" : "middle"}
                     height={isMobile ? 60 : 30}
                   />
-                  <YAxis 
-                    stroke="var(--admin-text-secondary)" 
+                  <YAxis
+                    stroke="var(--admin-text-secondary)"
                     fontSize={axisFontSize}
                   />
                   <Tooltip contentStyle={{ fontSize: axisFontSize }} />
-                  <Line 
-                    type="stepAfter" 
-                    dataKey="value" 
-                    stroke="var(--admin-success)" 
+                  <Line
+                    type="stepAfter"
+                    dataKey="value"
+                    stroke="var(--admin-success)"
                     strokeWidth={isMobile ? 2 : 3}
-                    dot={false} 
+                    dot={false}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -299,31 +299,31 @@ const AdminDashboard = () => {
             <div style={{ width: '100%', height: isMobile ? 250 : 300, minHeight: isMobile ? 250 : 300 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={stats.workforceData.deptDist} margin={chartMargins}>
-                  <CartesianGrid 
-                    strokeDasharray="3 3" 
-                    stroke="var(--border-subtle)" 
-                    vertical={false} 
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="var(--border-subtle)"
+                    vertical={false}
                   />
-                  <XAxis 
-                    dataKey="name" 
-                    stroke="var(--admin-text-secondary)" 
+                  <XAxis
+                    dataKey="name"
+                    stroke="var(--admin-text-secondary)"
                     fontSize={axisFontSize}
                     angle={isMobile ? -45 : 0}
                     textAnchor={isMobile ? "end" : "middle"}
                     height={isMobile ? 70 : 30}
                   />
-                  <YAxis 
-                    stroke="var(--admin-text-secondary)" 
+                  <YAxis
+                    stroke="var(--admin-text-secondary)"
                     fontSize={axisFontSize}
                   />
-                  <Tooltip 
+                  <Tooltip
                     cursor={{ fill: 'rgba(0,0,0,0.02)' }}
                     contentStyle={{ fontSize: axisFontSize }}
                   />
-                  <Bar 
-                    dataKey="value" 
-                    fill="var(--admin-accent)" 
-                    radius={[0, 0, 0, 0]} 
+                  <Bar
+                    dataKey="value"
+                    fill="var(--admin-accent)"
+                    radius={[0, 0, 0, 0]}
                   />
                 </BarChart>
               </ResponsiveContainer>
@@ -333,31 +333,31 @@ const AdminDashboard = () => {
             <h3>Raw Material Critical Inventory</h3>
             <div style={{ width: '100%', height: isMobile ? 250 : 300, minHeight: isMobile ? 250 : 300 }}>
               <ResponsiveContainer width="100%" height="100%">
-                <BarChart 
-                  data={stats.supplyChainData.stock} 
+                <BarChart
+                  data={stats.supplyChainData.stock}
                   layout="vertical"
-                  margin={isMobile 
+                  margin={isMobile
                     ? { top: 10, right: 20, left: 10, bottom: 5 }
                     : { top: 20, right: 30, left: 20, bottom: 5 }
                   }
                 >
-                  <CartesianGrid 
-                    strokeDasharray="3 3" 
-                    stroke="var(--border-subtle)" 
-                    horizontal={false} 
+                  <CartesianGrid
+                    strokeDasharray="3 3"
+                    stroke="var(--border-subtle)"
+                    horizontal={false}
                   />
                   <XAxis type="number" hide />
-                  <YAxis 
-                    dataKey="name" 
-                    type="category" 
-                    stroke="var(--admin-text-secondary)" 
+                  <YAxis
+                    dataKey="name"
+                    type="category"
+                    stroke="var(--admin-text-secondary)"
                     fontSize={isMobile ? 9 : 11}
                     width={isMobile ? 80 : 120}
                   />
-                  <Bar 
-                    dataKey="quantity" 
-                    fill="#5c5c58" 
-                    radius={[0, 4, 4, 0]} 
+                  <Bar
+                    dataKey="quantity"
+                    fill="#5c5c58"
+                    radius={[0, 4, 4, 0]}
                   />
                   <Tooltip contentStyle={{ fontSize: axisFontSize }} />
                 </BarChart>
@@ -378,11 +378,11 @@ const AdminDashboard = () => {
             <div style={{ width: '100%', height: isMobile ? 250 : 300, minHeight: isMobile ? 250 : 300 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie 
-                    data={stats.supplyChainData.exports} 
+                  <Pie
+                    data={stats.supplyChainData.exports}
                     outerRadius={isMobile ? 80 : 100}
-                    paddingAngle={2} 
-                    dataKey="value" 
+                    paddingAngle={2}
+                    dataKey="value"
                     stroke="none"
                   >
                     {stats.supplyChainData.exports.map((e, i) => (
@@ -390,7 +390,7 @@ const AdminDashboard = () => {
                     ))}
                   </Pie>
                   <Tooltip contentStyle={{ fontSize: axisFontSize }} />
-                  <Legend 
+                  <Legend
                     align={isMobile ? "center" : "right"}
                     verticalAlign={isMobile ? "bottom" : "middle"}
                     layout={isMobile ? "horizontal" : "vertical"}
@@ -405,12 +405,12 @@ const AdminDashboard = () => {
             <div style={{ width: '100%', height: isMobile ? 250 : 300, minHeight: isMobile ? 250 : 300 }}>
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie 
-                    data={stats.buyerData.contribution} 
+                  <Pie
+                    data={stats.buyerData.contribution}
                     innerRadius={isMobile ? 50 : 60}
                     outerRadius={isMobile ? 75 : 90}
-                    paddingAngle={5} 
-                    dataKey="value" 
+                    paddingAngle={5}
+                    dataKey="value"
                     stroke="none"
                   >
                     {stats.buyerData.contribution.map((e, i) => (
@@ -418,7 +418,7 @@ const AdminDashboard = () => {
                     ))}
                   </Pie>
                   <Tooltip contentStyle={{ fontSize: axisFontSize }} />
-                  <Legend 
+                  <Legend
                     align={isMobile ? "center" : "right"}
                     verticalAlign={isMobile ? "bottom" : "middle"}
                     layout={isMobile ? "horizontal" : "vertical"}
@@ -440,17 +440,17 @@ const AdminDashboard = () => {
           <h3>System Transaction Heatmap (Last 30 Cycles)</h3>
           <div style={{ width: '100%', height: isMobile ? 150 : 120, minHeight: isMobile ? 150 : 120 }}>
             <ResponsiveContainer width="100%" height="100%">
-              <AreaChart 
+              <AreaChart
                 data={[...stats.auditData.heatmap].reverse()}
                 margin={chartMargins}
               >
-                <CartesianGrid 
-                  strokeDasharray="3 3" 
-                  stroke="var(--border-subtle)" 
-                  vertical={false} 
+                <CartesianGrid
+                  strokeDasharray="3 3"
+                  stroke="var(--border-subtle)"
+                  vertical={false}
                 />
-                <XAxis 
-                  dataKey="date" 
+                <XAxis
+                  dataKey="date"
                   fontSize={isMobile ? 8 : 10}
                   stroke="var(--text-tertiary)"
                   angle={isMobile ? -45 : 0}
@@ -458,12 +458,12 @@ const AdminDashboard = () => {
                   height={isMobile ? 50 : 30}
                 />
                 <Tooltip contentStyle={{ fontSize: axisFontSize }} />
-                <Area 
-                  type="step" 
-                  dataKey="count" 
-                  stroke="#2b8a3e" 
-                  fill="#2b8a3e" 
-                  fillOpacity={0.1} 
+                <Area
+                  type="step"
+                  dataKey="count"
+                  stroke="#2b8a3e"
+                  fill="#2b8a3e"
+                  fillOpacity={0.1}
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -483,13 +483,13 @@ const AdminDashboard = () => {
                   <tr key={act._id}>
                     <td style={{ fontWeight: 600 }}>{act.entityType}</td>
                     <td>
-                      <span style={{ 
-                        color: act.action.includes('Approved') 
-                          ? 'var(--admin-success)' 
-                          : act.action.includes('Rejected') 
-                          ? 'var(--admin-danger)' 
-                          : 'var(--admin-accent)', 
-                        fontWeight: 700 
+                      <span style={{
+                        color: act.action.includes('Approved')
+                          ? 'var(--admin-success)'
+                          : act.action.includes('Rejected')
+                            ? 'var(--admin-danger)'
+                            : 'var(--admin-accent)',
+                        fontWeight: 700
                       }}>
                         {act.action}
                       </span>
@@ -516,9 +516,9 @@ const AdminDashboard = () => {
             AI core detected seasonal deviates in <strong>{stats.supplyChainData.exports[0]?.name}</strong>.
             Recommend increasing stock of organic fibers by 15% to maintain safety buffers during the scheduled Q2 spike.
           </p>
-          <div style={{ 
-            marginTop: isMobile ? '24px' : '40px', 
-            display: 'flex', 
+          <div style={{
+            marginTop: isMobile ? '24px' : '40px',
+            display: 'flex',
             gap: isMobile ? '16px' : '20px',
             flexWrap: 'wrap'
           }}>

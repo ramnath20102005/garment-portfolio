@@ -11,7 +11,7 @@
     --card-padding: clamp(20px, 4vw, 40px);
     --header-margin: clamp(32px, 5vw, 60px);
     --header-padding: clamp(16px, 3vw, 24px);
-    
+
     /* Fluid typography */
     --fs-h1: clamp(2rem, 5vw + 1rem, 4rem);
     --fs-h2: clamp(1.5rem, 3vw + 0.5rem, 2rem);
@@ -21,16 +21,16 @@
     --fs-button: clamp(0.65rem, 1.2vw, 0.75rem);
     --fs-stat-value: clamp(2rem, 5vw, 3.5rem);
     --fs-kpi-value: clamp(1.8rem, 4vw, 2.5rem);
-    
+
     /* Chart heights - CRITICAL FOR MOBILE */
     --chart-height-sm: 250px;
     --chart-height-md: 300px;
     --chart-height-lg: 320px;
     --chart-height-donut: 260px;
-    
+
     /* Minimum touch targets */
     --min-touch-target: 44px;
-    
+
     /* Transitions */
     --transition-normal: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     --transition-slow: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
@@ -55,6 +55,7 @@
         opacity: 0;
         transform: translateY(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -223,12 +224,7 @@
     }
 }
 
-/* Large screens: maintain 2 columns but allow custom layouts */
-@media (min-width: 1200px) {
-    .charts-grid[style*="gridTemplateColumns"] {
-        /* Respect inline styles on large screens */
-    }
-}
+
 
 /* Mobile: Force single column for custom grid templates */
 @media (max-width: 767px) {
@@ -259,7 +255,7 @@
 }
 
 /* CRITICAL: Fixed chart container dimensions */
-.chart-card > div[style*="height"] {
+.chart-card>div[style*="height"] {
     min-height: var(--chart-height-md);
     max-width: 100%;
     overflow: visible;
@@ -279,26 +275,27 @@
 
 /* Mobile chart height adjustments */
 @media (max-width: 767px) {
-    .chart-card > div[style*="height: 320px"],
-    .chart-card > div[style*="height:320px"] {
+
+    .chart-card>div[style*="height: 320px"],
+    .chart-card>div[style*="height:320px"] {
         min-height: var(--chart-height-md) !important;
         height: var(--chart-height-md) !important;
     }
-    
-    .chart-card > div[style*="height: 300px"],
-    .chart-card > div[style*="height:300px"] {
+
+    .chart-card>div[style*="height: 300px"],
+    .chart-card>div[style*="height:300px"] {
         min-height: var(--chart-height-sm) !important;
         height: var(--chart-height-sm) !important;
     }
-    
-    .chart-card > div[style*="height: 260px"],
-    .chart-card > div[style*="height:260px"] {
+
+    .chart-card>div[style*="height: 260px"],
+    .chart-card>div[style*="height:260px"] {
         min-height: var(--chart-height-donut) !important;
         height: var(--chart-height-donut) !important;
     }
-    
-    .chart-card > div[style*="height: 120px"],
-    .chart-card > div[style*="height:120px"] {
+
+    .chart-card>div[style*="height: 120px"],
+    .chart-card>div[style*="height:120px"] {
         min-height: 150px !important;
         height: 150px !important;
     }
@@ -367,7 +364,7 @@
     .admin-table {
         min-width: 500px;
     }
-    
+
     .admin-table th,
     .admin-table td {
         padding: clamp(10px, 2vw, 12px);
@@ -540,7 +537,7 @@
     .admin-actions {
         flex-direction: column;
     }
-    
+
     .btn-admin {
         width: 100%;
     }
@@ -566,11 +563,11 @@
     .admin-kpi-grid {
         grid-template-columns: 1fr;
     }
-    
+
     .kpi-card {
         text-align: center;
     }
-    
+
     .kpi-header {
         justify-content: center;
         gap: 12px;
@@ -615,7 +612,7 @@
         --chart-height-md: 200px;
         --chart-height-sm: 180px;
     }
-    
+
     .charts-grid {
         grid-template-columns: 1fr;
     }
@@ -626,43 +623,44 @@
    ============================================ */
 
 @media (hover: none) and (pointer: coarse) {
+
     .view-btn,
     .btn-admin {
         min-height: var(--min-touch-target);
         min-width: var(--min-touch-target);
     }
-    
+
     /* Remove hover effects */
     .kpi-card:hover {
         transform: none;
         box-shadow: none;
         border-color: var(--border-subtle);
     }
-    
+
     .view-btn:hover,
     .btn-admin:hover {
         background: transparent;
         color: inherit;
         border-color: var(--border-subtle);
     }
-    
+
     .logout-btn:hover {
         background: transparent;
         color: #e03131;
         border-color: #e03131;
     }
-    
+
     /* Add active states */
     .kpi-card:active {
         opacity: 0.8;
     }
-    
+
     .view-btn:active,
     .btn-admin:active {
         background: var(--text-primary);
         color: var(--bg-light);
     }
-    
+
     .logout-btn:active {
         background: #e03131;
         color: white;
@@ -679,13 +677,14 @@
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-    
+
     .admin-content-wrapper {
         animation: none;
     }
 }
 
 @media (prefers-contrast: high) {
+
     .kpi-card,
     .chart-card,
     .content-block {
@@ -697,7 +696,9 @@
    HIGH DPI SCREENS
    ============================================ */
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+
     .kpi-card,
     .chart-card,
     .content-block,
@@ -715,13 +716,13 @@
         padding: 0;
         max-width: 100%;
     }
-    
+
     .admin-actions,
     .view-btn,
     .btn-admin {
         display: none;
     }
-    
+
     .chart-card,
     .kpi-card {
         break-inside: avoid;

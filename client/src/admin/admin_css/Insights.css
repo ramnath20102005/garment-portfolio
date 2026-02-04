@@ -1,0 +1,210 @@
+/* 
+ * Operational Insights - Admin Intelligence Page
+ * Professional Enterprise UI for Decision Support
+ */
+
+:root {
+    --insights-bg: #f8f9fa;
+    --insights-card-bg: #ffffff;
+    --insights-border: #e9ecef;
+    --insights-text-primary: #212529;
+    --insights-text-secondary: #6c757d;
+    --insights-accent: #1a1a1a;
+
+    /* Risk Levels */
+    --risk-low: #2b8a3e;
+    --risk-medium: #e67700;
+    --risk-high: #c92a2a;
+
+    /* Spacing & Radii */
+    --radius-lg: 12px;
+    --radius-md: 8px;
+    --padding-page: clamp(24px, 5vw, 40px);
+    --gap-section: clamp(32px, 6vw, 48px);
+}
+
+.insights-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--padding-page);
+    animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* --- Header Section --- */
+.insights-header {
+    margin-bottom: var(--gap-section);
+    border-bottom: 1px solid var(--insights-border);
+    padding-bottom: 24px;
+}
+
+.insights-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--insights-text-primary);
+    margin-bottom: 8px;
+}
+
+.insights-header .subtitle {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    color: var(--insights-text-secondary);
+    line-height: 1.5;
+}
+
+/* --- Main Content Layout --- */
+.insights-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap-section);
+}
+
+/* --- Insight Card Styles --- */
+.insights-section {
+    background: var(--insights-card-bg);
+    border: 1px solid var(--insights-border);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    overflow: hidden;
+}
+
+.section-info {
+    padding: 32px;
+    border-bottom: 1px solid var(--insights-border);
+}
+
+.section-info h2 {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    color: var(--insights-text-primary);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-info p {
+    color: var(--insights-text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* --- List Items --- */
+.insights-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.insight-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    border-bottom: 1px solid var(--insights-border);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.insight-item:last-child {
+    border-bottom: none;
+}
+
+.insight-item:hover {
+    background: #fbfbfc;
+    padding-left: 36px;
+}
+
+.item-main {
+    flex: 1;
+    min-width: 0;
+    margin-right: 24px;
+}
+
+.item-title {
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    color: var(--insights-text-primary);
+}
+
+.item-desc {
+    font-size: 0.85rem;
+    color: var(--insights-text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* --- Status Indicators --- */
+.risk-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.risk-high {
+    background: #fff5f5;
+    color: var(--risk-high);
+}
+
+.risk-medium {
+    background: #fff9db;
+    color: var(--risk-medium);
+}
+
+.risk-low {
+    background: #ebfbee;
+    color: var(--risk-low);
+}
+
+.anomaly-count {
+    font-weight: 700;
+    color: var(--insights-text-primary);
+    background: #f1f3f5;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* --- Responsive Layout --- */
+@media (max-width: 768px) {
+    .section-info {
+        padding: 24px;
+    }
+
+    .insight-item {
+        padding: 16px 24px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .insight-item:hover {
+        padding-left: 28px;
+    }
+
+    .item-main {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .risk-badge,
+    .anomaly-count {
+        align-self: flex-end;
+    }
+}
