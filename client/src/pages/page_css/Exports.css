@@ -1,106 +1,377 @@
 /*
- * Exports Page CSS - Editorial Fashion (Refined Separation)
+ * Exports Page CSS - Mobile-First Luxury Editorial
+ * Highly Responsive & Fluid Design
  */
 
 .exports {
     overflow-x: hidden;
 }
 
-.exports-header .page-title {
-    font-size: 5.5rem;
-}
+/* -------------------------------------------------------------------------- */
+/* 1. Mobile Styles (Default - 320px+)                                        */
+/* -------------------------------------------------------------------------- */
 
-/* Markets Grid Overhaul */
+/* Editorial Header - Fluid Typography */
 .editorial-header {
-    margin-bottom: 80px;
+    margin-bottom: clamp(28px, 5vw, 60px);
 }
 
+.editorial-header .section-title {
+    font-size: clamp(2rem, 6vw, 4rem);
+    line-height: 1.15;
+    margin-bottom: clamp(12px, 2.5vw, 20px);
+}
+
+.editorial-header .section-subtitle,
+.editorial-header p {
+    font-size: clamp(0.95rem, 2.2vw, 1.3rem);
+    line-height: 1.6;
+    color: var(--text-secondary);
+    max-width: 100%;
+}
+
+/* Markets Grid - Responsive Auto-fit */
 .markets-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 32px);
 }
 
 .market-card {
-    padding: 60px 40px;
+    padding: clamp(24px, 5vw, 48px) clamp(20px, 4vw, 32px);
     background-color: var(--bg-light);
     border: 1px solid var(--border-subtle);
-    transition: all 0.4s ease;
-}
-
-.market-card:hover {
-    border-color: var(--text-primary);
-    transform: translateY(-8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .market-geo {
     font-family: 'Playfair Display', serif;
-    font-size: 3rem;
+    font-size: clamp(1.8rem, 5vw, 3rem);
     opacity: 0.1;
     display: block;
-    margin-bottom: -20px;
+    margin-bottom: clamp(-12px, -2vw, -15px);
+    line-height: 1;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
 }
 
 .market-card h3 {
-    font-size: 2rem;
-    margin-bottom: 24px;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    margin-bottom: clamp(12px, 2.5vw, 16px);
+    line-height: 1.2;
+    font-weight: 500;
 }
 
-/* Dark Stat Section Refinement */
-.stats-editorial {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
-}
-
-.huge-stat .value {
-    font-size: 8rem;
-    font-family: 'Playfair Display', serif;
-    line-height: 1;
-    display: block;
-    color: var(--text-light);
-}
-
-.huge-stat .label {
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    opacity: 0.6;
-}
-
-.stat-desc p {
-    font-size: 1.5rem;
-    line-height: 1.6;
-}
-
-/* CTA Center */
-.cta-centered {
-    text-align: center;
-}
-
-.cta-centered h2 {
-    font-size: 4rem;
-    margin-bottom: 24px;
-}
-
-.cta-centered p {
-    font-size: 1.25rem;
-    margin-bottom: 48px;
+.market-card p {
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    line-height: 1.7;
     color: var(--text-secondary);
 }
 
-@media (max-width: 1024px) {
+/* Dark Stat Section - Fluid Layout */
+.stats-editorial {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 6vw, 60px);
+    text-align: center;
+    align-items: center;
+}
+
+.huge-stat {
+    flex: 1;
+    transition: transform 0.3s ease;
+}
+
+.huge-stat .value {
+    font-size: clamp(3.5rem, 10vw, 6.5rem);
+    font-family: 'Playfair Display', serif;
+    line-height: 0.95;
+    display: block;
+    color: var(--text-light);
+    margin-bottom: clamp(8px, 2vw, 12px);
+    font-weight: 600;
+}
+
+.huge-stat .label {
+    font-size: clamp(0.7rem, 1.6vw, 0.85rem);
+    text-transform: uppercase;
+    letter-spacing: clamp(1.5px, 0.3vw, 2.5px);
+    opacity: 0.6;
+    display: block;
+}
+
+.stat-desc {
+    flex: 1;
+    max-width: 100%;
+}
+
+.stat-desc p {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    line-height: 1.6;
+    opacity: 0.8;
+    color: var(--text-light);
+}
+
+/* CTA Center - Responsive Centering */
+.cta-centered {
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: clamp(20px, 4vw, 0);
+}
+
+.cta-centered h2 {
+    font-size: clamp(2rem, 6vw, 4rem);
+    margin-bottom: clamp(16px, 3vw, 20px);
+    line-height: 1.2;
+    font-weight: 600;
+}
+
+.cta-centered p {
+    font-size: clamp(0.95rem, 2.2vw, 1.25rem);
+    margin-bottom: clamp(24px, 4vw, 32px);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-centered .btn {
+    min-width: 200px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Small Tablets (480px+)                                                  */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
     .markets-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Tablets (768px+)                                                        */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .editorial-header .section-subtitle,
+    .editorial-header p {
+        max-width: 85%;
+    }
+
+    .markets-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        gap: clamp(24px, 4vw, 32px);
     }
 
     .stats-editorial {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 60px);
+        text-align: left;
+        align-items: center;
     }
 
-    .huge-stat .value {
-        font-size: 5rem;
+    .huge-stat {
+        text-align: left;
     }
+
+    .stat-desc {
+        text-align: left;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Desktop (1024px+)                                                       */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+    .editorial-header .section-subtitle,
+    .editorial-header p {
+        max-width: 750px;
+    }
+
+    .markets-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    }
+
+    .market-card {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 280px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Large Desktop (1440px+)                                                 */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+    .markets-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+
+    .stats-editorial {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Extra Large Desktop (1920px+)                                           */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1920px) {
+    .markets-grid,
+    .stats-editorial {
+        max-width: 1600px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Hover Effects (Desktop Only)                                            */
+/* -------------------------------------------------------------------------- */
+@media (hover: hover) {
+    .market-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+        border-color: var(--text-primary);
+    }
+
+    .market-card:hover .market-geo {
+        opacity: 0.15;
+    }
+
+    .huge-stat:hover {
+        transform: scale(1.02);
+    }
+
+    .huge-stat:hover .value {
+        color: var(--text-light);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 8. Touch Device Refinements                                                */
+/* -------------------------------------------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+    .market-card:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    /* Ensure adequate spacing for touch targets */
+    .markets-grid {
+        gap: clamp(20px, 4vw, 32px);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 9. Smooth Transitions for All Elements                                     */
+/* -------------------------------------------------------------------------- */
+.market-card,
+.huge-stat,
+.stat-desc,
+.market-geo,
+.cta-centered h2,
+.cta-centered p {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. Prevent Layout Shift                                                   */
+/* -------------------------------------------------------------------------- */
+.markets-grid,
+.stats-editorial,
+.cta-centered {
+    width: 100%;
+}
+
+.market-card h3,
+.market-card p,
+.huge-stat .value,
+.huge-stat .label,
+.stat-desc p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. Accessibility Improvements                                             */
+/* -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus states for keyboard navigation */
+.market-card:focus-within {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 12. Grid Balance for Different Screen Sizes                                */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .markets-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .markets-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1440px) {
+    .markets-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 13. Dark Section Adjustments                                               */
+/* -------------------------------------------------------------------------- */
+.section-dark .stats-editorial {
+    padding: clamp(20px, 4vw, 0);
+}
+
+.section-dark .huge-stat .value,
+.section-dark .stat-desc p {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 14. Responsive Typography Scale                                            */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 374px) {
+    /* Extra small devices */
+    .huge-stat .value {
+        font-size: 3rem;
+    }
+    
+    .market-card h3 {
+        font-size: 1.25rem;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 15. Container Safety                                                        */
+/* -------------------------------------------------------------------------- */
+.editorial-header,
+.markets-grid,
+.stats-editorial,
+.cta-centered {
+    max-width: 100%;
+    overflow: visible;
 }

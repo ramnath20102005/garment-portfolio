@@ -48,18 +48,18 @@ function Sustainability() {
                         <div className="initiatives-grid">
                             <div className="initiative-item">
                                 <span className="sus-index">01</span>
-                                <h3>60% Organic</h3>
-                                <p>GOTS-certified fibers forming the backbone of our luxury knitwear.</p>
+                                <h3>GOTS Certified</h3>
+                                <p>Using organic textile standards to ensure environmental and social responsibility.</p>
                             </div>
                             <div className="initiative-item">
                                 <span className="sus-index">02</span>
-                                <h3>Zero Waste Water</h3>
-                                <p>Proprietary closed-loop recycling for all dying and washing processes.</p>
+                                <h3>Compliance Node</h3>
+                                <p>Full adherence to SA8000, SEDEX, and BSCI social accountability protocols.</p>
                             </div>
                             <div className="initiative-item">
                                 <span className="sus-index">03</span>
-                                <h3>Solar Node</h3>
-                                <p>100% of facility lighting and small machinery powered by renewable energy.</p>
+                                <h3>Export Ready</h3>
+                                <p>Meeting Disney and major global retail facility standards for safe and ethical production.</p>
                             </div>
                         </div>
                     </ScrollAnimatedSection>

@@ -22,11 +22,13 @@ function Products() {
   const defaultProducts = [
     { name: "Boys T-Shirt", image: "/boys-t-shirt.jpg" },
     { name: "Boys Hooded Sweat Shirt", image: "/boys_hood.jpeg" },
-    { name: "Boys Sweatshirt", image: "/boys_hood.jpeg" },
+    { name: "Boys Sweatshirt", image: "/boys_sweatshirt.jpg" },
     { name: "Girls Pyjama Sets", image: "/girls_pyjamas1.jpg.jpeg" },
     { name: "Ladies Long Dress", image: "/long_sleeve1.jpg.jpeg" },
     { name: "Adult Brown Moose Series", image: "/brown_moos.jpeg" },
-    { name: "Womens PJ Set", image: "/women_pj_set.jpg" }
+    { name: "Womens PJ Set", image: "/women_pj_set.jpg" },
+    { name: "Boys Pant", image: "/boys_pant.jpg.jpeg" },
+    { name: "Girls Night Gown", image: "/girls_night_gown.jpg" }
   ];
 
   const displayProducts = products.length > 0
@@ -41,12 +43,12 @@ function Products() {
       return p;
     })
     : [
-      { _id: "1", name: "Boys T-Shirt", category: "Kids", description: "High-quality knitted t-shirts, custom designed to buyer specifications.", image: "/boys-t-shirt.jpg" },
-      { _id: "2", name: "Boys Hooded Sweat Shirt", category: "Outerwear", description: "Premium cotton-blend hoodies with durable stitching and soft finish.", image: "/boys_hood.jpeg" },
-      { _id: "3", name: "Girls Pyjama Sets", category: "Sleepwear", description: "Breathable and comfortable sleep sets designed for youthful elegance.", image: "/girls_pyjamas1.jpg.jpeg" },
-      { _id: "4", name: "Ladies Long Dress", category: "Womenswear", description: "Fashion-forward long dresses crafted from the finest knitted cotton.", image: "/long_sleeve1.jpg.jpeg" },
-      { _id: "5", name: "Adult Brown Moose Series", category: "Specialty", description: "Our exclusive specialty series designed for international merchandise.", image: "/brown_moos.jpeg" },
-      { _id: "6", name: "Womens PJ Set", category: "Sleepwear", description: "Luxury loungewear sets combining style with ultimate overnight comfort.", image: "/women_pj_set.jpg" }
+      { _id: "1", name: "Premium T-Shirts", category: "Men / Ladies / Kids", description: "High-quality knitted t-shirts available in various fits and GSM counts.", image: "/boys-t-shirt.jpg" },
+      { _id: "2", name: "Fashion Tops", category: "Ladies / Kids", description: "Trend-setting knitted tops for modern retail markets.", image: "/long_sleeve1.jpg.jpeg" },
+      { _id: "3", name: "Comfort Sweatshirts", category: "Unisex", description: "Premium cotton-fleece sweatshirts designed for warmth and durability.", image: "/boys_sweatshirt.jpg" },
+      { _id: "4", name: "Pyjama Sets", category: "Sleepwear", description: "Breathable and soft sleepwear sets for ultimate overnight comfort.", image: "/girls_pyjamas1.jpg.jpeg" },
+      { _id: "5", name: "Girls Night Gown", category: "Sleepwear", description: "Elegant and comfortable night dresses for ladies and kids.", image: "/girls_night_gown.jpg" },
+      { _id: "6", name: "Boys Pant", category: "Bottoms", description: "Durable and stylish knitted pants for active boys.", image: "/boys_pant.jpg.jpeg" }
     ];
 
   return (

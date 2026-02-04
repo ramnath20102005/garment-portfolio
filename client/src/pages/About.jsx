@@ -23,19 +23,17 @@ function About() {
           <div className="story-content">
             <ScrollAnimatedSection animation="animate-fade-in-left">
               <div className="story-text">
-                <h2>Our Story</h2>
+                <h2>Our History</h2>
                 <div className="section-divider"></div>
                 <p>
-                  Led by Mohan, V R fashions has established itself as a premier destination
-                  for high-quality knitted garments. Based in the textile hub of Tiruppur,
-                  we specialize in a wide range of cotton-based apparel, from traditional
-                  banian cloth to modern streetwear.
+                  Established in 2016 by Mohan Raj and Renugadevi, VR Fashions began its journey
+                  with 40 sets of machinery in Kovilvali, Tirupur. Our founder, Mohan Raj, brings
+                  over 25 years of deep industry expertise to the operational floor.
                 </p>
                 <p>
-                  Our expertise lies in the nuanced manufacturing of trousers, hoodies,
-                  nightwear, and t-shirts. We pride ourselves on our collaborative approach,
-                  especially with our custom-designed t-shirts that are tailored to the
-                  exact specifications of our international partners in Poland, France, the USA, and UAE.
+                  Today, we operate as a 100% export-oriented factory, specializing in high-quality
+                  knitted garments. Our relentless focus on quality and timely delivery has
+                  secured long-standing partnerships with major importers in France and the USA.
                 </p>
               </div>
             </ScrollAnimatedSection>
@@ -43,16 +41,16 @@ function About() {
             <ScrollAnimatedSection animation="animate-fade-in-right">
               <div className="story-stats">
                 <div className="story-stat">
-                  <span className="stat-value">2020</span>
+                  <span className="stat-value">2016</span>
                   <span className="stat-text">Established</span>
                 </div>
                 <div className="story-stat">
-                  <span className="stat-value">30+</span>
-                  <span className="stat-text">Skilled Artisans</span>
+                  <span className="stat-value">25Y</span>
+                  <span className="stat-text">Leadership Depth</span>
                 </div>
                 <div className="story-stat">
-                  <span className="stat-value">6</span>
-                  <span className="stat-text">Major Buyer Nations</span>
+                  <span className="stat-value">100</span>
+                  <span className="stat-text">Planned Machines (2026)</span>
                 </div>
               </div>
             </ScrollAnimatedSection>
@@ -114,11 +112,14 @@ function About() {
       <section className="section-light certifications">
         <div className="container">
           <ScrollAnimatedSection animation="animate-scale-in">
-            <h2 className="section-title">Certifications</h2>
+            <h2 className="section-title">Certifications & Compliance</h2>
             <div className="cert-grid">
-              <div className="cert-card"><div className="cert-badge-large">ISO 9001</div><p>Quality System</p></div>
-              <div className="cert-card"><div className="cert-badge-large">GOTS</div><p>Organic Standard</p></div>
-              <div className="cert-card"><div className="cert-badge-large">WRAP</div><p>Accredited Production</p></div>
+              <div className="cert-card"><div className="cert-badge-large">SA8000</div><p>Social Accountability</p></div>
+              <div className="cert-card"><div className="cert-badge-large">SEDEX</div><p>Ethical Trade</p></div>
+              <div className="cert-card"><div className="cert-badge-large">DISNEY</div><p>Facility & Merchandise</p></div>
+              <div className="cert-card"><div className="cert-badge-large">BSCI</div><p>Business Social Compliance</p></div>
+              <div className="cert-card"><div className="cert-badge-large">GOTS</div><p>Organic Textile Standard</p></div>
+              <div className="cert-card"><div className="cert-badge-large">GRS</div><p>Global Recycled Standard</p></div>
             </div>
           </ScrollAnimatedSection>
         </div>

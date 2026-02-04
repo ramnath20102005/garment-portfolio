@@ -6,7 +6,6 @@ import "../styles/scrollAnimations.css";
 
 function Home() {
   const [company, setCompany] = useState(null);
-
   useEffect(() => {
     fetch("http://localhost:5000/api/company")
       .then(res => res.json())
@@ -57,16 +56,16 @@ function Home() {
 
             <div className="features-grid">
               <div className="feature-card">
-                <h3>Global Trade Node</h3>
-                <p>Strategic partnerships with Sahinler SA (FR), Infinity (USA), and Rahtha Impex (PL).</p>
+                <h3>Global Export Focus</h3>
+                <p>Establishing strong trade routes with Sahinler (France) and VRF Corp (USA).</p>
               </div>
               <div className="feature-card">
-                <h3>Product Excellence</h3>
-                <p>Expertise in Boys T-Shirts, Sweatshirts, Girls PJ Sets, and Ladies Long Dresses.</p>
+                <h3>Product Specialization</h3>
+                <p>Expertise in T-shirts, Tops, Sweatshirts, Pajama sets, and Nightwear for all age groups.</p>
               </div>
               <div className="feature-card">
-                <h3>Custom Design</h3>
-                <p>T-shirts custom designed by buyers, brought to life with precision Tiruppur craftsmanship.</p>
+                <h3>Vast Industry Insight</h3>
+                <p>Led by founders with 25 years of experience in the textile ecosystem of Tirupur.</p>
               </div>
             </div>
           </ScrollAnimatedSection>
@@ -79,16 +78,16 @@ function Home() {
           <ScrollAnimatedSection animation="animate-scale-in">
             <div className="stats-grid">
               <div className="stat-item">
-                <span className="stat-number">20+</span>
+                <span className="stat-number">25+</span>
                 <span className="stat-label">Years of Expertise</span>
               </div>
               <div className="stat-item">
-                <span className="stat-number">200K+</span>
-                <span className="stat-label">Monthly Units</span>
+                <span className="stat-number">50K</span>
+                <span className="stat-label">Monthly Pieces</span>
               </div>
               <div className="stat-item">
                 <span className="stat-number">100%</span>
-                <span className="stat-label">Quality Commitment</span>
+                <span className="stat-label">Export Oriented</span>
               </div>
             </div>
           </ScrollAnimatedSection>

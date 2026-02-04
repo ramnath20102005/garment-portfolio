@@ -1,27 +1,107 @@
 /*
  * Users Management - Editorial Control Panel
+ * Highly Responsive with Fluid Typography & Perfect Alignment
  */
 
-.users-container {
-    padding: 60px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-    animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+:root {
+    /* Fluid spacing */
+    --container-padding: clamp(16px, 4vw, 60px);
+    --container-padding-horizontal: clamp(16px, 5vw, 40px);
+    --header-margin: clamp(32px, 6vw, 60px);
+    --header-padding: clamp(16px, 2vw, 24px);
+    --row-padding: clamp(20px, 3vw, 32px);
+    --row-hover-offset: clamp(12px, 2vw, 20px);
+    
+    /* Fluid typography */
+    --fs-heading: clamp(2rem, 1.5rem + 3vw, 4rem);
+    --fs-name: clamp(1.1rem, 1rem + 0.5vw, 1.4rem);
+    --fs-username: clamp(0.75rem, 0.7rem + 0.1vw, 0.8rem);
+    --fs-role: clamp(0.7rem, 0.65rem + 0.1vw, 0.75rem);
+    --fs-button: clamp(0.65rem, 0.6rem + 0.1vw, 0.7rem);
+    
+    /* Avatar sizing */
+    --avatar-size: clamp(40px, 6vw, 48px);
+    --avatar-font: clamp(1rem, 1.5vw, 1.2rem);
+    
+    /* Grid columns */
+    --col-avatar: clamp(60px, 10vw, 80px);
+    --col-role: clamp(140px, 15vw, 200px);
+    --col-actions: clamp(120px, 15vw, 150px);
+    
+    /* Button sizing */
+    --button-padding-v: clamp(6px, 1vw, 8px);
+    --button-padding-h: clamp(12px, 2vw, 16px);
+    
+    /* Minimum touch targets */
+    --min-touch-target: 44px;
+    
+    /* Transitions */
+    --transition-normal: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
+/* ============================================
+   ANIMATION
+   ============================================ */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   CONTAINER
+   ============================================ */
+
+.users-container {
+    padding: var(--container-padding) var(--container-padding-horizontal);
+    max-width: min(1400px, 100%);
+    margin: 0 auto;
+    animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ============================================
+   HEADER
+   ============================================ */
+
 .users-header {
-    margin-bottom: 60px;
+    margin-bottom: var(--header-margin);
     border-bottom: 1px solid var(--text-primary);
-    padding-bottom: 24px;
+    padding-bottom: var(--header-padding);
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: flex-end;
+    gap: clamp(16px, 3vw, 24px);
 }
 
 .users-header h1 {
-    font-size: 4rem;
-    letter-spacing: -2px;
+    font-size: var(--fs-heading);
+    letter-spacing: clamp(-1.5px, -0.05em, -2px);
+    line-height: 1.1;
+    margin: 0;
+    word-break: break-word;
+    flex: 1;
+    min-width: 0;
 }
+
+.users-header .header-actions {
+    flex-shrink: 0;
+    display: flex;
+    gap: clamp(8px, 1.5vw, 12px);
+    align-items: center;
+}
+
+/* ============================================
+   USERS LIST
+   ============================================ */
 
 .users-list {
     display: flex;
@@ -29,75 +109,535 @@
     gap: 0;
 }
 
+/* ============================================
+   USER ROW - DESKTOP GRID
+   ============================================ */
+
 .user-row {
     display: grid;
-    grid-template-columns: 80px 1fr 200px 150px;
+    grid-template-columns: var(--col-avatar) 1fr var(--col-role) var(--col-actions);
+    grid-template-areas: "avatar info role actions";
     align-items: center;
-    padding: 32px 0;
+    gap: clamp(12px, 2vw, 16px);
+    padding: var(--row-padding) 0;
     border-bottom: 1px solid var(--border-subtle);
-    transition: all 0.3s ease;
+    transition: all var(--transition-normal);
+    box-sizing: border-box;
 }
 
 .user-row:hover {
-    padding-left: 20px;
+    padding-left: var(--row-hover-offset);
     background: var(--bg-muted);
 }
 
+/* ============================================
+   USER AVATAR
+   ============================================ */
+
 .user-avatar {
-    width: 48px;
-    height: 48px;
+    grid-area: avatar;
+    width: var(--avatar-size);
+    height: var(--avatar-size);
     background: var(--bg-dark);
     color: var(--text-light);
     display: flex;
     justify-content: center;
     align-items: center;
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: var(--avatar-font);
+    flex-shrink: 0;
+    border-radius: 2px;
+    line-height: 1;
+}
+
+/* ============================================
+   USER INFO
+   ============================================ */
+
+.user-info {
+    grid-area: info;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .user-info .name {
     display: block;
-    font-size: 1.4rem;
+    font-size: var(--fs-name);
     font-family: 'Playfair Display', serif;
-    margin-bottom: 4px;
+    margin-bottom: clamp(2px, 0.5vw, 4px);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .user-info .username {
-    font-size: 0.8rem;
+    font-size: var(--fs-username);
     color: var(--text-secondary);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: clamp(0.8px, 0.08em, 1px);
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
 }
+
+/* ============================================
+   USER ROLE
+   ============================================ */
 
 .user-role {
+    grid-area: role;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.75rem;
+    letter-spacing: clamp(1.5px, 0.12em, 2px);
+    font-size: var(--fs-role);
     font-weight: 500;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
+/* ============================================
+   USER ACTIONS
+   ============================================ */
+
 .user-actions {
+    grid-area: actions;
     display: flex;
-    gap: 12px;
+    gap: clamp(8px, 1.5vw, 12px);
+    flex-wrap: wrap;
+    justify-content: flex-end;
 }
 
 .btn-icon {
     background: transparent;
     border: 1px solid var(--border-subtle);
-    padding: 8px 16px;
+    padding: var(--button-padding-v) var(--button-padding-h);
     cursor: pointer;
     text-transform: uppercase;
-    font-size: 0.7rem;
-    letter-spacing: 1px;
-    transition: all 0.3s ease;
+    font-size: var(--fs-button);
+    letter-spacing: clamp(0.8px, 0.08em, 1px);
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+    min-height: var(--min-touch-target);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.2;
 }
 
 .btn-icon:hover {
     background: var(--text-primary);
     color: var(--bg-light);
+    border-color: var(--text-primary);
+}
+
+.btn-icon:active {
+    transform: scale(0.97);
 }
 
 .btn-delete:hover {
     background: #e03131;
     border-color: #e03131;
+    color: white;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Large tablets and small desktops: 1024px - 1199px */
+@media (max-width: 1199px) {
+    :root {
+        --col-role: clamp(120px, 12vw, 180px);
+        --col-actions: clamp(110px, 12vw, 140px);
+    }
+}
+
+/* Tablets: 768px - 1023px */
+@media (max-width: 1023px) {
+    :root {
+        --col-avatar: clamp(50px, 8vw, 70px);
+        --col-role: 140px;
+        --col-actions: 130px;
+    }
+    
+    .user-row {
+        gap: clamp(10px, 1.5vw, 14px);
+    }
+    
+    .user-actions {
+        gap: clamp(6px, 1vw, 10px);
+    }
+}
+
+/* Small tablets: 640px - 767px */
+@media (max-width: 767px) {
+    .users-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .users-header .header-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    /* Switch to mobile layout */
+    .user-row {
+        grid-template-columns: auto 1fr;
+        grid-template-areas: 
+            "avatar info"
+            "role actions";
+        gap: clamp(12px, 2vw, 16px);
+        padding: clamp(20px, 3vw, 24px) 0;
+    }
+    
+    .user-row:hover {
+        padding-left: clamp(8px, 2vw, 12px);
+    }
+    
+    .user-avatar {
+        grid-row: 1 / 3;
+    }
+    
+    .user-info {
+        align-self: start;
+    }
+    
+    .user-role {
+        justify-self: start;
+        padding-top: clamp(8px, 1vh, 12px);
+    }
+    
+    .user-actions {
+        justify-content: flex-start;
+        padding-top: clamp(8px, 1vh, 12px);
+    }
+}
+
+/* Mobile: 480px - 639px */
+@media (max-width: 639px) {
+    .user-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "avatar"
+            "info"
+            "role"
+            "actions";
+        gap: clamp(12px, 2vh, 16px);
+        padding: clamp(20px, 3vw, 28px) clamp(12px, 2vw, 16px);
+    }
+    
+    .user-row:hover {
+        padding-left: clamp(16px, 3vw, 20px);
+    }
+    
+    .user-avatar {
+        grid-row: auto;
+        justify-self: start;
+    }
+    
+    .user-info,
+    .user-role,
+    .user-actions {
+        width: 100%;
+    }
+    
+    .user-info .name,
+    .user-info .username,
+    .user-role {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+    }
+    
+    .user-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .btn-icon {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Small mobile: 360px - 479px */
+@media (max-width: 479px) {
+    :root {
+        --container-padding: clamp(12px, 3vw, 40px);
+        --container-padding-horizontal: clamp(12px, 4vw, 32px);
+    }
+    
+    .users-header h1 {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+    }
+}
+
+/* Extra small mobile: < 360px */
+@media (max-width: 359px) {
+    :root {
+        --avatar-size: 36px;
+        --avatar-font: 0.9rem;
+    }
+    
+    .user-row {
+        padding: clamp(16px, 4vw, 24px) clamp(8px, 2vw, 12px);
+    }
+}
+
+/* ============================================
+   LANDSCAPE ORIENTATION
+   ============================================ */
+
+/* Mobile landscape */
+@media (max-width: 767px) and (orientation: landscape) {
+    :root {
+        --container-padding: clamp(16px, 3vh, 40px);
+    }
+    
+    .users-header {
+        margin-bottom: clamp(24px, 4vh, 40px);
+        padding-bottom: clamp(12px, 2vh, 20px);
+    }
+    
+    .user-row {
+        padding: clamp(16px, 2vh, 24px) 0;
+    }
+}
+
+/* Tablet landscape */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: landscape) {
+    .user-row {
+        grid-template-columns: var(--col-avatar) 1fr 160px 140px;
+    }
+}
+
+/* Short screens */
+@media (max-height: 600px) {
+    :root {
+        --container-padding: clamp(20px, 4vh, 40px);
+        --header-margin: clamp(24px, 5vh, 48px);
+    }
+    
+    .user-row {
+        padding: clamp(16px, 2vh, 24px) 0;
+    }
+}
+
+/* ============================================
+   DEVICE SPECIFIC OPTIMIZATIONS
+   ============================================ */
+
+/* Touch devices */
+@media (hover: none) and (pointer: coarse) {
+    .btn-icon {
+        min-height: var(--min-touch-target);
+        min-width: var(--min-touch-target);
+        padding: clamp(10px, 1.5vh, 14px) clamp(14px, 2vw, 18px);
+    }
+    
+    /* Remove hover effects */
+    .user-row:hover {
+        padding-left: 0;
+        background: transparent;
+    }
+    
+    .btn-icon:hover {
+        background: transparent;
+        color: inherit;
+        border-color: var(--border-subtle);
+    }
+    
+    .btn-delete:hover {
+        background: transparent;
+        border-color: var(--border-subtle);
+        color: inherit;
+    }
+    
+    /* Add active states */
+    .user-row:active {
+        background: var(--bg-muted);
+    }
+    
+    .btn-icon:active {
+        background: var(--text-primary);
+        color: var(--bg-light);
+        border-color: var(--text-primary);
+    }
+    
+    .btn-delete:active {
+        background: #e03131;
+        border-color: #e03131;
+        color: white;
+    }
+}
+
+/* Mouse/trackpad devices */
+@media (hover: hover) and (pointer: fine) {
+    .btn-icon:active {
+        transform: translateY(1px);
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY & SPECIAL FEATURES
+   ============================================ */
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .users-header {
+        border-bottom-width: 2px;
+    }
+    
+    .user-row {
+        border-bottom-width: 2px;
+    }
+    
+    .btn-icon {
+        border-width: 2px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .users-container {
+        animation: none;
+    }
+    
+    .btn-icon:active {
+        transform: none;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    /* Add dark mode styles if needed */
+}
+
+/* iOS Safari specific */
+@supports (-webkit-touch-callout: none) {
+    .user-actions {
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .users-header {
+        border-bottom-width: 0.5px;
+    }
+    
+    .user-row {
+        border-bottom-width: 0.5px;
+    }
+    
+    .btn-icon {
+        border-width: 0.5px;
+    }
+    
+    .user-row:hover,
+    .btn-icon:hover,
+    .btn-icon:active,
+    .btn-delete:active {
+        border-width: 1px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .users-container {
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .user-actions {
+        display: none;
+    }
+    
+    .user-row {
+        break-inside: avoid;
+        border-bottom: 1px solid #000;
+    }
+    
+    .user-row:hover {
+        background: transparent;
+        padding-left: 0;
+    }
+}
+
+/* Very large screens: 1600px+ */
+@media (min-width: 1600px) {
+    .users-container {
+        max-width: 1600px;
+    }
+}
+
+/* Ultra-wide screens: 1920px+ */
+@media (min-width: 1920px) {
+    .users-container {
+        max-width: 1800px;
+    }
+}
+
+/* 4K screens: 2560px+ */
+@media (min-width: 2560px) {
+    .users-container {
+        max-width: 2200px;
+    }
+}
+
+/* Foldable devices */
+@media (max-width: 280px) {
+    :root {
+        --avatar-size: 32px;
+        --avatar-font: 0.8rem;
+    }
+    
+    .users-header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .user-row {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+}
+
+/* Wide aspect ratios */
+@media (min-aspect-ratio: 21/9) {
+    .user-row {
+        grid-template-columns: var(--col-avatar) 1fr 180px 140px;
+    }
+}
+
+/* Narrow aspect ratios */
+@media (max-aspect-ratio: 9/16) {
+    .user-row {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "avatar"
+            "info"
+            "role"
+            "actions";
+    }
+}
+
+/* Container queries (future-proofing) */
+@supports (container-type: inline-size) {
+    .users-container {
+        container-type: inline-size;
+        container-name: users-container;
+    }
 }

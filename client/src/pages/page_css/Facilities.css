@@ -1,139 +1,307 @@
 /*
- * Facilities Page CSS - Editorial Fashion (Refined Separation)
+ * Facilities Page CSS - Mobile-First Luxury Editorial (Highly Responsive)
  */
 
 .facilities {
     overflow-x: hidden;
 }
 
+/* -------------------------------------------------------------------------- */
+/* 1. Mobile Styles (Default)                                                 */
+/* -------------------------------------------------------------------------- */
+
 .facilities-header .page-title {
-    font-size: 5.5rem;
+    line-height: 1.1;
+    word-wrap: break-word;
 }
 
 /* Infrastructure Overview */
 .overview-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr 0.8fr;
-    gap: 60px;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 5vw, 60px);
+}
+
+.overview-text h2 {
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    margin-bottom: clamp(16px, 3vw, 24px);
+    line-height: 1.2;
+}
+
+.overview-text p {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.6;
 }
 
 .facility-visual {
     width: 100%;
-    aspect-ratio: 1/1;
+    height: clamp(280px, 50vw, 450px);
     overflow: hidden;
     border: 1px solid var(--border-subtle);
+    order: -1;
+    border-radius: 2px;
 }
 
 .facility-visual img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 1s ease;
+    transition: transform 0.3s ease;
 }
 
 .facility-visual:hover img {
-    transform: scale(1.1);
-}
-
-.overview-text h2 {
-    font-size: 3rem;
-    margin-bottom: 32px;
+    transform: scale(1.02);
 }
 
 .overview-stats {
     display: flex;
     flex-direction: column;
-    gap: 48px;
+    gap: clamp(24px, 4vw, 32px);
 }
 
 .facility-stat {
-    border-left: 1px solid var(--text-primary);
-    padding-left: 32px;
+    border-left: 2px solid var(--text-primary);
+    padding-left: clamp(16px, 3vw, 24px);
+    transition: border-color 0.3s ease;
+}
+
+.facility-stat:hover {
+    border-left-color: var(--accent-color, var(--text-primary));
 }
 
 .facility-stat .stat-number {
     display: block;
-    font-size: 4rem;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     font-family: 'Playfair Display', serif;
     line-height: 1;
-    margin-bottom: 8px;
+    margin-bottom: clamp(6px, 1vw, 8px);
 }
 
 .facility-stat .stat-label {
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: clamp(1px, 0.3vw, 2px);
     color: var(--text-secondary);
+    line-height: 1.4;
 }
 
 /* Technology Grid */
 .tech-header {
-    margin-bottom: 80px;
+    margin-bottom: clamp(24px, 4vw, 32px);
+}
+
+.tech-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: clamp(8px, 2vw, 12px);
+    line-height: 1.2;
 }
 
 .tech-header p {
-    font-size: 1.25rem;
-    opacity: 0.7;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.6;
 }
 
 .tech-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
 }
 
 .tech-card {
-    padding: 48px;
+    padding: clamp(24px, 4vw, 32px);
     border: 1px solid var(--border-dark);
     position: relative;
+    background-color: rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tech-card:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: var(--text-primary);
+    transform: translateY(-2px);
 }
 
 .tech-index {
     position: absolute;
-    top: 24px;
-    right: 24px;
+    top: clamp(12px, 2vw, 16px);
+    right: clamp(12px, 2vw, 16px);
     font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
+    font-size: clamp(0.9rem, 1.5vw, 1rem);
     opacity: 0.4;
 }
 
 .tech-card h4 {
-    font-size: 1.8rem;
-    margin-bottom: 16px;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    margin-bottom: clamp(8px, 2vw, 12px);
     color: var(--text-light);
+    line-height: 1.3;
+    padding-right: 40px; /* Space for index number */
 }
 
 .tech-card p {
     opacity: 0.7;
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+    line-height: 1.6;
+    flex-grow: 1;
 }
 
 /* Visit Box */
 .visit-box {
     text-align: center;
-    max-width: 800px;
-    margin: 0 auto;
+    padding: clamp(32px, 5vw, 48px) clamp(16px, 3vw, 24px);
 }
 
 .visit-box h2 {
-    font-size: 3.5rem;
-    margin-bottom: 24px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: clamp(16px, 3vw, 20px);
+    line-height: 1.2;
 }
 
 .visit-box p {
-    font-size: 1.25rem;
-    margin-bottom: 48px;
+    font-size: clamp(0.95rem, 2vw, 1.25rem);
+    margin-bottom: clamp(24px, 4vw, 32px);
     color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-@media (max-width: 1024px) {
+/* -------------------------------------------------------------------------- */
+/* 2. Small Tablet Styles (600px+)                                            */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 600px) {
     .tech-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    
+    .overview-stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    
+    .facility-stat {
+        flex: 1 1 calc(50% - 16px);
+        min-width: 200px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Tablet Styles (768px+)                                                  */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .overview-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 5vw, 60px);
+        align-items: start;
     }
 
+    .facility-visual {
+        order: 1;
+        height: clamp(350px, 40vw, 450px);
+    }
+    
+    .overview-stats {
+        grid-column: 1 / -1;
+        flex-direction: row;
+    }
+    
+    .facility-stat {
+        flex: 1 1 auto;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Desktop Styles (1024px+)                                                */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
     .overview-content {
-        grid-template-columns: 1fr;
-        gap: 60px;
+        grid-template-columns: 1.2fr 1fr 0.8fr;
+        gap: clamp(40px, 4vw, 60px);
+        align-items: center;
+    }
+    
+    .overview-stats {
+        grid-column: auto;
+        flex-direction: column;
+    }
+    
+    .facility-stat {
+        flex: none;
+    }
+
+    .tech-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Large Desktop Styles (1440px+)                                          */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+    .overview-content {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .tech-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .visit-box {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Accessibility & Polish                                                  */
+/* -------------------------------------------------------------------------- */
+
+/* Smooth transitions for all interactive elements */
+.tech-card,
+.facility-visual img,
+.facility-stat {
+    will-change: transform;
+}
+
+/* Prevent layout shift on load */
+.facility-visual {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Better text readability on all screens */
+.overview-text,
+.tech-card p,
+.visit-box p {
+    max-width: 65ch;
+}
+
+/* Ensure proper spacing on very small screens */
+@media (max-width: 360px) {
+    .tech-card {
+        padding: 20px;
+    }
+    
+    .facility-stat {
+        padding-left: 12px;
+    }
+}
+
+/* Ultra-wide screen optimization */
+@media (min-width: 1920px) {
+    .facilities {
+        max-width: 1600px;
+        margin: 0 auto;
     }
 }

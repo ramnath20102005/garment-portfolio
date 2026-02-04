@@ -1,158 +1,270 @@
 /*
- * Products Page CSS - Editorial Fashion (Refined Separation)
+ * Products Page CSS - Mobile-First Luxury Editorial
+ * Highly Responsive & Fluid Design
  */
 
 .products {
     overflow-x: hidden;
 }
 
+/* -------------------------------------------------------------------------- */
+/* 1. Mobile Styles (Default - 320px+)                                        */
+/* -------------------------------------------------------------------------- */
+
 .editorial-label {
     display: inline-block;
-    font-size: 0.75rem;
+    font-size: clamp(0.65rem, 1.5vw, 0.75rem);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: clamp(1.5px, 0.4vw, 3px);
     color: var(--text-secondary);
-    margin-bottom: 24px;
+    margin-bottom: clamp(12px, 3vw, 16px);
 }
 
 .products-header .page-title {
-    font-size: 5.5rem;
-    line-height: 1;
+    line-height: 1.1;
+    font-size: clamp(2rem, 6vw, 4rem);
 }
 
 .products-header .page-subtitle {
-    font-size: 1.3rem;
-    max-width: 600px;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    color: var(--text-secondary);
+    line-height: 1.5;
+    max-width: 100%;
 }
 
-/* Product Grid Overhaul */
+/* Product Grid - Fluid Responsive */
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 80px 40px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
+    gap: clamp(24px, 4vw, 48px) clamp(16px, 3vw, 32px);
 }
 
 .product-card {
-    transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: clamp(24px, 4vw, 32px);
+    display: flex;
+    flex-direction: column;
 }
 
 .product-visual {
     width: 100%;
-    aspect-ratio: 4/5;
+    aspect-ratio: 3/4;
     background-color: var(--bg-muted);
     border: 1px solid var(--border-subtle);
-    margin-bottom: 32px;
+    margin-bottom: clamp(12px, 2.5vw, 16px);
     position: relative;
     overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .product-visual img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: transform 0.3s ease;
 }
 
-.product-card:hover .product-visual img {
+.product-visual:hover img {
     transform: scale(1.05);
 }
 
-.product-visual::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.02);
-    transition: opacity 0.3s ease;
-}
-
-.product-card:hover .product-visual::after {
-    opacity: 0;
-}
-
 .product-category {
-    font-size: 0.7rem;
+    font-size: clamp(0.6rem, 1.2vw, 0.7rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: clamp(1.5px, 0.3vw, 2px);
     color: var(--text-secondary);
     display: block;
-    margin-bottom: 12px;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
 }
 
 .product-name {
-    font-size: 2.2rem;
-    margin-bottom: 16px;
-    line-height: 1.1;
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: clamp(6px, 1.5vw, 8px);
+    line-height: 1.2;
+    font-weight: 500;
 }
 
 .product-description {
-    font-size: 0.95rem;
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 24px;
+    margin-bottom: clamp(16px, 3vw, 20px);
+    flex-grow: 1;
 }
 
 .btn-editorial {
     background: none;
     border: none;
     border-bottom: 1px solid var(--text-primary);
-    padding: 4px 0;
+    padding: clamp(6px, 1.5vw, 8px) 0;
     font-family: inherit;
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.8rem);
     text-transform: uppercase;
-    letter-spacing: 1.5px;
+    letter-spacing: clamp(1px, 0.3vw, 1.5px);
     cursor: pointer;
-    transition: opacity 0.3s ease;
+    min-height: 44px;
+    transition: all 0.2s ease;
+    align-self: flex-start;
 }
 
 .btn-editorial:hover {
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
-/* Bespoke CTA Section */
+/* Bespoke CTA Section - Fluid Layout */
+.bespoke-section {
+    margin-top: clamp(60px, 10vw, 120px);
+}
+
 .bespoke-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 6vw, 60px);
     align-items: center;
 }
 
 .bespoke-text h2 {
-    font-size: 3.5rem;
-    margin-bottom: 24px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: clamp(12px, 2.5vw, 16px);
     color: var(--text-light);
+    line-height: 1.1;
 }
 
 .bespoke-text p {
-    font-size: 1.2rem;
-    margin-bottom: 48px;
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    margin-bottom: clamp(24px, 4vw, 32px);
     opacity: 0.8;
+    line-height: 1.6;
 }
 
 .bespoke-visual {
-    height: 400px;
+    width: 100%;
+    aspect-ratio: 16/9;
+    min-height: 200px;
     border: 1px solid var(--border-dark);
+    background-color: var(--bg-muted);
+    overflow: hidden;
 }
 
-@media (max-width: 1024px) {
+.bespoke-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Small Tablets (480px+)                                                  */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
     .products-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    }
+    
+    .product-visual {
+        aspect-ratio: 4/5;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Tablets (768px+)                                                        */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .products-header .page-subtitle {
+        max-width: 80%;
+    }
+    
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
     }
 
     .bespoke-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 6vw, 60px);
+    }
+    
+    .bespoke-visual {
+        aspect-ratio: 4/5;
+        min-height: 300px;
     }
 }
 
-@media (max-width: 768px) {
-    .products-grid {
-        grid-template-columns: 1fr;
+/* -------------------------------------------------------------------------- */
+/* 4. Desktop (1024px+)                                                       */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+    .products-header .page-subtitle {
+        max-width: 600px;
     }
 
-    .products-header .page-title {
-        font-size: 4rem;
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    }
+
+    .product-card {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .product-visual {
+        aspect-ratio: 4/5;
+    }
+    
+    .bespoke-visual {
+        min-height: 350px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Large Desktop (1440px+)                                                 */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+    .products-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Extra Smooth Transitions                                                */
+/* -------------------------------------------------------------------------- */
+.product-card,
+.product-visual,
+.btn-editorial,
+.bespoke-text,
+.bespoke-visual {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Container Width Control                                                 */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1920px) {
+    .products-grid,
+    .bespoke-grid {
+        max-width: 1800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 8. Accessibility & Touch Targets                                           */
+/* -------------------------------------------------------------------------- */
+@media (hover: hover) {
+    .btn-editorial:hover {
+        transform: translateY(-2px);
+        border-bottom-width: 2px;
+    }
+    
+    .product-card:hover .product-visual {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Ensure touch targets are adequate on mobile */
+@media (max-width: 767px) {
+    .btn-editorial {
+        padding: 12px 0;
     }
 }

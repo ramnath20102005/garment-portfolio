@@ -1,14 +1,41 @@
 /*
  * Login CSS - Premium Editorial Fashion Design
+ * Highly Responsive with Fluid Typography & Perfect Alignment
  */
+
+:root {
+    /* Fluid typography base */
+    --fluid-min-width: 360;
+    --fluid-max-width: 1920;
+    
+    /* Fluid font sizes */
+    --fs-h1: clamp(2rem, 1.5rem + 2.5vw, 3rem);
+    --fs-subtitle: clamp(0.65rem, 0.6rem + 0.25vw, 0.75rem);
+    --fs-label: clamp(0.65rem, 0.6rem + 0.15vw, 0.7rem);
+    --fs-input: clamp(1rem, 0.95rem + 0.25vw, 1rem);
+    --fs-button: clamp(0.75rem, 0.7rem + 0.15vw, 0.8rem);
+    --fs-error: clamp(0.8rem, 0.75rem + 0.15vw, 0.85rem);
+    
+    /* Fluid spacing */
+    --padding-page: clamp(16px, 3vw, 40px);
+    --padding-card: clamp(24px, 5vw, 50px);
+    --padding-card-vertical: clamp(40px, 8vw, 60px);
+    --margin-header: clamp(36px, 6vw, 48px);
+    --margin-form-group: clamp(24px, 4vw, 32px);
+    --shadow-offset: clamp(8px, 2vw, 20px);
+    
+    /* Fixed minimum touch targets */
+    --min-touch-target: 48px;
+}
 
 .login-page {
     min-height: 100vh;
+    min-height: 100dvh; /* Dynamic viewport height */
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: var(--bg-muted);
-    padding: 40px;
+    padding: var(--padding-page);
     position: relative;
     overflow: hidden;
 }
@@ -20,25 +47,27 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-family: 'Playfair Display', serif;
-    font-size: 25vw;
+    font-size: clamp(80px, 25vw, 480px);
     font-weight: 600;
     color: var(--text-primary);
     opacity: 0.03;
     pointer-events: none;
     white-space: nowrap;
     z-index: 1;
+    line-height: 1;
 }
 
 .login-card {
     background-color: var(--bg-light);
     width: 100%;
-    max-width: 450px;
-    padding: 60px 50px;
+    max-width: min(450px, 100%);
+    padding: var(--padding-card-vertical) var(--padding-card);
     border: 1px solid var(--border-subtle);
     position: relative;
     z-index: 2;
-    box-shadow: 20px 20px 0 var(--text-primary);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--text-primary);
     animation: slideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: box-shadow 0.3s ease;
 }
 
 @keyframes slideUp {
@@ -46,7 +75,6 @@
         transform: translateY(40px);
         opacity: 0;
     }
-
     to {
         transform: translateY(0);
         opacity: 1;
@@ -54,49 +82,61 @@
 }
 
 .login-header {
-    margin-bottom: 48px;
+    margin-bottom: var(--margin-header);
     text-align: center;
 }
 
 .login-header h1 {
-    font-size: 3rem;
-    letter-spacing: -2px;
-    margin-bottom: 8px;
+    font-size: var(--fs-h1);
+    letter-spacing: clamp(-1px, -0.05em, -2px);
+    margin-bottom: clamp(6px, 1vw, 8px);
     text-transform: uppercase;
+    line-height: 1.1;
+    word-break: break-word;
 }
 
 .login-header p {
     font-family: 'Inter', sans-serif;
-    font-size: 0.75rem;
+    font-size: var(--fs-subtitle);
     text-transform: uppercase;
-    letter-spacing: 3px;
+    letter-spacing: clamp(2px, 0.15em, 3px);
     color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 .login-form .form-group {
-    margin-bottom: 32px;
+    margin-bottom: var(--margin-form-group);
 }
 
 .login-form label {
     display: block;
-    font-size: 0.7rem;
+    font-size: var(--fs-label);
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 12px;
+    letter-spacing: clamp(1.5px, 0.12em, 2px);
+    margin-bottom: clamp(10px, 1.5vw, 12px);
     color: var(--text-secondary);
     font-weight: 500;
+    line-height: 1.4;
 }
 
 .login-form input {
     width: 100%;
-    padding: 16px 0;
+    padding: clamp(14px, 2vw, 16px) 0;
     background: transparent;
     border: none;
     border-bottom: 1px solid var(--border-subtle);
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
+    font-size: var(--fs-input);
     color: var(--text-primary);
-    transition: all 0.3s ease;
+    transition: border-bottom-color 0.3s ease;
+    box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.login-form input::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.5;
 }
 
 .login-form input:focus {
@@ -104,19 +144,27 @@
     border-bottom-color: var(--text-primary);
 }
 
+.login-form input:focus::placeholder {
+    opacity: 0.3;
+}
+
 .login-btn {
     width: 100%;
-    padding: 18px;
+    min-height: var(--min-touch-target);
+    padding: clamp(16px, 2.5vw, 18px) clamp(16px, 3vw, 24px);
     background-color: var(--text-primary);
     color: var(--bg-light);
     border: 1px solid var(--text-primary);
     text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.8rem;
+    letter-spacing: clamp(2px, 0.15em, 3px);
+    font-size: var(--fs-button);
     font-weight: 500;
     cursor: pointer;
     transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-    margin-top: 16px;
+    margin-top: clamp(12px, 2vw, 16px);
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    line-height: 1.4;
 }
 
 .login-btn:hover {
@@ -124,12 +172,245 @@
     color: var(--text-primary);
 }
 
+.login-btn:active {
+    transform: scale(0.98);
+}
+
 .login-error {
     background-color: #fff5f5;
     color: #e03131;
-    padding: 12px;
-    font-size: 0.85rem;
-    margin-bottom: 24px;
+    padding: clamp(12px, 2vw, 14px);
+    font-size: var(--fs-error);
+    margin-bottom: clamp(20px, 3vw, 24px);
     text-align: center;
     border: 1px solid #ffc9c9;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Small mobile: 360px - 479px */
+@media (max-width: 479px) {
+    .login-page::before {
+        opacity: 0.02;
+    }
+    
+    .login-card {
+        box-shadow: 10px 10px 0 var(--text-primary);
+    }
+}
+
+/* Mobile landscape & small tablets: 480px - 767px */
+@media (min-width: 480px) and (max-width: 767px) {
+    .login-card {
+        max-width: 420px;
+    }
+}
+
+/* Tablets: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .login-card {
+        max-width: 480px;
+    }
+}
+
+/* Large tablets & small desktops: 1024px - 1439px */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .login-card {
+        max-width: 450px;
+    }
+}
+
+/* Large desktops: 1440px+ */
+@media (min-width: 1440px) {
+    .login-page::before {
+        font-size: 480px;
+    }
+}
+
+/* Landscape orientations */
+@media (max-width: 767px) and (orientation: landscape) {
+    .login-page {
+        padding: clamp(12px, 2vw, 20px);
+        align-items: flex-start;
+        padding-top: clamp(20px, 3vh, 40px);
+        padding-bottom: clamp(20px, 3vh, 40px);
+    }
+    
+    .login-card {
+        margin: auto 0;
+        box-shadow: 8px 8px 0 var(--text-primary);
+    }
+    
+    .login-header {
+        margin-bottom: clamp(20px, 3vh, 32px);
+    }
+    
+    .login-form .form-group {
+        margin-bottom: clamp(16px, 2.5vh, 24px);
+    }
+}
+
+@media (min-width: 768px) and (orientation: landscape) and (max-height: 600px) {
+    .login-page {
+        padding: clamp(16px, 2vh, 32px);
+    }
+    
+    .login-card {
+        padding: clamp(24px, 4vh, 40px) var(--padding-card);
+    }
+    
+    .login-header {
+        margin-bottom: clamp(20px, 3vh, 36px);
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .login-form input {
+        min-height: var(--min-touch-target);
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    .login-btn {
+        min-height: var(--min-touch-target);
+    }
+    
+    /* Remove hover effects on touch */
+    .login-btn:hover {
+        background-color: var(--text-primary);
+        color: var(--bg-light);
+    }
+    
+    /* Enhanced tap state */
+    .login-btn:active {
+        opacity: 0.85;
+        transform: scale(0.98);
+    }
+}
+
+/* Mouse/trackpad device optimizations */
+@media (hover: hover) and (pointer: fine) {
+    .login-btn {
+        transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    .login-btn:active {
+        transform: translateY(2px);
+    }
+}
+
+/* iOS Safari specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .login-page {
+        min-height: -webkit-fill-available;
+    }
+    
+    .login-form input {
+        /* Fix iOS zoom on focus */
+        font-size: 16px;
+    }
+}
+
+/* High DPI screens */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .login-card {
+        border-width: 0.5px;
+    }
+    
+    .login-form input {
+        border-bottom-width: 0.5px;
+    }
+    
+    .login-form input:focus {
+        border-bottom-width: 1px;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .login-card {
+        animation: none;
+    }
+    
+    .login-btn:active {
+        transform: none;
+    }
+}
+
+/* Dark mode support (if needed) */
+@media (prefers-color-scheme: dark) {
+    /* Add dark mode styles here if needed */
+}
+
+/* Print styles */
+@media print {
+    .login-page {
+        background: white;
+        padding: 0;
+    }
+    
+    .login-page::before {
+        display: none;
+    }
+    
+    .login-card {
+        box-shadow: none;
+        border: 1px solid #000;
+        max-width: 100%;
+    }
+}
+
+/* Extra small devices (foldable phones) */
+@media (max-width: 359px) {
+    .login-card {
+        padding: clamp(32px, 10vw, 40px) clamp(20px, 6vw, 24px);
+        box-shadow: 8px 8px 0 var(--text-primary);
+    }
+    
+    .login-header h1 {
+        font-size: clamp(1.75rem, 8vw, 2rem);
+    }
+}
+
+/* Very large screens (4K and above) */
+@media (min-width: 2560px) {
+    .login-card {
+        max-width: 550px;
+    }
+    
+    .login-page::before {
+        font-size: 600px;
+    }
+}
+
+/* Aspect ratio optimizations */
+@media (min-aspect-ratio: 16/9) {
+    .login-page::before {
+        font-size: clamp(100px, 20vw, 400px);
+    }
+}
+
+@media (max-aspect-ratio: 9/16) {
+    .login-page::before {
+        font-size: clamp(60px, 30vw, 280px);
+        opacity: 0.02;
+    }
+}
+
+/* Container query support (for future-proofing) */
+@supports (container-type: inline-size) {
+    .login-page {
+        container-type: inline-size;
+        container-name: login-container;
+    }
 }

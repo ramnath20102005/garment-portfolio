@@ -1,5 +1,6 @@
 /*
- * About Page CSS - Editorial Fashion (Section Separation Refinement)
+ * About Page CSS - Mobile-First Luxury Editorial
+ * Highly Responsive & Fluid Design
  */
 
 .about {
@@ -7,196 +8,489 @@
     background-color: var(--bg-light);
 }
 
+/* -------------------------------------------------------------------------- */
+/* 1. Mobile Styles (Default - 320px+)                                        */
+/* -------------------------------------------------------------------------- */
+
+/* Header - Fluid Typography */
 .about-header {
-    padding: 120px 0 60px;
+    padding: clamp(28px, 6vw, 80px) 0 clamp(20px, 4vw, 40px);
 }
 
 .about-header .page-title {
-    font-size: 5.5rem;
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
     line-height: 1.05;
-    margin-bottom: 32px;
-    letter-spacing: -2px;
+    margin-bottom: clamp(20px, 4vw, 24px);
+    font-weight: 600;
 }
 
 .about-header .page-subtitle {
-    font-size: 1.3rem;
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
     color: var(--text-secondary);
-    max-width: 650px;
     font-weight: 300;
+    line-height: 1.6;
+    max-width: 100%;
 }
 
-/* Company Story */
+/* Company Story - Fluid Layout */
 .company-story {
-    padding: 100px 0;
     border-bottom: 1px solid var(--border-subtle);
+    padding-bottom: clamp(40px, 8vw, 80px);
 }
 
 .story-content {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 100px;
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 8vw, 80px);
+}
+
+.story-text {
+    flex: 1;
 }
 
 .story-text h2 {
-    font-size: 2.8rem;
-    margin-bottom: 32px;
+    font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+    margin-bottom: clamp(20px, 4vw, 24px);
+    line-height: 1.2;
+    font-weight: 500;
+}
+
+.story-text p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin-bottom: clamp(16px, 3vw, 20px);
+}
+
+.story-text p:last-child {
+    margin-bottom: 0;
 }
 
 .story-stats {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: clamp(28px, 5vw, 32px);
+    flex: 1;
 }
 
 .story-stat {
-    border-left: 1px solid var(--text-primary);
-    padding-left: 32px;
-    transition: padding-left 0.4s ease;
-}
-
-.story-stat:hover {
-    padding-left: 40px;
+    border-left: 2px solid var(--text-primary);
+    padding-left: clamp(20px, 4vw, 24px);
+    transition: all 0.3s ease;
 }
 
 .stat-value {
     display: block;
-    font-size: 3.5rem;
+    font-size: clamp(2.4rem, 6vw, 3.5rem);
     font-family: 'Playfair Display', serif;
     line-height: 1;
-    margin-bottom: 10px;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
+    font-weight: 600;
+    color: var(--text-primary);
 }
 
 .stat-text {
-    font-size: 0.85rem;
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: clamp(1.5px, 0.3vw, 2px);
     color: var(--text-secondary);
     font-weight: 500;
+    line-height: 1.4;
 }
 
-/* Mission & Vision - DARK BLOCK REINFORCEMENT */
+/* Mission & Vision - DARK BLOCK - Fluid */
 .mission-vision {
     background-color: var(--bg-dark);
     color: var(--text-light);
-    padding: 140px 0;
-    margin: 40px 0;
+    margin: clamp(24px, 5vw, 40px) 0;
+    padding: clamp(48px, 10vw, 80px) 0;
 }
 
 .mv-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(40px, 8vw, 80px);
 }
 
 .mv-card {
-    position: relative;
+    flex: 1;
 }
 
 .mv-icon {
-    font-size: 2.5rem;
-    margin-bottom: 40px;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: clamp(20px, 4vw, 24px);
     display: block;
+    opacity: 0.9;
 }
 
 .mv-card h3 {
-    font-size: 2.5rem;
-    margin: 0 0 24px;
+    font-size: clamp(1.8rem, 4.5vw, 2.5rem);
+    margin: 0 0 clamp(14px, 3vw, 16px);
     color: var(--text-light);
+    line-height: 1.2;
+    font-weight: 500;
 }
 
 .mv-card p {
-    font-size: 1.1rem;
-    line-height: 2;
-    opacity: 0.8;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    line-height: 1.8;
+    opacity: 0.85;
+    color: var(--text-light);
 }
 
-/* Core Values Grid */
-.core-values {
-    padding: 120px 0;
+/* Core Values Grid - Responsive Auto-fit */
+.values-section {
+    padding: clamp(48px, 10vw, 80px) 0;
+}
+
+.values-section .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: clamp(12px, 2.5vw, 16px);
+    line-height: 1.2;
+}
+
+.values-section p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 .values-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 40px;
-    margin-top: 60px;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 32px);
+    margin-top: clamp(28px, 5vw, 32px);
 }
 
 .value-item {
     border: 1px solid var(--border-subtle);
-    padding: 48px;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    padding: clamp(24px, 5vw, 40px);
     background-color: var(--bg-light);
-}
-
-.value-item:hover {
-    border-color: var(--text-primary);
-    transform: translateY(-8px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .value-item h4 {
-    font-size: 1.6rem;
-    margin-bottom: 16px;
+    font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+    margin-bottom: clamp(10px, 2vw, 12px);
+    line-height: 1.3;
+    font-weight: 500;
 }
 
 .value-item p {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
     color: var(--text-secondary);
+    line-height: 1.7;
 }
 
-/* Certifications */
+/* Certifications - Responsive Grid */
 .certifications {
-    padding-bottom: 120px;
+    padding: clamp(48px, 10vw, 80px) 0;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.certifications .section-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: clamp(12px, 2.5vw, 16px);
+    line-height: 1.2;
+}
+
+.certifications > p {
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: clamp(28px, 5vw, 32px);
 }
 
 .cert-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 32px;
-    margin-top: 60px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 140px), 1fr));
+    gap: clamp(14px, 3vw, 24px);
 }
 
 .cert-card {
     border: 1px solid var(--border-subtle);
-    padding: 50px 32px;
+    padding: clamp(20px, 4vw, 32px) clamp(12px, 3vw, 20px);
     text-align: center;
-    transition: all 0.4s ease;
     background-color: var(--bg-muted);
-}
-
-.cert-card:hover {
-    border-color: var(--text-primary);
-    background-color: var(--bg-light);
-    transform: scale(1.02);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 120px;
 }
 
 .cert-badge-large {
     font-family: 'Playfair Display', serif;
-    font-size: 2.2rem;
+    font-size: clamp(1.2rem, 3vw, 2rem);
     font-weight: 600;
-    margin-bottom: 16px;
+    margin-bottom: clamp(6px, 1.5vw, 8px);
     color: var(--text-primary);
+    line-height: 1.2;
 }
 
-@media (max-width: 1024px) {
-    .mv-grid {
-        gap: 60px;
+.cert-card p {
+    font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+    text-transform: uppercase;
+    letter-spacing: clamp(0.8px, 0.2vw, 1px);
+    line-height: 1.4;
+    color: var(--text-secondary);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Small Tablets (480px+)                                                  */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 480px) {
+    .values-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    }
+
+    .cert-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 160px), 1fr));
     }
 }
 
-@media (max-width: 768px) {
+/* -------------------------------------------------------------------------- */
+/* 3. Tablets (768px+)                                                        */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    .about-header .page-subtitle {
+        max-width: 85%;
+    }
 
+    .story-content {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: clamp(50px, 8vw, 80px);
+        align-items: start;
+    }
+
+    .mv-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(50px, 8vw, 80px);
+        align-items: start;
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    }
+
+    .cert-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Desktop (1024px+)                                                       */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+    .about-header .page-subtitle {
+        max-width: 750px;
+    }
+
+    .values-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    }
+
+    .cert-grid {
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+        max-width: 900px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Large Desktop (1440px+)                                                 */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
     .story-content,
-    .mv-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
+    .mv-grid,
+    .values-grid {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Extra Large Desktop (1920px+)                                           */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1920px) {
+    .story-content,
+    .mv-grid,
+    .values-grid {
+        max-width: 1600px;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Hover Effects (Desktop Only)                                            */
+/* -------------------------------------------------------------------------- */
+@media (hover: hover) {
+    .story-stat:hover {
+        transform: translateX(4px);
+        border-left-width: 3px;
     }
 
+    .value-item:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        border-color: var(--text-primary);
+    }
+
+    .cert-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        border-color: var(--text-primary);
+        background-color: var(--bg-light);
+    }
+
+    .cert-card:hover .cert-badge-large {
+        color: var(--text-primary);
+        transform: scale(1.05);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 8. Touch Device Refinements                                                */
+/* -------------------------------------------------------------------------- */
+@media (hover: none) and (pointer: coarse) {
+    .value-item:active,
+    .cert-card:active {
+        transform: scale(0.98);
+        opacity: 0.9;
+    }
+
+    /* Ensure adequate spacing for touch */
+    .values-grid,
+    .cert-grid {
+        gap: clamp(20px, 4vw, 32px);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 9. Smooth Transitions for All Elements                                     */
+/* -------------------------------------------------------------------------- */
+.story-stat,
+.value-item,
+.cert-card,
+.mv-card,
+.cert-badge-large {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 10. Prevent Layout Shift                                                   */
+/* -------------------------------------------------------------------------- */
+.story-content,
+.mv-grid,
+.values-grid,
+.cert-grid {
+    width: 100%;
+}
+
+.story-text h2,
+.story-text p,
+.mv-card h3,
+.mv-card p,
+.value-item h4,
+.value-item p,
+.stat-text {
+    max-width: 100%;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 11. Accessibility Improvements                                             */
+/* -------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus states for keyboard navigation */
+.value-item:focus-within,
+.cert-card:focus-within {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 12. Grid Balance for Different Screen Sizes                                */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .values-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 13. Dark Section Contrast Enhancement                                      */
+/* -------------------------------------------------------------------------- */
+.mission-vision .mv-card h3 {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.mission-vision .mv-card p {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* -------------------------------------------------------------------------- */
+/* 14. Responsive Typography Scale                                            */
+/* -------------------------------------------------------------------------- */
+@media (max-width: 374px) {
+    /* Extra small devices */
+    .stat-value {
+        font-size: 2rem;
+    }
+    
     .about-header .page-title {
-        font-size: 3.5rem;
+        font-size: 2rem;
     }
+    
+    .cert-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
 
-    .mission-vision {
-        padding: 100px 0;
+/* -------------------------------------------------------------------------- */
+/* 15. Container Safety & Max-Width Control                                   */
+/* -------------------------------------------------------------------------- */
+.about-header,
+.story-content,
+.mv-grid,
+.values-grid,
+.cert-grid {
+    max-width: 100%;
+    overflow: visible;
+}
+
+/* Stats alignment improvement */
+.story-stats {
+    align-self: flex-start;
+}
+
+/* Ensure mission/vision cards have equal height in grid */
+@media (min-width: 768px) {
+    .mv-grid {
+        align-items: stretch;
+    }
+    
+    .mv-card {
+        display: flex;
+        flex-direction: column;
     }
 }

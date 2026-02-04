@@ -67,18 +67,18 @@ function Facilities() {
                         <div className="tech-grid">
                             <div className="tech-card">
                                 <span className="tech-index">01</span>
-                                <h4>Advanced Knitting</h4>
-                                <p>High-speed circular and flat knitting machines for superior fabric texture.</p>
+                                <h4>Knitting Core</h4>
+                                <p>Initially setup with 40 sets of machinery, expanding with 60 more sets in late 2026.</p>
                             </div>
                             <div className="tech-card">
                                 <span className="tech-index">02</span>
-                                <h4>Real-time ERP</h4>
-                                <p>Full transparency across the manufacturing node via proprietary cloud systems.</p>
+                                <h4>Safety First</h4>
+                                <p>Comprehensive Health and Safety procedures documented and visible for all global audits.</p>
                             </div>
                             <div className="tech-card">
                                 <span className="tech-index">03</span>
-                                <h4>Eco-Power</h4>
-                                <p>Facilities powered by on-site renewable solar arrays, reducing net carbon.</p>
+                                <h4>Export Quality</h4>
+                                <p>Strict quality check protocols at every stage to meet US and EU retail standards.</p>
                             </div>
                         </div>
                     </ScrollAnimatedSection>

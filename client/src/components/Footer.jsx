@@ -6,15 +6,16 @@ function Footer() {
     <footer className="footer">
       <div className="footer-container">
         <div className="footer-section">
-          <h3 className="footer-title">V R fashions</h3>
+          <h3 className="footer-title">VR Fashions</h3>
           <p className="footer-description">
-            Specializing in high-quality knitted garments. Led by Mohan, we deliver
-            excellence to global markets with a focus on cotton-based apparel.
+            100% Export Oriented Garment Factory. Established in 2016 by Mohan Raj and Renugadevi.
+            Specializing in premium knitted garments for global markets.
           </p>
           <div className="footer-certifications">
-            <span className="cert-badge">ISO 9001</span>
+            <span className="cert-badge">SA8000</span>
             <span className="cert-badge">GOTS</span>
-            <span className="cert-badge">OEKO-TEX</span>
+            <span className="cert-badge">GRS</span>
+            <span className="cert-badge">BSCI</span>
           </div>
         </div>
 
@@ -41,9 +42,9 @@ function Footer() {
         <div className="footer-section">
           <h4 className="footer-heading">Contact Info</h4>
           <ul className="footer-contact">
-            <li>📧 contact@vrfashions.com</li>
+            <li>📧 vmr@vrfashions.in</li>
             <li>📞 +91 98947 61456</li>
-            <li>📍 S.F#85,86 VIVEKANDHA NAGAR, Dharapuram Main Rd, KOVILVALI, Tiruppur, Tamil Nadu 641606</li>
+            <li>📍 85, 86, VIVEKANANDHA NAGAR, KOVILVALI, TIRUPUR-641606</li>
           </ul>
         </div>
       </div>

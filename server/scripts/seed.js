@@ -82,10 +82,10 @@ const seed = async () => {
     // 2. Create Company
     console.log("Creating Company Profile...");
     await Company.create({
-        name: "V R Fashions",
-        description: "A leading manufacturer and exporter of high-quality knitted garments based in Tiruppur, India. We specialize in bespoke production for global brands.",
-        location: "12/A, Industrial Estate, Tiruppur, Tamil Nadu, India",
-        establishedYear: 2005
+        name: "VR Fashions",
+        description: "Established in 2016 by Mohan Raj and Renugadevi, VR Fashions is a 100% export-oriented factory based in Tirupur. We specialize in high-quality knitted garments including T-shirts, tops, sweatshirts, pajama sets, and nightwear for men, ladies, and kids, producing 50,000 pieces per month.",
+        location: "85, 86, Vivekanandha Nagar, Kovilvali, Dharapuram Road, Tirupur-641606",
+        establishedYear: 2016
     });
 
     // 3. Generate Time-Series Data (Oct 2024 to Dec 2025)
@@ -102,8 +102,9 @@ const seed = async () => {
         const manager = managers[getRandomInt(0, managers.length - 1)];
 
         // --- EXPORTS ---
-        const region = regions[getRandomInt(0, regions.length - 1)];
-        const country = countries[region][getRandomInt(0, countries[region].length - 1)];
+        const preferredRegions = ['European Union', 'North America'];
+        const region = preferredRegions[getRandomInt(0, 1)];
+        const country = (region === 'European Union') ? (getRandomInt(0, 1) === 0 ? 'France' : 'Germany') : 'USA';
         let seasonalMultiplier = (monthIndex >= 9) ? 1.4 : (monthIndex <= 2 ? 1.2 : 0.9);
         const volume = Math.floor(getRandomInt(5000, 15000) * seasonalMultiplier);
         const value = Math.floor(volume * getRandomInt(8, 12));
@@ -144,14 +145,17 @@ const seed = async () => {
 
     // 4. Seeding Buyers
     console.log("Generating Buyers...");
-    const buyerNames = ["Nordic Style", "Atlantic Threads", "Desert Loom", "Pacific Knitwear", "Alpine Apparel"];
-    for (let bName of buyerNames) {
+    const realBuyers = [
+        { name: "SAHINLER", region: "European Union", country: "France" },
+        { name: "VRF CORP", region: "North America", country: "USA" }
+    ];
+    for (let buyer of realBuyers) {
         await Buyer.create({
-            name: bName,
-            region: regions[getRandomInt(0, regions.length - 1)],
-            industry: "Retailer",
-            relationshipDuration: `${getRandomInt(1, 10)} years`,
-            orderFrequency: ['Low', 'Medium', 'High'][getRandomInt(0, 2)],
+            name: buyer.name,
+            region: buyer.region,
+            industry: "Importer / Retailer",
+            relationshipDuration: "Multiple years",
+            orderFrequency: "High",
             managerId: managers[0]._id,
             submissionStatus: 'Approved'
         });
@@ -172,7 +176,7 @@ const seed = async () => {
             entity = await Employee.create({
                 employeeId: `EMP-${getRandomInt(1000, 9999)}`,
                 fullName: `Staff Member ${i}`,
-                email: `staff${i}@vrfashions.com`,
+                email: `staff${i}@vrfashions.in`,
                 phone: `+91 ${getRandomInt(7000, 9999)}${getRandomInt(1000, 9999)}`,
                 department: departments[getRandomInt(0, departments.length - 1)],
                 role: 'Production Staff',

@@ -76,18 +76,20 @@ function Contact() {
             <ScrollAnimatedSection animation="animate-fade-in-right">
               <div className="contact-details-editorial">
                 <div className="detail-item">
-                  <h4>The Hub</h4>
-                  <p>S.F#85,86 VIVEKANDHA NAGAR,<br />Dharapuram Main Rd, KOVILVALI, Tiruppur, Tamil Nadu 641606</p>
+                  <h4>The Factory</h4>
+                  <p>VR FASHIONS, 85, 86, VIVEKANANDHA NAGAR,<br />KOVILVALI, DHARAPURAM ROAD,<br />TIRUPUR-641606</p>
                 </div>
                 <div className="detail-item">
-                  <h4>Hotline</h4>
-                  <p>+91 98947 61456</p>
+                  <h4>Personnel</h4>
+                  <p>Mohan Raj: +91 98947 61456</p>
+                  <p>Email: vmr@vrfashions.in</p>
                 </div>
                 <div className="social-nexus">
-                  <h4>Nexus</h4>
+                  <h4>Global Presence</h4>
                   <div className="nexus-links">
-                    <a href="#ln">LinkedIn</a>
-                    <a href="#ig">Instagram</a>
+                    <span>USA</span>
+                    <span>France</span>
+                    <span>Germany</span>
                   </div>
                 </div>
               </div>

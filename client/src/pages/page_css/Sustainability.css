@@ -1,103 +1,382 @@
 /*
- * Sustainability Page CSS - Editorial Fashion (Refined Separation)
+ * Sustainability Page CSS - Mobile-First Luxury Editorial (Highly Responsive)
  */
 
 .sustainability {
     overflow-x: hidden;
 }
 
-.sustainability-header .page-title {
-    font-size: 5.5rem;
+/* -------------------------------------------------------------------------- */
+/* 1. Mobile Styles (Default)                                                 */
+/* -------------------------------------------------------------------------- */
+
+/* Hero Grid */
+.sus-hero-grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vw, 60px);
 }
 
-/* Hero Grid Refinement */
-.sus-hero-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 100px;
-    align-items: center;
+.sus-text-block {
+    max-width: 100%;
 }
 
 .sus-text-block h2 {
-    font-size: 3rem;
-    margin-bottom: 24px;
+    font-size: clamp(1.6rem, 4.5vw, 3rem);
+    margin-bottom: clamp(12px, 2vw, 16px);
+    line-height: 1.2;
+    word-wrap: break-word;
 }
 
 .sus-text-block p {
-    font-size: 1.1rem;
+    font-size: clamp(0.95rem, 2vw, 1.1rem);
     opacity: 0.8;
+    line-height: 1.6;
+    max-width: 65ch;
 }
 
 .sus-visual-block {
-    height: 500px;
+    height: clamp(280px, 50vw, 450px);
     background-color: var(--bg-light);
     border: 1px solid var(--border-subtle);
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.sus-visual-block::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+.sus-visual-block:hover {
+    transform: scale(1.01);
+}
+
+.sus-visual-block img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.sus-visual-block:hover img {
+    transform: scale(1.05);
 }
 
 /* Initiatives Grid */
 .initiatives-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 4vw, 40px);
 }
 
 .initiative-item {
     position: relative;
-    padding-top: 48px;
+    padding-top: clamp(28px, 4vw, 32px);
     border-top: 1px solid var(--border-dark);
+    transition: border-color 0.3s ease;
+}
+
+.initiative-item:hover {
+    border-top-color: var(--text-primary);
 }
 
 .sus-index {
     position: absolute;
-    top: 12px;
+    top: clamp(6px, 1vw, 8px);
     left: 0;
-    font-size: 0.8rem;
+    font-size: clamp(0.7rem, 1.3vw, 0.75rem);
     opacity: 0.4;
+    font-family: 'Playfair Display', serif;
+    transition: opacity 0.3s ease;
+}
+
+.initiative-item:hover .sus-index {
+    opacity: 0.6;
 }
 
 .initiative-item h3 {
-    font-size: 2rem;
-    margin-bottom: 16px;
+    font-size: clamp(1.4rem, 3.5vw, 2rem);
+    margin-bottom: clamp(10px, 2vw, 12px);
     color: var(--text-light);
+    line-height: 1.3;
+    padding-right: 40px; /* Space for index */
 }
 
 .initiative-item p {
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
     opacity: 0.7;
+    line-height: 1.6;
+    max-width: 55ch;
 }
 
 /* Social Grid */
 .social-header {
-    margin-bottom: 80px;
+    margin-bottom: clamp(28px, 4vw, 60px);
+}
+
+.social-header h2 {
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    margin-bottom: clamp(10px, 2vw, 12px);
+    line-height: 1.2;
+}
+
+.social-header p {
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+    line-height: 1.6;
+    opacity: 0.8;
+    max-width: 65ch;
 }
 
 .social-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    grid-template-columns: 1fr;
+    gap: clamp(16px, 3vw, 24px);
 }
 
 .social-card {
-    padding: 48px;
+    padding: clamp(24px, 4vw, 40px) clamp(20px, 3vw, 40px);
     border: 1px solid var(--border-subtle);
+    background-color: var(--bg-muted);
+    transition: all 0.3s ease;
+    min-height: 160px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.social-card:hover {
+    border-color: var(--text-primary);
+    background-color: var(--bg-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .social-card h4 {
-    font-size: 1.8rem;
-    margin-bottom: 16px;
+    font-size: clamp(1.3rem, 3vw, 1.8rem);
+    margin-bottom: clamp(10px, 2vw, 12px);
+    line-height: 1.3;
 }
 
-@media (max-width: 1024px) {
+.social-card p {
+    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
+    line-height: 1.6;
+    opacity: 0.75;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Small Tablet Styles (600px+)                                            */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 600px) {
+    .initiatives-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: clamp(24px, 3vw, 40px);
+    }
+    
+    .social-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Tablet Styles (768px+)                                                  */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 768px) {
     .sus-hero-grid {
-        grid-template-columns: 1fr;
-        gap: 60px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 5vw, 60px);
+        align-items: center;
+    }
+
+    .sus-visual-block {
+        height: clamp(350px, 40vw, 450px);
     }
 
     .initiatives-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .social-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 4. Desktop Styles (1024px+)                                                */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1024px) {
+    .sus-hero-grid {
+        gap: clamp(48px, 5vw, 60px);
+    }
+
+    .initiatives-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: clamp(32px, 4vw, 40px);
+    }
+    
+    .initiative-item p {
+        max-width: 45ch;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 5. Large Desktop Styles (1280px+)                                          */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1280px) {
+    .sus-hero-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .initiatives-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .social-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 6. Extra Large Desktop (1440px+)                                           */
+/* -------------------------------------------------------------------------- */
+@media (min-width: 1440px) {
+    .sustainability {
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. Accessibility & Polish                                                  */
+/* -------------------------------------------------------------------------- */
+
+/* Smooth transitions for interactive elements */
+.sus-visual-block,
+.initiative-item,
+.social-card,
+.sus-index {
+    will-change: transform;
+}
+
+/* Prevent layout shift on image load */
+.sus-visual-block {
+    background: linear-gradient(135deg, rgba(0,0,0,0.02) 0%, rgba(0,0,0,0.05) 100%);
+}
+
+/* Better text readability */
+.sus-text-block p,
+.initiative-item p,
+.social-card p {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Focus states for accessibility */
+.social-card:focus-within {
+    outline: 2px solid var(--text-primary);
+    outline-offset: 4px;
+}
+
+/* Ensure proper spacing on very small screens */
+@media (max-width: 360px) {
+    .social-card {
+        padding: 20px 16px;
+    }
+    
+    .initiative-item {
+        padding-top: 24px;
+    }
+    
+    .initiative-item h3 {
+        padding-right: 30px;
+    }
+}
+
+/* Medium screens fine-tuning */
+@media (min-width: 900px) and (max-width: 1023px) {
+    .initiatives-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+/* Ultra-wide screen optimization */
+@media (min-width: 1920px) {
+    .sus-hero-grid,
+    .initiatives-grid,
+    .social-grid {
+        max-width: 1600px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .sus-visual-block {
+        border: 1px solid #000;
+        page-break-inside: avoid;
+    }
+    
+    .initiative-item,
+    .social-card {
+        page-break-inside: avoid;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .sus-visual-block,
+    .sus-visual-block img,
+    .initiative-item,
+    .social-card,
+    .sus-index {
+        transition: none;
+    }
+    
+    .sus-visual-block:hover,
+    .social-card:hover {
+        transform: none;
+    }
+}
+
+/* Dark mode optimization (if applicable) */
+@media (prefers-color-scheme: dark) {
+    .sus-visual-block::before {
+        background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, transparent 100%);
+    }
+    
+    .social-card:hover {
+        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .initiative-item {
+        border-top-width: 2px;
+    }
+    
+    .social-card {
+        border-width: 2px;
+    }
+}
+
+/* Container queries for initiative items (progressive enhancement) */
+@supports (container-type: inline-size) {
+    .initiatives-grid {
+        container-type: inline-size;
+    }
+    
+    @container (min-width: 400px) {
+        .initiative-item h3 {
+            font-size: 1.8rem;
+        }
     }
 }

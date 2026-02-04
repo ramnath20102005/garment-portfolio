@@ -33,8 +33,8 @@ function Exports() {
                 <h3>France</h3>
                 <div className="section-divider"></div>
                 <p>
-                  <strong>Partners:</strong> Sahinler SA, Sky Brands, Wewin Knit Fashions.
-                  <br />Focus: Premium knitwear distribution.
+                  <strong>Partner:</strong> SAHINLER-FRANCE.
+                  <br />Focus: Premium knitted apparel for European retail outlets.
                 </p>
               </div>
               <div className="market-card">
@@ -42,17 +42,17 @@ function Exports() {
                 <h3>USA</h3>
                 <div className="section-divider"></div>
                 <p>
-                  <strong>Partners:</strong> VSF Corp dba Infinity.
-                  <br />Focus: Global retail and logistics excellence.
+                  <strong>Partner:</strong> VRF CORP-USA.
+                  <br />Focus: Global distribution and bulk retail garments.
                 </p>
               </div>
               <div className="market-card">
-                <span className="market-geo">POL / UAE</span>
-                <h3>Poland & UAE</h3>
+                <span className="market-geo">DE</span>
+                <h3>Germany</h3>
                 <div className="section-divider"></div>
                 <p>
-                  <strong>Partners:</strong> Rahtha Impex (PL), Miral Experiences LLC (UAE).
-                  <br />Focus: Specialized merchandise and apparel trading.
+                  Expanding our footprint in Germany, providing 100% export-quality
+                  garments to central European markets.
                 </p>
               </div>
             </div>

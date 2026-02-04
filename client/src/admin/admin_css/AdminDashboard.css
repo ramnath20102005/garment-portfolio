@@ -1,128 +1,549 @@
 /*
  * Admin Dashboard - Editorial Control Panel
+ * Highly Responsive with Fixed Chart Rendering
  */
 
-.dashboard-container {
-    padding: 60px 40px;
-    max-width: 1400px;
-    margin: 0 auto;
-    animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+:root {
+    /* Fluid spacing */
+    --container-padding: clamp(16px, 4vw, 60px);
+    --container-padding-h: clamp(16px, 4vw, 40px);
+    --section-gap: clamp(32px, 5vw, 60px);
+    --card-padding: clamp(20px, 4vw, 40px);
+    --header-margin: clamp(32px, 5vw, 60px);
+    --header-padding: clamp(16px, 3vw, 24px);
+    
+    /* Fluid typography */
+    --fs-h1: clamp(2rem, 5vw + 1rem, 4rem);
+    --fs-h2: clamp(1.5rem, 3vw + 0.5rem, 2rem);
+    --fs-h3: clamp(1.1rem, 2vw + 0.3rem, 1.4rem);
+    --fs-badge: clamp(0.65rem, 1.2vw, 0.75rem);
+    --fs-label: clamp(0.65rem, 1.2vw, 0.7rem);
+    --fs-button: clamp(0.65rem, 1.2vw, 0.75rem);
+    --fs-stat-value: clamp(2rem, 5vw, 3.5rem);
+    --fs-kpi-value: clamp(1.8rem, 4vw, 2.5rem);
+    
+    /* Chart heights - CRITICAL FOR MOBILE */
+    --chart-height-sm: 250px;
+    --chart-height-md: 300px;
+    --chart-height-lg: 320px;
+    --chart-height-donut: 260px;
+    
+    /* Minimum touch targets */
+    --min-touch-target: 44px;
+    
+    /* Transitions */
+    --transition-normal: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-slow: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
+
+/* ============================================
+   BASE STYLES & RESET
+   ============================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
 
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: translateY(10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-.dashboard-header {
+/* ============================================
+   MAIN WRAPPER
+   ============================================ */
+
+.admin-content-wrapper {
+    padding: var(--container-padding) var(--container-padding-h);
+    max-width: min(1400px, 100%);
+    margin: 0 auto;
+    animation: fadeIn 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   LOADING & ERROR STATES
+   ============================================ */
+
+.admin-loading,
+.admin-error {
+    min-height: 60vh;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    margin-bottom: 60px;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    text-align: center;
+    padding: clamp(20px, 4vw, 40px);
+}
+
+.admin-error {
+    color: #e03131;
+}
+
+/* ============================================
+   CONTROL BAR / HEADER
+   ============================================ */
+
+.dashboard-control-bar {
+    margin-bottom: var(--header-margin);
     border-bottom: 1px solid var(--border-subtle);
-    padding-bottom: 24px;
+    padding-bottom: var(--header-padding);
 }
 
-.dashboard-header h1 {
-    font-size: 4rem;
-    letter-spacing: -2px;
-    line-height: 1;
+.control-info h1 {
+    font-size: var(--fs-h1);
+    letter-spacing: clamp(-1.5px, -0.05em, -2px);
+    line-height: 1.1;
+    margin-bottom: clamp(8px, 1vw, 12px);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-.admin-badge {
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    font-size: 0.75rem;
-    background: var(--text-primary);
-    color: var(--bg-light);
-    padding: 4px 12px;
-    margin-bottom: 8px;
-    display: inline-block;
+.control-info p {
+    font-size: clamp(0.85rem, 1.5vw, 1rem);
+    color: var(--text-secondary);
+    line-height: 1.5;
 }
 
-/* Stats Overview */
-.stats-overview {
+/* ============================================
+   KPI GRID (TOP CARDS)
+   ============================================ */
+
+.admin-kpi-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 32px;
-    margin-bottom: 80px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+    gap: clamp(16px, 3vw, 24px);
+    margin-bottom: var(--section-gap);
 }
 
-.stat-card {
+.kpi-card {
     background: var(--bg-light);
     border: 1px solid var(--border-subtle);
-    padding: 40px;
-    transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+    padding: clamp(20px, 4vw, 32px);
+    transition: all var(--transition-slow);
+    min-width: 0;
+    overflow: hidden;
 }
 
-.stat-card:hover {
-    border-color: var(--text-primary);
-    transform: translateY(-5px);
-    box-shadow: 10px 10px 0px var(--border-subtle);
+.kpi-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(12px, 2vw, 16px);
 }
 
-.stat-card .label {
-    display: block;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.7rem;
-    color: var(--text-secondary);
-    margin-bottom: 16px;
+.kpi-header svg {
+    flex-shrink: 0;
 }
 
-.stat-card .value {
+.kpi-header span {
+    font-size: var(--fs-badge);
+    font-weight: 600;
+}
+
+.kpi-value {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
-    line-height: 1;
+    font-size: var(--fs-kpi-value);
+    line-height: 1.2;
+    margin-bottom: clamp(6px, 1vw, 8px);
+    color: var(--text-primary);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.kpi-label {
+    text-transform: uppercase;
+    letter-spacing: clamp(1px, 0.1em, 1.5px);
+    font-size: var(--fs-label);
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .kpi-card:hover {
+        border-color: var(--text-primary);
+        transform: translateY(-3px);
+        box-shadow: 8px 8px 0px var(--border-subtle);
+    }
+}
+
+/* ============================================
+   DASHBOARD SECTIONS
+   ============================================ */
+
+.dashboard-section {
+    margin-bottom: var(--section-gap);
+}
+
+.section-header {
+    margin-bottom: clamp(24px, 4vw, 40px);
+}
+
+.section-header h2 {
+    font-size: var(--fs-h2);
+    letter-spacing: -0.5px;
+    margin-bottom: clamp(8px, 1.5vw, 12px);
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+.section-header p {
+    font-size: clamp(0.85rem, 1.5vw, 0.95rem);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* ============================================
+   CHARTS GRID - RESPONSIVE LAYOUT
+   ============================================ */
+
+.charts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(20px, 4vw, 32px);
+}
+
+/* Tablet and up: 2 columns */
+@media (min-width: 768px) {
+    .charts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large screens: maintain 2 columns but allow custom layouts */
+@media (min-width: 1200px) {
+    .charts-grid[style*="gridTemplateColumns"] {
+        /* Respect inline styles on large screens */
+    }
+}
+
+/* Mobile: Force single column for custom grid templates */
+@media (max-width: 767px) {
+    .charts-grid[style*="gridTemplateColumns"] {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ============================================
+   CHART CARDS - CRITICAL FOR CHART RENDERING
+   ============================================ */
+
+.chart-card {
+    background: var(--bg-light);
+    border: 1px solid var(--border-subtle);
+    padding: var(--card-padding);
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+.chart-card h3 {
+    font-size: var(--fs-h3);
+    margin-bottom: clamp(16px, 3vw, 24px);
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+/* CRITICAL: Fixed chart container dimensions */
+.chart-card > div[style*="height"] {
+    min-height: var(--chart-height-md);
+    max-width: 100%;
+    overflow: visible;
+}
+
+/* Ensure ResponsiveContainer works properly */
+.chart-card .recharts-responsive-container {
+    min-height: inherit !important;
+    max-width: 100% !important;
+}
+
+/* Prevent charts from shrinking below minimum */
+.chart-card .recharts-wrapper {
+    min-height: inherit;
+    max-width: 100%;
+}
+
+/* Mobile chart height adjustments */
+@media (max-width: 767px) {
+    .chart-card > div[style*="height: 320px"],
+    .chart-card > div[style*="height:320px"] {
+        min-height: var(--chart-height-md) !important;
+        height: var(--chart-height-md) !important;
+    }
+    
+    .chart-card > div[style*="height: 300px"],
+    .chart-card > div[style*="height:300px"] {
+        min-height: var(--chart-height-sm) !important;
+        height: var(--chart-height-sm) !important;
+    }
+    
+    .chart-card > div[style*="height: 260px"],
+    .chart-card > div[style*="height:260px"] {
+        min-height: var(--chart-height-donut) !important;
+        height: var(--chart-height-donut) !important;
+    }
+    
+    .chart-card > div[style*="height: 120px"],
+    .chart-card > div[style*="height:120px"] {
+        min-height: 150px !important;
+        height: 150px !important;
+    }
+}
+
+/* Extra small screens */
+@media (max-width: 479px) {
+    :root {
+        --chart-height-sm: 220px;
+        --chart-height-md: 250px;
+        --chart-height-lg: 280px;
+        --chart-height-donut: 240px;
+    }
+}
+
+/* ============================================
+   TABLES - RESPONSIVE OVERFLOW
+   ============================================ */
+
+.admin-table-container {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin-top: clamp(20px, 3vw, 32px);
+}
+
+.admin-table {
+    width: 100%;
+    min-width: 600px;
+    border-collapse: collapse;
+}
+
+.admin-table thead {
+    background: var(--bg-muted);
+}
+
+.admin-table th {
+    text-align: left;
+    padding: clamp(12px, 2vw, 16px);
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: clamp(1px, 0.1em, 1.5px);
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-bottom: 1px solid var(--border-subtle);
+    white-space: nowrap;
+}
+
+.admin-table td {
+    padding: clamp(14px, 2.5vw, 18px) clamp(12px, 2vw, 16px);
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: clamp(0.85rem, 1.5vw, 0.9rem);
+    line-height: 1.5;
+}
+
+.admin-table tbody tr {
+    transition: background-color var(--transition-normal);
+}
+
+.admin-table tbody tr:hover {
+    background: var(--bg-muted);
+}
+
+/* Mobile table optimization */
+@media (max-width: 767px) {
+    .admin-table {
+        min-width: 500px;
+    }
+    
+    .admin-table th,
+    .admin-table td {
+        padding: clamp(10px, 2vw, 12px);
+        font-size: clamp(0.8rem, 2vw, 0.85rem);
+    }
+}
+
+/* ============================================
+   STATUS BADGES
+   ============================================ */
+
+.status-badge {
+    display: inline-block;
+    padding: clamp(4px, 0.8vw, 6px) clamp(8px, 1.5vw, 12px);
+    font-size: clamp(0.7rem, 1.2vw, 0.75rem);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-radius: 2px;
+    font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap;
+}
+
+.status-pending {
+    background: #fff3bf;
+    color: #e67700;
+}
+
+.status-approved {
+    background: #d3f9d8;
+    color: #2b8a3e;
+}
+
+.status-rejected {
+    background: #ffe3e3;
+    color: #c92a2a;
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.view-btn,
+.btn-admin {
+    padding: clamp(8px, 1.5vw, 10px) clamp(14px, 2.5vw, 20px);
+    text-transform: uppercase;
+    letter-spacing: clamp(1px, 0.1em, 1.5px);
+    font-size: var(--fs-button);
+    border: 1px solid var(--border-subtle);
+    background: transparent;
+    cursor: pointer;
+    transition: all var(--transition-normal);
+    white-space: nowrap;
+    min-height: var(--min-touch-target);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    font-weight: 500;
+}
+
+.view-btn:hover,
+.btn-admin:hover {
+    background: var(--text-primary);
+    color: var(--bg-light);
+    border-color: var(--text-primary);
+}
+
+.view-btn:active,
+.btn-admin:active {
+    transform: scale(0.97);
+}
+
+/* ============================================
+   INSIGHTS PANEL
+   ============================================ */
+
+.insights-panel {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 1px solid var(--border-subtle);
+    padding: var(--card-padding);
+    border-left: 4px solid var(--text-primary);
+}
+
+.insights-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: clamp(6px, 1vw, 8px) clamp(12px, 2vw, 16px);
+    background: var(--text-primary);
+    color: white;
+    font-size: var(--fs-badge);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: clamp(16px, 2vw, 20px);
+    font-weight: 600;
+}
+
+.insights-panel h2 {
+    font-size: var(--fs-h2);
+    margin-bottom: clamp(16px, 2vw, 20px);
+    line-height: 1.3;
+}
+
+.insights-panel p {
+    font-size: clamp(0.9rem, 1.8vw, 1rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+}
+
+.insight-stat {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(6px, 1vw, 8px);
+}
+
+.insight-stat span {
+    font-size: var(--fs-label);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+}
+
+.insight-stat strong {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: var(--text-primary);
 }
 
-/* Action Sections */
+/* ============================================
+   DASHBOARD GRID LAYOUT
+   ============================================ */
+
 .dashboard-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr;
+    gap: var(--section-gap);
+}
+
+@media (min-width: 1024px) {
+    .dashboard-grid {
+        grid-template-columns: 1.5fr 1fr;
+    }
 }
 
 .content-block {
     background: var(--bg-muted);
-    padding: 40px;
+    padding: var(--card-padding);
     border: 1px solid var(--border-subtle);
+    min-width: 0;
 }
 
 .content-block h2 {
-    font-size: 2rem;
-    margin-bottom: 32px;
+    font-size: var(--fs-h2);
+    margin-bottom: clamp(20px, 3vw, 32px);
     letter-spacing: -0.5px;
 }
 
-/* Logout / Navigation */
+/* ============================================
+   ADMIN ACTIONS
+   ============================================ */
+
 .admin-actions {
     display: flex;
-    gap: 16px;
+    flex-wrap: wrap;
+    gap: clamp(12px, 2vw, 16px);
+    margin-top: clamp(20px, 3vw, 32px);
 }
 
-.btn-admin {
-    padding: 12px 24px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 0.75rem;
-    border: 1px solid var(--text-primary);
-    background: transparent;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn-admin:hover {
-    background: var(--text-primary);
-    color: var(--bg-light);
+@media (max-width: 479px) {
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .btn-admin {
+        width: 100%;
+    }
 }
 
 .logout-btn {
@@ -133,4 +554,177 @@
 .logout-btn:hover {
     background: #e03131;
     color: white;
+    border-color: #e03131;
+}
+
+/* ============================================
+   RESPONSIVE BREAKPOINTS
+   ============================================ */
+
+/* Small mobile: < 480px */
+@media (max-width: 479px) {
+    .admin-kpi-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .kpi-card {
+        text-align: center;
+    }
+    
+    .kpi-header {
+        justify-content: center;
+        gap: 12px;
+    }
+}
+
+/* Medium mobile: 480px - 639px */
+@media (min-width: 480px) and (max-width: 639px) {
+    .admin-kpi-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Large mobile / Small tablet: 640px - 767px */
+@media (min-width: 640px) and (max-width: 767px) {
+    .admin-kpi-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+/* Tablet: 768px - 1023px */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .admin-kpi-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Desktop: 1024px+ */
+@media (min-width: 1024px) {
+    .admin-kpi-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+/* ============================================
+   LANDSCAPE ORIENTATION
+   ============================================ */
+
+@media (max-width: 767px) and (orientation: landscape) {
+    :root {
+        --container-padding: clamp(16px, 3vh, 40px);
+        --chart-height-md: 200px;
+        --chart-height-sm: 180px;
+    }
+    
+    .charts-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ============================================
+   TOUCH DEVICE OPTIMIZATIONS
+   ============================================ */
+
+@media (hover: none) and (pointer: coarse) {
+    .view-btn,
+    .btn-admin {
+        min-height: var(--min-touch-target);
+        min-width: var(--min-touch-target);
+    }
+    
+    /* Remove hover effects */
+    .kpi-card:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: var(--border-subtle);
+    }
+    
+    .view-btn:hover,
+    .btn-admin:hover {
+        background: transparent;
+        color: inherit;
+        border-color: var(--border-subtle);
+    }
+    
+    .logout-btn:hover {
+        background: transparent;
+        color: #e03131;
+        border-color: #e03131;
+    }
+    
+    /* Add active states */
+    .kpi-card:active {
+        opacity: 0.8;
+    }
+    
+    .view-btn:active,
+    .btn-admin:active {
+        background: var(--text-primary);
+        color: var(--bg-light);
+    }
+    
+    .logout-btn:active {
+        background: #e03131;
+        color: white;
+    }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    .admin-content-wrapper {
+        animation: none;
+    }
+}
+
+@media (prefers-contrast: high) {
+    .kpi-card,
+    .chart-card,
+    .content-block {
+        border-width: 2px;
+    }
+}
+
+/* ============================================
+   HIGH DPI SCREENS
+   ============================================ */
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .kpi-card,
+    .chart-card,
+    .content-block,
+    .dashboard-control-bar {
+        border-width: 0.5px;
+    }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+    .admin-content-wrapper {
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .admin-actions,
+    .view-btn,
+    .btn-admin {
+        display: none;
+    }
+    
+    .chart-card,
+    .kpi-card {
+        break-inside: avoid;
+        border: 1px solid #000;
+    }
 }
