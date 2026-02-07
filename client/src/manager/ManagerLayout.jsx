@@ -82,7 +82,6 @@ const ManagerLayout = () => {
             <div className="group-label">Organization</div>
             <NavItem to="/manager/company" icon={Building2} label="Company Profile" />
             <NavItem to="/manager/employees" icon={Users} label="Employee Directory" />
-            <NavItem to="/manager/workforce" icon={Users} label="Workforce Data" />
           </div>
 
           <div className="nav-group">

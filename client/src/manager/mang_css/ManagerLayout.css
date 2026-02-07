@@ -1,4 +1,22 @@
 /* Manager Layout - Professional Dashboard Style */
+:root {
+    /* Fluid spacing */
+    --manager-padding: clamp(16px, 4vw, 60px);
+    --manager-padding-h: clamp(16px, 4vw, 40px);
+    --manager-gap: clamp(24px, 5vw, 60px);
+    --manager-header-h: clamp(56px, 8vh, 72px);
+
+    /* Fluid typography */
+    --fs-manager-brand: clamp(1rem, 2vw, 1.25rem);
+    --fs-manager-nav: clamp(0.85rem, 1.2vw, 0.9rem);
+
+    /* Minimum touch targets */
+    --min-touch-target: 44px;
+
+    /* Transitions */
+    --transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .manager-layout {
     display: flex;
     flex-direction: column;
@@ -13,8 +31,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
-    height: 64px;
+    padding: 0 var(--manager-padding-h);
+    height: var(--manager-header-h);
     background-color: white;
     border-bottom: 1px solid var(--border-subtle);
     position: sticky;
@@ -25,19 +43,21 @@
 .topbar-left {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: clamp(12px, 2vw, 24px);
 }
 
 .menu-toggle {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 4px;
+    padding: 8px;
     border-radius: 4px;
     transition: background-color 0.2s;
     display: flex;
     align-items: center;
     justify-content: center;
+    min-width: var(--min-touch-target);
+    min-height: var(--min-touch-target);
 }
 
 .menu-toggle:hover {
@@ -53,7 +73,7 @@
 .brand-name {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: var(--fs-manager-brand);
     color: var(--text-primary);
 }
 
@@ -63,9 +83,9 @@
 }
 
 .brand-context {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--text-secondary);
     font-weight: 500;
 }
@@ -82,8 +102,8 @@
 }
 
 .user-profile .avatar {
-    width: 36px;
-    height: 36px;
+    width: clamp(32px, 4vw, 40px);
+    height: clamp(32px, 4vw, 40px);
     border-radius: 50%;
     background-color: var(--text-primary);
     color: white;
@@ -91,11 +111,11 @@
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
 }
 
 .user-profile .username {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--text-primary);
 }
@@ -112,7 +132,7 @@
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
-    backdrop-filter: blur(2px);
+    backdrop-filter: blur(4px);
 }
 
 .sidebar-overlay.open {
@@ -125,15 +145,15 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 280px;
+    width: min(85vw, 280px);
     background-color: white;
     z-index: 1050;
     transform: translateX(-100%);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform var(--transition-smooth);
     border-right: 1px solid var(--border-subtle);
     display: flex;
     flex-direction: column;
-    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.05);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.05);
 }
 
 .manager-sidebar.open {
@@ -141,7 +161,7 @@
 }
 
 .sidebar-header {
-    height: 64px;
+    height: var(--manager-header-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -150,9 +170,10 @@
 }
 
 .sidebar-header h3 {
-    font-size: 1rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     color: var(--text-primary);
 }
 
@@ -161,6 +182,11 @@
     border: none;
     cursor: pointer;
     color: var(--text-secondary);
+    min-width: var(--min-touch-target);
+    min-height: var(--min-touch-target);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar-content {
@@ -175,26 +201,28 @@
 }
 
 .group-label {
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
     color: var(--text-tertiary);
-    margin-bottom: 8px;
+    margin-bottom: 12px;
     padding-left: 12px;
     font-weight: 600;
+    opacity: 0.7;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
     gap: 12px;
-    padding: 10px 12px;
+    padding: 12px;
     text-decoration: none;
     color: var(--text-secondary);
     border-radius: 6px;
-    font-size: 0.9rem;
+    font-size: var(--fs-manager-nav);
     transition: all 0.2s;
     margin-bottom: 4px;
+    min-height: 48px;
 }
 
 .nav-item:hover {
@@ -203,23 +231,17 @@
 }
 
 .nav-item.active {
-    background-color: #f8f9fa;
-    /* Light gray bg */
+    background-color: #f0f0f0;
     color: var(--text-primary);
-    font-weight: 500;
+    font-weight: 600;
     border-left: 3px solid var(--text-primary);
     border-radius: 0 6px 6px 0;
-    /* Boxy look */
-}
-
-.nav-item.active svg {
-    color: var(--text-primary);
 }
 
 .sidebar-footer {
-    padding: 16px;
+    padding: 20px 16px;
     border-top: 1px solid var(--border-subtle);
-    background-color: #fcfcfc;
+    background-color: #fafafa;
 }
 
 .logout-btn {
@@ -228,197 +250,71 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
-    padding: 12px;
+    padding: 14px;
     background: none;
     border: 1px solid var(--border-subtle);
     border-radius: 6px;
     cursor: pointer;
     color: var(--admin-danger);
-    font-size: 0.9rem;
-    transition: background-color 0.2s;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.2s;
+    min-height: var(--min-touch-target);
 }
 
 .logout-btn:hover {
     background-color: #fff5f5;
+    border-color: #ffe3e3;
 }
 
 /* --- Main Content --- */
 .manager-main {
     flex: 1;
-    padding: 32px 5%;
+    padding: var(--manager-padding) var(--manager-padding-h);
     max-width: 1400px;
     margin: 0 auto;
     width: 100%;
 }
 
 /* ============================================
-   MOBILE-FIRST RESPONSIVE DESIGN
+   RESPONSIVE OPTIMIZATIONS
    ============================================ */
 
-/* Mobile: 360px - 767px */
-@media (max-width: 767px) {
-    .manager-topbar {
-        padding: 0 16px;
-        height: 56px;
-    }
+/* Mobile specialized */
+@media (max-width: 600px) {
 
-    .topbar-left {
-        gap: 12px;
-    }
-
-    .brand-name {
-        font-size: 1.1rem;
-    }
-
-    .brand-context {
-        display: none;
-    }
-
+    .brand-context,
     .user-profile .username {
         display: none;
     }
+}
 
-    .user-profile .avatar {
-        width: 32px;
-        height: 32px;
-        font-size: 0.8rem;
-    }
+/* Tablet and up: Grid flow for content */
+@media (min-width: 768px) {
+    /* Potential persistent sidebar can be added here if needed, 
+       but keeping existing layout logic for consistency */
+}
 
-    /* Sidebar - Full width on mobile */
-    .manager-sidebar {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .sidebar-header {
-        height: 56px;
-        padding: 0 20px;
-    }
-
-    .sidebar-header h3 {
-        font-size: 0.9rem;
-    }
-
-    .sidebar-content {
-        padding: 20px 0;
-    }
-
-    .nav-group {
-        margin-bottom: 20px;
-        padding: 0 12px;
-    }
-
-    .group-label {
-        font-size: 0.7rem;
-        padding-left: 10px;
-    }
-
+/* Touch device optimizations - Universal */
+@media (hover: none) and (pointer: coarse) {
     .nav-item {
-        padding: 12px 10px;
-        gap: 10px;
-        font-size: 0.85rem;
-        min-height: 48px;
-    }
-
-    .sidebar-footer {
         padding: 16px 12px;
     }
 
-    .logout-btn {
-        padding: 14px;
-        font-size: 0.85rem;
-        min-height: 48px;
-    }
-
-    /* Main content */
-    .manager-main {
-        padding: 24px 16px;
-    }
-}
-
-/* Tablet: 768px - 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .manager-topbar {
-        padding: 0 24px;
-        height: 60px;
-    }
-
-    .brand-context {
-        font-size: 0.75rem;
-    }
-
-    .manager-sidebar {
-        width: 280px;
-    }
-
-    .manager-main {
-        padding: 28px 4%;
-    }
-}
-
-/* Desktop: 1024px+ */
-@media (min-width: 1024px) {
-    /* Keep existing desktop styles */
-}
-
-/* Landscape mobile */
-@media (max-width: 767px) and (orientation: landscape) {
-    .manager-topbar {
-        height: 52px;
-    }
-
-    .sidebar-header {
-        height: 52px;
-    }
-
-    .manager-sidebar {
-        max-width: 260px;
-    }
-
-    .sidebar-content {
-        padding: 16px 0;
-    }
-
-    .nav-group {
-        margin-bottom: 16px;
-    }
-}
-
-/* Touch device optimizations */
-@media (hover: none) and (pointer: coarse) {
-
     .menu-toggle,
-    .close-btn {
-        min-width: 44px;
-        min-height: 44px;
-        padding: 10px;
+    .close-btn,
+    .logout-btn {
+        min-height: 50px;
     }
+}
 
-    .nav-item {
-        min-height: 48px;
-        padding: 14px 12px;
-    }
+/* Landscape orientation on mobile */
+@media (max-height: 500px) and (orientation: landscape) {
 
-    /* Remove hover effects on touch devices */
-    .menu-toggle:hover,
-    .close-btn:hover,
-    .nav-item:hover,
-    .logout-btn:hover {
-        background-color: transparent;
-        color: inherit;
-    }
-
-    /* Add active/tap states instead */
-    .menu-toggle:active,
-    .close-btn:active {
-        background-color: var(--bg-muted);
-    }
-
-    .nav-item:active {
-        background-color: #f0f0f0;
-    }
-
-    .logout-btn:active {
-        background-color: #ffe5e5;
+    .manager-topbar,
+    .sidebar-header {
+        height: 48px;
     }
 }

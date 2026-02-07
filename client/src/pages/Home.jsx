@@ -78,7 +78,7 @@ function Home() {
           <ScrollAnimatedSection animation="animate-scale-in">
             <div className="stats-grid">
               <div className="stat-item">
-                <span className="stat-number">25+</span>
+                <span className="stat-number">10+</span>
                 <span className="stat-label">Years of Expertise</span>
               </div>
               <div className="stat-item">

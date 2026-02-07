@@ -5,7 +5,6 @@ const role = require("../middleware/role");
 
 const Export = require("../models/Export");
 const RawMaterial = require("../models/RawMaterial");
-const Workforce = require("../models/Workforce");
 const Buyer = require("../models/Buyer");
 const Financial = require("../models/Financial");
 
@@ -17,7 +16,6 @@ const getModel = (domain) => {
     switch (domain) {
         case 'exports': return Export;
         case 'raw-materials': return RawMaterial;
-        case 'workforce': return Workforce;
         case 'buyers': return Buyer;
         case 'financials': return Financial;
         default: return null;
@@ -28,7 +26,6 @@ const getEntityType = (domain) => {
     switch (domain) {
         case 'exports': return 'Export';
         case 'raw-materials': return 'RawMaterial';
-        case 'workforce': return 'Workforce';
         case 'buyers': return 'Buyer';
         case 'financials': return 'Financial';
         default: return null;

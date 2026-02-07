@@ -65,7 +65,7 @@ const Approvals = () => {
         <p>Verify data integrity across all operational nodes</p>
       </header>
 
-      <div className="approvals-grid">
+      <div className={`approvals-grid ${selectedSubmission ? 'has-selection' : ''}`}>
         {/* Submissions List */}
         <div className="submissions-list">
           {submissions.length === 0 ? (
@@ -105,16 +105,61 @@ const Approvals = () => {
         </div>
 
         {/* Submission Detail */}
-        <div className="submission-detail">
+        <div className={`submission-detail ${selectedSubmission ? 'active' : ''}`}>
           {selectedSubmission ? (
             <div className="detail-content">
+              <button className="back-btn" onClick={() => setSelectedSubmission(null)}>
+                ← Back to List
+              </button>
               <h2>Review: {selectedSubmission.entityType}</h2>
 
               {/* Data Snapshot */}
               <div className="data-snapshot">
                 <h3>Submission Data</h3>
+
+                {/* Media Preview Logic */}
+                {selectedSubmission.entityType === 'Media' && (
+                  <div className="media-preview-container">
+                    {selectedSubmission.dataSnapshot.type === 'image' ? (
+                      <img
+                        src={selectedSubmission.dataSnapshot.url}
+                        alt="Preview"
+                        className="snapshot-image"
+                      />
+                    ) : (
+                      <div className="video-preview">
+                        {(selectedSubmission.dataSnapshot.url.includes('youtube.com') || selectedSubmission.dataSnapshot.url.includes('youtu.be')) ? (
+                          <iframe
+                            className="snapshot-video"
+                            src={`https://www.youtube.com/embed/${selectedSubmission.dataSnapshot.url.match(/(?:youtu\.be\/|youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([^"&?\/\s]{11})/)?.[1]}`}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
+                        ) : selectedSubmission.dataSnapshot.url.includes('vimeo.com') ? (
+                          <iframe
+                            className="snapshot-video"
+                            src={`https://player.vimeo.com/video/${selectedSubmission.dataSnapshot.url.split('/').pop()}`}
+                            frameBorder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
+                        ) : (
+                          <video controls className="snapshot-video">
+                            <source src={selectedSubmission.dataSnapshot.url} />
+                            Your browser does not support the video tag.
+                          </video>
+                        )}
+                        <div className="source-overlay">
+                          Source: {selectedSubmission.dataSnapshot.url.length > 50 ? selectedSubmission.dataSnapshot.url.substring(0, 50) + '...' : selectedSubmission.dataSnapshot.url}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                )}
+
                 {Object.entries(selectedSubmission.dataSnapshot)
-                  .filter(([key]) => !['_id', 'createdAt', 'updatedAt', '__v', 'managerId', 'submissionStatus'].includes(key))
+                  .filter(([key]) => !['_id', 'createdAt', 'updatedAt', '__v', 'managerId', 'submissionStatus', 'url'].includes(key))
                   .map(([key, value]) => (
                     <div key={key} className="snapshot-row">
                       <span className="key">

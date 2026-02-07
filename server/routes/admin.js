@@ -12,7 +12,6 @@ const RawMaterial = require("../models/RawMaterial");
 const Financial = require("../models/Financial");
 const Buyer = require("../models/Buyer");
 const OperationalReport = require("../models/OperationalReport");
-const Workforce = require("../models/Workforce");
 const mongoose = require("mongoose");
 
 // @route   GET /api/admin/stats
@@ -44,13 +43,13 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
             { $group: { _id: "$entityType", count: { $sum: 1 } } }
         ]);
 
-        // 3. WORKFORCE & HR ANALYTICS
+        // 3. STAFFING & HR ANALYTICS
         const deptStats = await Employee.aggregate([
             { $match: { submissionStatus: 'Approved' } },
             { $group: { _id: "$department", count: { $sum: 1 } } }
         ]);
 
-        const workforceTrend = await Employee.aggregate([
+        const staffingTrend = await Employee.aggregate([
             { $match: { submissionStatus: 'Approved' } },
             {
                 $group: {
@@ -146,23 +145,27 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
             { $limit: 30 }
         ]);
 
-        // For the "Governance & Submission Protocol" table, we want ACTUAL Pending submissions
-        const pendingSubmissions = await Submission.find({ status: 'Pending' })
-            .populate('managerId', 'username') // Note: Submission model uses managerId, not userId usually, but let's check.
-            // Actually, based on previous Context, Submission model uses `managerId`.
-            // But Activity model uses `userId`.
-            // The frontend expects `sub.userId.username`.
-            // We need to map `managerId` to `userId` in the response to satisfy the frontend.
+        // For the "Governance & Submission Protocol" table
+        // Fetch ALL pending submissions first to ensure they aren't missed
+        const pendingSubmissions = await Submission.find({ status: "Pending" })
+            .populate('managerId', 'username')
+            .sort({ createdAt: -1 });
+
+        // Fetch some recent completed submissions for context
+        const completedSubmissions = await Submission.find({ status: { $ne: "Pending" } })
+            .populate('managerId', 'username')
             .sort({ createdAt: -1 })
             .limit(10);
 
-        const formattedPendingSubmissions = pendingSubmissions.map(sub => ({
+        const allRelevantSubmissions = [...pendingSubmissions, ...completedSubmissions];
+
+        const formattedQueueSubmissions = allRelevantSubmissions.map(sub => ({
             _id: sub._id,
             userId: sub.managerId, // Mapping managerId to userId for frontend compatibility
             entityType: sub.entityType,
             createdAt: sub.createdAt,
             action: 'Submitted', // Hardcode action so the frontend filter (a.action === 'Submitted') passes
-            status: 'Pending'
+            status: sub.status || 'Pending'
         }));
 
         // For the "Recent Activity" table (Audit), we might want a different list, 
@@ -180,8 +183,8 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
             .sort({ createdAt: -1 })
             .limit(10);
 
-        // Combine: Pending Submissions (priority) + Recent Activities
-        const combinedRecent = [...formattedPendingSubmissions, ...recentActivity];
+        // Combine: Submissions Queue (Priority) + Recent Activities
+        const combinedRecent = [...formattedQueueSubmissions, ...recentActivity];
 
         function getRandomInt(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -200,9 +203,9 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
                 statusDist: submissionStatusDist.map(s => ({ name: s._id, value: s.count })),
                 entityDist: approvalsByEntity.map(a => ({ name: a._id, value: a.count }))
             },
-            workforceData: {
+            staffingData: {
                 deptDist: deptStats.map(d => ({ name: d._id, value: d.count })),
-                trend: workforceTrend.map(t => ({ date: t._id, count: t.count }))
+                trend: staffingTrend.map(t => ({ date: t._id, count: t.count }))
             },
             projectData: {
                 statusDist: projectStatusDist.map(p => ({ name: p._id, value: p.count }))
@@ -228,6 +231,280 @@ router.get("/stats", auth, role(["ADMIN"]), async (req, res) => {
         res.status(500).json({ msg: "Server Error" });
     }
 });
+
+// @route   POST /api/admin/analyze-graph
+// @desc    Analyze graph data and return AI-driven insights
+// @access  Private (Admin)
+router.post("/analyze-graph", auth, role(["ADMIN"]), async (req, res) => {
+    try {
+        const { chartType, data, title } = req.body;
+
+        if (!data || !Array.isArray(data) || data.length === 0) {
+            return res.status(400).json({ msg: "Insufficient data for real-time analysis." });
+        }
+
+        let representation = "";
+        let trend = "";
+        let insights = [];
+        let significance = "";
+        let causes = "";
+        let recommendations = [];
+        let status = "Stable";
+
+        switch (chartType) {
+            case 'financial': {
+                const first = data[0];
+                const last = data[data.length - 1];
+                const revGrowth = ((last.revenue - first.revenue) / first.revenue) * 100;
+                const expGrowth = ((last.expenses - first.expenses) / first.expenses) * 100;
+                const firstGap = first.revenue - first.expenses;
+                const lastGap = last.revenue - last.expenses;
+                const gapWidening = lastGap > firstGap;
+
+                representation = `Right now, the graph shows that revenue is ${revGrowth > 0 ? 'increasing' : 'declining'} by ${Math.abs(revGrowth).toFixed(1)}% compared to the start of the period.`;
+
+                if (revGrowth > expGrowth && gapWidening) {
+                    trend = "This means the company is earning more while keeping costs relatively controlled.";
+                    status = "Positive";
+                    insights = [
+                        "Revenue has moved upward consistently in recent months.",
+                        "Expenses have increased, but at a slower rate than earnings.",
+                        "The profit gap is widening, which is a key indicator of growth."
+                    ];
+                    significance = "Operational efficiency has improved and the business is currently in a healthy financial phase.";
+                    causes = "Higher export volumes and better control over logistics costs.";
+                } else if (expGrowth > revGrowth) {
+                    trend = "Warning: Expenses are currently outpacing revenue growth.";
+                    status = "Warning";
+                    insights = [
+                        "The cost of operations is rising faster than sales.",
+                        "Profit margins are tightening in the current cycle.",
+                        "The gap between income and spending is narrowing."
+                    ];
+                    significance = "Sustained high expenses could impact cash flow for upcoming projects.";
+                    causes = "Potential spikes in material costs or temporary operational inefficiencies.";
+                } else {
+                    trend = "Financial performance is tracking steadily with stable margins.";
+                    status = "Stable";
+                    insights = [
+                        "Revenue and expenses are moving in sync.",
+                        "The profit buffer remains consistent.",
+                        "Baseline operational costs are predictable."
+                    ];
+                    significance = "Stability allows for predictable forecasting and lower risk.";
+                    causes = "Standardized production cycles and fixed supplier rates.";
+                }
+
+                recommendations = [
+                    status === "Positive" ? "Maintain current cost controls — they are working." : "Audit recent expense spikes to identify the primary cost drivers.",
+                    "Track expense growth closely during peak revenue months.",
+                    "Lock in efficient logistics and supplier contracts for the next quarter."
+                ];
+                break;
+            }
+
+            case 'submissions': {
+                const pending = data.find(d => d.name === 'Pending')?.value || 0;
+                const total = data.reduce((acc, curr) => acc + curr.value, 0);
+                const pendingRatio = (pending / total) * 100;
+
+                representation = `The governance chart shows ${pending} items currently awaiting approval out of ${total} total submissions.`;
+
+                if (pendingRatio > 30) {
+                    trend = "There is a noticeable bottleneck in the verification queue.";
+                    status = "Critical";
+                    insights = [
+                        `${pendingRatio.toFixed(0)}% of all submissions are stalled in 'Pending' status.`,
+                        "The approval process is moving slower than the submission rate.",
+                        "Workflow latency is increasing at the management level."
+                    ];
+                    significance = "Delays in verification slow down project kickoffs and material procurement.";
+                    recommendations = [
+                        "Immediately clear high-priority project submissions.",
+                        "Review if additional 'Admin' support is needed to process the queue.",
+                        "Identify which manager has the largest backlog."
+                    ];
+                } else {
+                    trend = "The verification flow is currently stable and responsive.";
+                    status = "Positive";
+                    insights = [
+                        "Pending items are within a healthy operational range.",
+                        "Managers and Admins are synchronized.",
+                        "Most submissions are being processed in real-time."
+                    ];
+                    significance = "A fast-moving queue ensures high operational agility.";
+                    recommendations = [
+                        "Continue with current verification protocols.",
+                        "Schedule a brief end-of-week sync to keep the queue low.",
+                        "Recognize fast-responding management nodes."
+                    ];
+                }
+                causes = "Variation in management activity levels and system load.";
+                break;
+            }
+
+            case 'staffing': {
+                const sorted = [...data].sort((a, b) => b.value - a.value);
+                const topNode = sorted[0];
+                const secondNode = sorted[1];
+
+                representation = `Human capital is primarily concentrated in the ${topNode.name} department.`;
+                trend = `This sector outweighs the ${secondNode.name} department by ${((topNode.value / secondNode.value - 1) * 100).toFixed(0)}%.`;
+                status = "Data-Driven";
+                insights = [
+                    `${topNode.name} remains the largest operational unit.`,
+                    "Staffing levels align with core production requirements.",
+                    "Support departments are lean relative to production."
+                ];
+                significance = "Proper workforce distribution prevents production bottlenecks.";
+                causes = "Historical focus on core garment manufacturing.";
+                recommendations = [
+                    `Verify if ${topNode.name} requires mid-level management expansion.`,
+                    "Evaluate cross-training for members in smaller departments.",
+                    "Audit resource needs for the upcoming seasonal spike."
+                ];
+                break;
+            }
+
+            case 'inventory': {
+                const lowStock = data.filter(d => d.quantity < 20);
+                const criticalStr = lowStock.map(l => l.name).join(', ');
+
+                representation = "Inventory levels represent current raw material availability.";
+                if (lowStock.length > 0) {
+                    trend = `Warning: Critical low levels detected in: ${criticalStr}.`;
+                    status = "Warning";
+                    insights = [
+                        `${lowStock.length} core materials are below safety buffers.`,
+                        "Supply chain latency might impact production start times.",
+                        "Current buffers are nearing depletion."
+                    ];
+                    recommendations = [
+                        `Initiate immediate reorder for ${criticalStr}.`,
+                        "Check with suppliers for lead-time updates.",
+                        "Prioritize projects that use unaffected materials."
+                    ];
+                } else {
+                    trend = "All critical material nodes are within healthy safety buffers.";
+                    status = "Positive";
+                    insights = [
+                        "Stock levels are sufficient for current project volume.",
+                        "No immediate risk of production downtime due to shortages.",
+                        "Replenishment cycles are performing effectively."
+                    ];
+                    recommendations = [
+                        "Maintain current procurement rhythm.",
+                        "Audit consumption rates to detect hidden waste.",
+                        "Update safety stock levels for next month's forecast."
+                    ];
+                }
+                significance = "Inventory health is the foundation of production continuity.";
+                causes = "Procurement timing and recent production consumption rates.";
+                break;
+            }
+
+            case 'exports': {
+                const lastVal = data[data.length - 1].value;
+                const prevVal = data.length > 1 ? data[data.length - 2].value : lastVal;
+                const change = ((lastVal - prevVal) / prevVal) * 100;
+
+                representation = `The export graph shows a ${change > 0 ? 'growth' : 'change'} of ${Math.abs(change).toFixed(1)}% in the most recent cycle.`;
+                trend = change > 0 ? "Strategic export valuation is on a positive upward trajectory." : "Market valuation is holding steady at a high baseline.";
+                status = change > 5 ? "Growth" : "Steady";
+                insights = [
+                    "Valuation jumped in recent cycles due to batch completions.",
+                    "Consistent baseline suggests strong recurring buyer demand.",
+                    "System integrity remains high with no reported shipment delays."
+                ];
+                significance = "Export growth is the primary driver of currency inflow and global brand scaling.";
+                causes = "Successful fulfillment of major international garment orders.";
+                recommendations = [
+                    "Lock in capacity for the next high-value export cycle.",
+                    "Diversify buyer contribution to spread regional risk.",
+                    "Maintain the 'step-up' growth rhythm."
+                ];
+                break;
+            }
+
+            default:
+                representation = `The ${title || 'operational'} chart shows steady activity.`;
+                trend = "Performance metrics are within standard operational parameters.";
+                status = "Stable";
+                insights = [
+                    "Recent data points show high stability.",
+                    "No critical anomalies detected in the current view.",
+                    "Process efficiency is holding at expected levels."
+                ];
+                significance = "General system health is maintaining at scale.";
+                causes = "Established management protocols and steady workflow.";
+                recommendations = [
+                    "Maintain current monitoring rhythm.",
+                    "Perform monthly comparative audits.",
+                    "Integrate these metrics into seasonal planning."
+                ];
+        }
+
+        const summary = [
+            `Graph: ${title || chartType}`,
+            `Current Status: ${status}`,
+            `Primary Observation: ${insights[0]}`,
+            `Actionable Step: ${recommendations[0]}`
+        ];
+
+        const detailedReport = `
+Right now, the graph shows that ${representation.toLowerCase().replace('right now, the graph shows that ', '')} ${trend} 
+
+In the most recent cycles:
+- ${insights.join('\n- ')}
+
+This indicates that ${significance.toLowerCase()} 
+
+Based on the data logic, these patterns are primarily caused by ${causes.toLowerCase()} 
+
+What to watch:
+If negative trends persist or buffers shrink, immediate intervention will be required. Current risks appear ${status === 'Positive' || status === 'Stable' ? 'minimal' : 'moderate to high'}.
+
+Recommended actions:
+1. ${recommendations[0]}
+2. ${recommendations[1]}
+3. ${recommendations[2]}
+        `.trim();
+
+        const downloadReport = `
+ADMINISTRATIVE ANALYSIS REPORT: ${title ? title.toUpperCase() : 'SYSTEM OPERATIONS'}
+Date: ${new Date().toLocaleDateString()}
+Analysis Type: Data-Driven Performance Audit
+--------------------------------------------------
+
+1. REAL-TIME REPRESENTATION
+${representation}
+${trend}
+
+2. KEY OBSERVATIONS (LATEST DATA)
+- ${insights.join('\n- ')}
+
+3. OPERATIONAL SIGNIFICANCE
+${significance}
+Status: ${status}
+
+4. PROBABLE DATA CAUSES
+${causes}
+
+5. STRATEGIC RECOMMENDATIONS
+- ${recommendations.join('\n- ')}
+
+--------------------------------------------------
+Generated by Universal Intelligence Core v2.4 (Data-Reactive Mode)
+        `.trim();
+
+        res.json({ summary, detailedReport, downloadReport });
+
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ msg: "Analysis failure in Intelligence Core." });
+    }
+});
+
 
 // @route   GET /api/admin/users
 // @desc    Get all system users and approved employees

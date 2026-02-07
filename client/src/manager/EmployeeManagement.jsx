@@ -62,7 +62,7 @@ const EmployeeManagement = () => {
 
     return (
         <div className="manager-page-content">
-            <header className="page-title-block" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <header className="header-flex page-title-block">
                 <div>
                     <h2>Employee Directory</h2>
                     <p>Manage individual employee records and assignments</p>
@@ -73,10 +73,10 @@ const EmployeeManagement = () => {
             </header>
 
             {isAdding && (
-                <div style={{ marginBottom: '60px', padding: '40px', border: '1px solid var(--text-primary)', background: 'var(--bg-muted)' }}>
+                <div className="mgmt-form-card">
                     <h3>Add New Employee</h3>
-                    <form className="mgmt-form" style={{ marginTop: '24px' }} onSubmit={handleSubmit}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+                    <form className="mgmt-form" onSubmit={handleSubmit}>
+                        <div className="grid-2-col">
                             <div className="form-row">
                                 <label>Employee ID</label>
                                 <input name="employeeId" value={formData.employeeId} onChange={handleChange} placeholder="EMP-001" required />
@@ -120,7 +120,7 @@ const EmployeeManagement = () => {
                                 </select>
                             </div>
                         </div>
-                        <div className="form-actions" style={{ marginTop: '32px' }}>
+                        <div className="form-actions">
                             <button type="submit" className="btn-save">Save Record</button>
                         </div>
                     </form>

@@ -50,7 +50,8 @@
 }
 
 .control-info {
-    min-width: 0; /* Prevent text overflow */
+    min-width: 0;
+    /* Prevent text overflow */
 }
 
 .control-info h1 {
@@ -276,7 +277,8 @@
     width: 100%;
     min-height: clamp(44px, 6vw, 48px);
     padding: clamp(10px, 2vw, 12px);
-    font-size: max(16px, 1rem); /* Prevents zoom on iOS */
+    font-size: max(16px, 1rem);
+    /* Prevents zoom on iOS */
     border: 1px solid var(--admin-border);
     transition: all 0.3s ease;
 }
@@ -452,6 +454,7 @@
 
 /* High contrast mode support */
 @media (prefers-contrast: high) {
+
     .admin-btn,
     .admin-select,
     .admin-input {
@@ -461,6 +464,7 @@
 
 /* Print styles */
 @media print {
+
     .modal-overlay,
     .control-actions,
     .sync-btn {
@@ -469,5 +473,270 @@
 
     .admin-content-wrapper {
         padding: 0;
+    }
+}
+
+/* -------------------------------------------------------------------------- */
+/* 7. AI Analysis Component Styles                                            */
+/* -------------------------------------------------------------------------- */
+
+.card-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: clamp(16px, 3vw, 20px);
+    width: 100%;
+}
+
+.card-actions h3 {
+    margin-bottom: 0 !important;
+}
+
+.analyze-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8f9fa;
+    border: 1px solid var(--admin-border);
+    padding: 6px 12px;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--admin-text-secondary);
+}
+
+.analyze-btn:hover:not(:disabled) {
+    background: #e9ecef;
+    border-color: var(--admin-text-primary);
+    color: var(--admin-text-primary);
+}
+
+.analyze-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Analysis Overlay & Card */
+.analysis-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    padding: clamp(16px, 3vw, 24px);
+}
+
+.analysis-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 700px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--admin-text-primary);
+    overflow: hidden;
+}
+
+.analysis-header {
+    padding: 24px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.analysis-header .title-block {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.analysis-header .ai-icon {
+    color: #2b8a3e;
+}
+
+.analysis-header h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+    opacity: 0.7;
+}
+
+.analysis-header p {
+    font-size: 1.25rem;
+    font-family: var(--admin-header-font);
+    margin: 4px 0 0 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+}
+
+.close-btn:hover {
+    opacity: 1;
+}
+
+.analysis-content {
+    padding: 32px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.summary-section,
+.detailed-section {
+    margin-bottom: 40px;
+}
+
+.summary-section h3,
+.detailed-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.summary-bullets {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+@media (min-width: 600px) {
+    .summary-bullets {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.summary-item {
+    display: flex;
+    gap: 10px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    align-items: flex-start;
+}
+
+.summary-item span {
+    flex: 1;
+}
+
+.detailed-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #333;
+}
+
+.download-actions {
+    border-top: 1px solid #eee;
+    padding-top: 24px;
+    margin-top: 20px;
+}
+
+.download-actions p {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    opacity: 0.6;
+}
+
+.btn-group {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background: transparent;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.download-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.anime-fade-in {
+    animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.analysis-snapshot-section {
+    margin-bottom: 40px;
+    background: #f8f9fa;
+    padding: 24px;
+    border: 1px solid var(--admin-border);
+}
+
+.analysis-snapshot-section h3 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+}
+
+.snapshot-container {
+    width: 100%;
+    background: #fff;
+    border: 1px solid var(--admin-border);
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.snapshot-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 600px) {
+    .analysis-card {
+        height: 100%;
+        max-height: 100vh;
     }
 }

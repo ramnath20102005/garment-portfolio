@@ -45,10 +45,10 @@ router.post("/", auth, role(["MANAGER", "ADMIN"]), async (req, res) => {
 
         const activity = new Activity({
             userId: req.user.id,
-            action: submit ? 'Submitted' : 'Created',
+            action: (submit || req.body.submit) ? 'Submitted' : 'Created',
             entityType: 'Employee',
             entityId: employee._id,
-            details: `Employee: ${employee.name}`
+            details: `Employee: ${employee.fullName}`
         });
         await activity.save();
 
@@ -97,10 +97,10 @@ router.put("/:id", auth, role(["MANAGER", "ADMIN"]), async (req, res) => {
 
         const activity = new Activity({
             userId: req.user.id,
-            action: submit ? 'Submitted' : 'Updated',
+            action: (submit || req.body.submit) ? 'Submitted' : 'Updated',
             entityType: 'Employee',
             entityId: employee._id,
-            details: `Employee: ${employee.name}`
+            details: `Employee: ${employee.fullName}`
         });
         await activity.save();
 

@@ -84,7 +84,7 @@ const OperationalManager = ({ domain, title, fields }) => {
 
     return (
         <div className="manager-page-content">
-            <header className="page-title-block" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <header className="header-flex page-title-block">
                 <div>
                     <h2>{title}</h2>
                     <p>Operational data input and intermediate insights</p>
@@ -95,10 +95,10 @@ const OperationalManager = ({ domain, title, fields }) => {
             </header>
 
             {isAdding && (
-                <div style={{ marginBottom: '60px', padding: '40px', border: '1px solid var(--text-primary)', background: 'var(--bg-muted)' }}>
+                <div className="mgmt-form-card">
                     <h3>Add New Record</h3>
-                    <form className="mgmt-form" style={{ marginTop: '24px' }} onSubmit={handleSubmit}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+                    <form className="mgmt-form" onSubmit={handleSubmit}>
+                        <div className="grid-2-col">
                             {fields.map(field => (
                                 <div className="form-row" key={field.name}>
                                     <label>{field.label}</label>
@@ -157,8 +157,8 @@ const OperationalManager = ({ domain, title, fields }) => {
                                 <td>
                                     {(item.submissionStatus === 'Draft' || item.submissionStatus === 'Rejected') && (
                                         <button
-                                            className="btn-icon"
-                                            style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', textDecoration: 'underline' }}
+                                            className="btn-save"
+                                            style={{ padding: '4px 12px', fontSize: '0.75rem', minWidth: 'auto', height: 'auto' }}
                                             onClick={() => handleStatusChange(item._id)}
                                         >
                                             Submit

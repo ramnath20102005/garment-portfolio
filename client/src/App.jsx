@@ -29,7 +29,6 @@ import MediaManagement from "./manager/MediaManagement";
 import UpdatesManagement from "./manager/UpdatesManagement";
 import ExportManagement from "./manager/operational/ExportManagement";
 import RawMaterialManagement from "./manager/operational/RawMaterialManagement";
-import WorkforceManagement from "./manager/operational/WorkforceManagement";
 import BuyerManagement from "./manager/operational/BuyerManagement";
 import FinancialManagement from "./manager/operational/FinancialManagement";
 
@@ -101,7 +100,6 @@ function App() {
             {/* New Operational Routes */}
             <Route path="/manager/exports" element={<ExportManagement />} />
             <Route path="/manager/raw-materials" element={<RawMaterialManagement />} />
-            <Route path="/manager/workforce" element={<WorkforceManagement />} />
             <Route path="/manager/buyers" element={<BuyerManagement />} />
             <Route path="/manager/financials" element={<FinancialManagement />} />
           </Route>

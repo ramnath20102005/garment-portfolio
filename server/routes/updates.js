@@ -68,4 +68,47 @@ router.post("/", auth, role(['MANAGER', 'ADMIN']), async (req, res) => {
     }
 });
 
+// @route   PUT api/updates/:id
+// @desc    Update/Submit update
+router.put("/:id", auth, role(['MANAGER', 'ADMIN']), async (req, res) => {
+    try {
+        const { submit } = req.body;
+        let update = await Update.findById(req.params.id);
+        if (!update) return res.status(404).json({ msg: "Update not found" });
+
+        if (submit) {
+            update.submissionStatus = 'PendingApproval';
+            await update.save();
+
+            const submission = new Submission({
+                managerId: req.user.id,
+                entityType: 'Update',
+                entityId: update._id,
+                dataSnapshot: update.toObject()
+            });
+            await submission.save();
+
+            const activity = new Activity({
+                userId: req.user.id,
+                action: 'Submitted',
+                entityType: 'Update',
+                entityId: update._id,
+                details: `Update: ${update.title}`
+            });
+            await activity.save();
+        } else {
+            const { title, content, category, date } = req.body;
+            if (title) update.title = title;
+            if (content) update.content = content;
+            if (category) update.category = category;
+            if (date) update.date = date;
+            await update.save();
+        }
+
+        res.json(update);
+    } catch (err) {
+        res.status(500).json({ msg: "Server error" });
+    }
+});
+
 module.exports = router;

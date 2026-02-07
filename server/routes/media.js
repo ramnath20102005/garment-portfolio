@@ -68,4 +68,48 @@ router.post("/", auth, role(['MANAGER', 'ADMIN']), async (req, res) => {
     }
 });
 
+// @route   PUT api/media/:id
+// @desc    Update/Submit media
+router.put("/:id", auth, role(['MANAGER', 'ADMIN']), async (req, res) => {
+    try {
+        const { submit } = req.body;
+        let media = await Media.findById(req.params.id);
+        if (!media) return res.status(404).json({ msg: "Media not found" });
+
+        if (submit) {
+            media.submissionStatus = 'PendingApproval';
+            await media.save();
+
+            const submission = new Submission({
+                managerId: req.user.id,
+                entityType: 'Media',
+                entityId: media._id,
+                dataSnapshot: media.toObject()
+            });
+            await submission.save();
+
+            const activity = new Activity({
+                userId: req.user.id,
+                action: 'Submitted',
+                entityType: 'Media',
+                entityId: media._id,
+                details: `Asset: ${media.title}`
+            });
+            await activity.save();
+        } else {
+            // Update other fields if needed
+            const { title, url, type, category } = req.body;
+            if (title) media.title = title;
+            if (url) media.url = url;
+            if (type) media.type = type;
+            if (category) media.category = category;
+            await media.save();
+        }
+
+        res.json(media);
+    } catch (err) {
+        res.status(500).json({ msg: "Server error" });
+    }
+});
+
 module.exports = router;

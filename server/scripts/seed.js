@@ -7,7 +7,6 @@ const Project = require('../models/Project');
 const Export = require('../models/Export');
 const RawMaterial = require('../models/RawMaterial');
 const Financial = require('../models/Financial');
-const Workforce = require('../models/Workforce');
 const Submission = require('../models/Submission');
 const Approval = require('../models/Approval');
 const Media = require('../models/Media');
@@ -51,7 +50,6 @@ const seed = async () => {
     await Export.deleteMany({});
     await RawMaterial.deleteMany({});
     await Financial.deleteMany({});
-    await Workforce.deleteMany({});
     await Submission.deleteMany({});
     await Approval.deleteMany({});
     await Media.deleteMany({});
@@ -131,16 +129,6 @@ const seed = async () => {
             year, managerId: manager._id, submissionStatus: 'Approved', createdAt: d
         });
 
-        // --- WORKFORCE ---
-        for (const dept of departments) {
-            await Workforce.create({
-                department: dept,
-                totalWorkers: getRandomInt(30, 150),
-                skillCategory: 'Skilled',
-                employmentType: 'Permanent',
-                year, managerId: manager._id, submissionStatus: 'Approved', createdAt: d
-            });
-        }
     }
 
     // 4. Seeding Buyers

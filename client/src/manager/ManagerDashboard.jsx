@@ -45,8 +45,8 @@ const ManagerDashboard = ({ managerHeader }) => {
   };
 
   const getStatusColor = (action) => {
-    if (action === 'Approved') return 'published';
-    if (action === 'Submitted') return 'pendingapproval'; // mapping to CSS class
+    if (action === 'Approved') return 'approved';
+    if (action === 'Submitted') return 'pending';
     if (action === 'Rejected') return 'rejected';
     return 'draft';
   };
@@ -104,24 +104,7 @@ const ManagerDashboard = ({ managerHeader }) => {
           </div>
         </section>
 
-        <aside className="quick-actions">
-          <h2>Management</h2>
-          <Link to="/manager/company" className="action-btn">Company Profile</Link>
-          <Link to="/manager/employees" className="action-btn">Employee Directory</Link>
-          <Link to="/manager/projects" className="action-btn">Project Operations</Link>
-          <Link to="/manager/reports" className="action-btn">Performance Reports</Link>
-          <Link to="/manager/media" className="action-btn">Media Gallery</Link>
-          <Link to="/manager/updates" className="action-btn">News & Updates</Link>
 
-          <h2 style={{ marginTop: '40px', marginBottom: '20px' }}>Operational Data</h2>
-          <Link to="/manager/exports" className="action-btn">Exports</Link>
-          <Link to="/manager/raw-materials" className="action-btn">Raw Materials</Link>
-          <Link to="/manager/workforce" className="action-btn">Workforce</Link>
-          <Link to="/manager/buyers" className="action-btn">Buyers</Link>
-          <Link to="/manager/financials" className="action-btn">Financials</Link>
-
-          <button className="action-btn logout" onClick={handleLogout}>Terminate Session</button>
-        </aside>
       </div>
     </div>
   );

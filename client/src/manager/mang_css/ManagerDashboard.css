@@ -1,10 +1,13 @@
 /*
  * Manager Dashboard CSS - Professional Application Style
- * Optimized for Sidebar Layout integration
  */
 
+:root {
+    --fs-stat: clamp(1.8rem, 4vw, 2.5rem);
+    --fs-section-h: clamp(1.1rem, 2vw, 1.25rem);
+}
+
 .manager-dashboard {
-    /* Main container is now handled by ManagerLayout, so we reset some constraints */
     max-width: 100%;
     padding: 0;
     animation: fadeIn 0.4s ease-out;
@@ -22,9 +25,9 @@
     }
 }
 
-/* --- Header Section (Now simplified as topbar handles global header) --- */
+/* --- Header Section --- */
 .manager-header {
-    margin-bottom: 32px;
+    margin-bottom: var(--manager-gap);
     padding-bottom: 24px;
     border-bottom: 1px solid var(--border-subtle);
     display: flex;
@@ -33,87 +36,81 @@
 }
 
 .manager-header h1 {
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2.25rem);
     font-weight: 700;
+    letter-spacing: -1px;
     color: var(--text-primary);
     margin: 0;
-    line-height: 1.2;
-}
-
-.manager-header .user-info {
-    display: none;
-    /* User info is now in top sidebar/topbar */
+    line-height: 1.1;
 }
 
 /* --- Overview Stats --- */
 .overview-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 24px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: clamp(16px, 3vw, 24px);
+    margin-bottom: var(--manager-gap);
 }
 
 .stat-card {
     background: white;
     border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    padding: 24px;
-    transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    padding: clamp(20px, 4vw, 32px);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
 }
 
-.stat-card:hover {
-    border-color: var(--text-tertiary);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+@media (hover: hover) {
+    .stat-card:hover {
+        border-color: var(--text-primary);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+    }
 }
 
 .stat-card .label {
     display: block;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 1px;
     font-size: 0.75rem;
     font-weight: 600;
     color: var(--text-secondary);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    opacity: 0.8;
 }
 
 .stat-card .value {
-    font-size: 2.5rem;
-    font-weight: 600;
+    font-size: var(--fs-stat);
+    font-weight: 700;
     color: var(--text-primary);
     line-height: 1;
-    font-family: 'Inter', sans-serif;
-    /* Modern san-serif match */
+    font-family: var(--admin-header-font);
 }
 
-/* --- Recent Content & Quick Actions --- */
+/* --- Dashboard Content Layout --- */
 .dashboard-content {
     display: grid;
     grid-template-columns: 1fr;
-    /* Full width flow since sidebar handles Nav */
-    gap: 40px;
-}
-
-@media(min-width: 1280px) {
-    .dashboard-content {
-        grid-template-columns: 2fr 1fr;
-        /* Add sidebar column only on very wide screens */
-    }
+    gap: var(--manager-gap);
 }
 
 .content-section {
     background: white;
     border: 1px solid var(--border-subtle);
     border-radius: 12px;
-    padding: 24px;
+    padding: clamp(20px, 4vw, 32px);
 }
 
 .content-section h2 {
-    font-size: 1.25rem;
+    font-size: var(--fs-section-h);
     margin: 0 0 24px 0;
-    font-weight: 600;
+    font-weight: 700;
+    letter-spacing: -0.5px;
     color: var(--text-primary);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .recent-list {
@@ -125,9 +122,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 16px 0;
+    padding: 20px 0;
     border-bottom: 1px solid var(--border-subtle);
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .recent-item:last-child {
@@ -137,7 +134,7 @@
 .item-info .name {
     display: block;
     font-size: 1rem;
-    font-weight: 500;
+    font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 4px;
 }
@@ -145,280 +142,64 @@
 .item-info .meta {
     font-size: 0.8rem;
     color: var(--text-tertiary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 /* --- Status Badges --- */
 .status-badge {
-    font-size: 0.75rem;
-    font-weight: 600;
+    font-size: 0.7rem;
+    font-weight: 700;
     text-transform: uppercase;
-    padding: 4px 10px;
-    border-radius: 20px;
+    letter-spacing: 0.5px;
+    padding: 6px 12px;
+    border-radius: 4px;
     display: inline-flex;
     align-items: center;
 }
 
 .status-draft {
-    background-color: #f1f3f5;
-    color: #868e96;
+    background: #f1f3f5;
+    color: #495057;
 }
 
-.status-pending,
-.status-pendingapproval {
-    background-color: #e7f5ff;
-    color: #1971c2;
+.status-pending {
+    background: #fff9db;
+    color: #f08c00;
 }
 
-.status-published,
 .status-approved {
-    background-color: #ebfbee;
-    color: #2f9e44;
+    background: #ebfbee;
+    color: #2b8a3e;
 }
 
 .status-rejected {
-    background-color: #fff5f5;
-    color: #e03131;
+    background: #fff5f5;
+    color: #c92a2a;
 }
 
-/* --- Quick Actions (Legacy sidebar, now helpful links) --- */
-.quick-actions {
-    /* Since we have the main sidebar, this is now a "What's Next" panel */
-    background: white;
-    padding: 24px;
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    height: fit-content;
-}
-
-.quick-actions h2 {
-    font-size: 1.1rem;
-    margin: 0 0 20px 0;
-    color: var(--text-primary);
-}
-
-.action-btn {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    padding: 12px 16px;
-    margin-bottom: 8px;
-    background: white;
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-}
-
-.action-btn:hover {
-    background-color: var(--bg-muted);
-    color: var(--text-primary);
-    border-color: var(--text-tertiary);
-}
-
-.action-btn.logout {
-    margin-top: 24px;
-    border-color: #ffe3e3;
-    color: #e03131;
-    background-color: #fff5f5;
-}
-
-.action-btn.logout:hover {
-    background-color: #e03131;
-    color: white;
-    border-color: #e03131;
-}
 
 /* ============================================
-   MOBILE-FIRST RESPONSIVE DESIGN
+   RESPONSIVE OVERRIDES
    ============================================ */
 
-/* Mobile: 360px - 767px */
+/* Mobile specialized */
 @media (max-width: 767px) {
-    .manager-dashboard {
-        padding: 0;
-    }
-
-    /* Header */
     .manager-header {
-        margin-bottom: 24px;
-        padding-bottom: 16px;
         flex-direction: column;
-        align-items: flex-start;
         gap: 16px;
     }
 
-    .manager-header h1 {
-        font-size: 1.5rem;
-    }
-
-    /* Overview Stats - Stack on mobile */
-    .overview-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-        margin-bottom: 32px;
-    }
-
-    .stat-card {
-        padding: 20px 16px;
-    }
-
-    .stat-card .label {
-        font-size: 0.7rem;
-        margin-bottom: 10px;
-    }
-
-    .stat-card .value {
-        font-size: 2rem;
-    }
-
-    /* Dashboard Content - Stack vertically */
-    .dashboard-content {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .content-section {
-        padding: 20px 16px;
-        border-radius: 8px;
-    }
-
-    .content-section h2 {
-        font-size: 1.125rem;
-        margin-bottom: 20px;
-    }
-
-    /* Recent Items - More compact */
     .recent-item {
-        padding: 14px 0;
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
-    }
-
-    .item-info .name {
-        font-size: 0.95rem;
-    }
-
-    .item-info .meta {
-        font-size: 0.75rem;
-    }
-
-    .status-badge {
-        font-size: 0.7rem;
-        padding: 4px 8px;
-        align-self: flex-start;
-    }
-
-    /* Quick Actions */
-    .quick-actions {
-        padding: 20px 16px;
-        border-radius: 8px;
-    }
-
-    .quick-actions h2 {
-        font-size: 1rem;
-        margin-bottom: 16px;
-    }
-
-    .action-btn {
-        padding: 14px;
-        font-size: 0.85rem;
-        min-height: 48px;
-    }
-
-    .action-btn.logout {
-        margin-top: 16px;
-    }
-}
-
-/* Tablet: 768px - 1023px */
-@media (min-width: 768px) and (max-width: 1023px) {
-    .manager-header h1 {
-        font-size: 1.75rem;
-    }
-
-    .overview-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .stat-card .value {
-        font-size: 2.25rem;
-    }
-
-    .dashboard-content {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-}
-
-/* Desktop: 1024px - 1279px */
-@media (min-width: 1024px) and (max-width: 1279px) {
-    .overview-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .dashboard-content {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Large Desktop: 1280px+ */
-@media (min-width: 1280px) {
-    .dashboard-content {
-        grid-template-columns: 2fr 1fr;
-    }
-}
-
-/* Landscape mobile */
-@media (max-width: 767px) and (orientation: landscape) {
-    .overview-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .manager-header h1 {
-        font-size: 1.25rem;
+        gap: 12px;
     }
 }
 
 /* Touch device optimizations */
 @media (hover: none) and (pointer: coarse) {
-
-    .stat-card,
-    .action-btn {
-        min-height: 48px;
-    }
-
-    /* Remove hover effects */
-    .stat-card:hover,
-    .action-btn:hover {
-        transform: none;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
-        background-color: white;
-        color: var(--text-secondary);
-        border-color: var(--border-subtle);
-    }
-
-    /* Add active/tap states */
     .stat-card:active {
         transform: scale(0.98);
-    }
-
-    .action-btn:active {
-        background-color: var(--bg-light);
-    }
-
-    .action-btn.logout:hover {
-        background-color: #fff5f5;
-        color: #e03131;
-        border-color: #ffe3e3;
-    }
-
-    .action-btn.logout:active {
-        background-color: #ffe0e0;
     }
 }

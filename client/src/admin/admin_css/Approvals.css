@@ -176,9 +176,40 @@
 
 .data-snapshot {
     background: var(--bg-light, #f9f9f9);
-    padding: 20px;
+    padding: clamp(16px, 3vw, 24px);
     margin-bottom: 24px;
     border: 1px solid var(--border-subtle, #e0e0e0);
+}
+
+.media-preview-container {
+    margin-bottom: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #000;
+    border: 1px solid var(--border-subtle);
+}
+
+.snapshot-image {
+    width: 100%;
+    display: block;
+    object-fit: contain;
+    max-height: 500px;
+}
+
+.snapshot-video {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: block;
+    border: none;
+}
+
+.source-overlay {
+    padding: 10px;
+    color: #fff;
+    font-size: 0.65rem;
+    background: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .data-snapshot h3 {
@@ -264,6 +295,22 @@
     color: white;
 }
 
+@media (max-width: 480px) {
+    .approvals-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .detail-content h2 {
+        font-size: 1.1rem;
+    }
+
+    .approve-btn,
+    .reject-btn {
+        padding: 12px;
+        font-size: 0.75rem;
+    }
+}
+
 /* Select Prompt */
 .select-prompt {
     height: 100%;
@@ -295,37 +342,103 @@
 
 }
 
+
+/* Base style for back button (hidden on desktop) */
+.back-btn {
+    display: none;
+}
+
+
 /* Mobile Adjustments */
 @media (max-width: 767px) {
     .approvals-container {
-        height: auto;
-        overflow: visible;
-        /* Allow normal scroll on mobile */
+        height: calc(100vh - 80px);
+        /* Fill viewport but account for header */
+        overflow: hidden;
+    }
+
+    .approvals-header {
+        padding: 0 16px 12px;
     }
 
     .approvals-grid {
-        flex: none;
-        /* Auto height */
+        position: relative;
+        overflow: hidden;
+        flex: 1;
     }
 
-    .submissions-list,
+    /* On mobile, list and detail are full width and positioned absolutely/relative to swap */
+    .submissions-list {
+        display: block;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.3s ease;
+    }
+
+    /* Hide list when detail is active */
+    .approvals-grid.has-selection .submissions-list {
+        display: none;
+    }
+
     .submission-detail {
-        height: auto;
-        max-height: 500px;
-        /* Optional cap */
-        overflow: visible;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        padding: 20px 16px;
+        display: none;
+    }
+
+    .submission-detail.active {
+        transform: translateX(0);
+        display: block;
+    }
+
+    .back-btn {
+        display: block;
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        padding: 0;
+        cursor: pointer;
+        font-weight: 600;
+    }
+
+    .detail-content h2 {
+        font-size: 1.4rem;
     }
 
     .snapshot-row {
         flex-direction: column;
+        padding: 12px 0;
     }
 
     .snapshot-row .key {
         width: 100%;
         margin-bottom: 4px;
+        opacity: 0.6;
+    }
+
+    .snapshot-row .value {
+        font-size: 0.85rem;
     }
 
     .form-buttons {
         flex-direction: column;
+        gap: 12px;
+    }
+
+    .approve-btn,
+    .reject-btn {
+        width: 100%;
+        justify-content: center;
     }
 }

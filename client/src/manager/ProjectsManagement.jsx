@@ -76,7 +76,7 @@ const ProjectsManagement = () => {
 
     return (
         <div className="manager-page-content">
-            <header className="page-title-block" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <header className="header-flex page-title-block">
                 <div>
                     <h2>Project Operations</h2>
                     <p>Track project timelines, statuses, and operational workflows</p>
@@ -87,10 +87,10 @@ const ProjectsManagement = () => {
             </header>
 
             {isAdding && (
-                <div style={{ marginBottom: '60px', padding: '40px', border: '1px solid var(--text-primary)', background: 'var(--bg-muted)' }}>
+                <div className="mgmt-form-card">
                     <h3>Initialize Project</h3>
-                    <form className="mgmt-form" style={{ marginTop: '24px' }} onSubmit={handleSubmit}>
-                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+                    <form className="mgmt-form" onSubmit={handleSubmit}>
+                        <div className="grid-2-col">
                             <div className="form-row">
                                 <label>Project ID</label>
                                 <input name="projectId" value={formData.projectId} onChange={handleChange} placeholder="PRJ-2026-01" required />
@@ -125,12 +125,12 @@ const ProjectsManagement = () => {
                                 <label>End Date</label>
                                 <input name="endDate" type="date" value={formData.endDate} onChange={handleChange} />
                             </div>
-                            <div className="form-row" style={{ gridColumn: 'span 2' }}>
+                            <div className="form-row" style={{ gridColumn: '1 / -1' }}>
                                 <label>Description</label>
-                                <textarea name="description" value={formData.description} onChange={handleChange} style={{ width: '100%', minHeight: '80px', background: 'none', border: '1px solid var(--text-primary)', color: 'var(--text-primary)', padding: '12px' }} />
+                                <textarea name="description" value={formData.description} onChange={handleChange} style={{ minHeight: '80px' }} />
                             </div>
                         </div>
-                        <div className="form-actions" style={{ marginTop: '32px' }}>
+                        <div className="form-actions">
                             <button type="submit" className="btn-save">Create Project</button>
                         </div>
                     </form>

@@ -48,7 +48,7 @@ router.post("/", auth, role(["MANAGER"]), async (req, res) => {
             action: submit ? 'Submitted' : 'Created',
             entityType: 'OperationalReport',
             entityId: report._id,
-            details: `Report: ${report.title}`
+            details: `Report: ${report.reportingPeriod}`
         });
         await activity.save();
 
@@ -93,7 +93,7 @@ router.put("/:id", auth, role(["MANAGER"]), async (req, res) => {
             action: submit ? 'Submitted' : 'Updated',
             entityType: 'OperationalReport',
             entityId: report._id,
-            details: `Report: ${report.title}`
+            details: `Report: ${report.reportingPeriod}`
         });
         await activity.save();
 

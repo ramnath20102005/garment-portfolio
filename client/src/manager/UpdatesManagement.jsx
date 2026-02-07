@@ -121,8 +121,8 @@ const UpdatesManagement = () => {
                                 <td>
                                     {(update.submissionStatus === 'Draft' || update.submissionStatus === 'Rejected') && (
                                         <button
-                                            className="btn-icon"
-                                            style={{ background: 'none', border: 'none', color: 'var(--text-primary)', cursor: 'pointer', textDecoration: 'underline' }}
+                                            className="btn-save"
+                                            style={{ padding: '4px 12px', fontSize: '0.75rem', minWidth: 'auto', height: 'auto' }}
                                             onClick={async () => {
                                                 const token = localStorage.getItem("token");
                                                 await fetch(`http://localhost:5000/api/updates/${update._id}`, {

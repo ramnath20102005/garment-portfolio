@@ -9,7 +9,7 @@ const SubmissionSchema = new mongoose.Schema({
     entityType: {
         type: String,
         required: true,
-        enum: ['Employee', 'Project', 'OperationalReport', 'Export', 'RawMaterial', 'Workforce', 'Buyer', 'Financial', 'Media', 'Update', 'Company']
+        enum: ['Employee', 'Project', 'OperationalReport', 'Export', 'RawMaterial', 'Buyer', 'Financial', 'Media', 'Update', 'Company']
     },
     entityId: {
         type: mongoose.Schema.Types.ObjectId,

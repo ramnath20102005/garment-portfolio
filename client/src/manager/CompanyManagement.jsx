@@ -67,7 +67,7 @@ const CompanyManagement = () => {
 
     return (
         <div className="manager-page-content">
-            <header className="page-title-block" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <header className="header-flex page-title-block">
                 <div>
                     <h2>Company Profile</h2>
                     <p>Manage the identity and overview of the organization</p>
@@ -75,7 +75,7 @@ const CompanyManagement = () => {
                 {currentRecord && (
                     <div className="status-badge-container">
                         <span style={{ fontSize: '0.75rem', fontWeight: 'bold', textTransform: 'uppercase', color: currentRecord.submissionStatus === 'Approved' ? '#2b8a3e' : currentRecord.submissionStatus === 'PendingApproval' ? '#f08c00' : '#1f1f1d' }}>
-                            Current Status: {currentRecord.submissionStatus}
+                            Status: {currentRecord.submissionStatus}
                         </span>
                     </div>
                 )}
@@ -105,7 +105,7 @@ const CompanyManagement = () => {
                     <input name="location" value={companyInfo.location} onChange={handleChange} required />
                 </div>
 
-                <div className="form-actions" style={{ marginTop: '32px', display: 'flex', gap: '16px' }}>
+                <div className="form-actions">
                     <button type="submit" className="btn-save">Update Draft</button>
                     <button type="button" className="btn-secondary" onClick={() => handleSubmit(true)}>Finalize & Submit</button>
                 </div>

@@ -9,7 +9,6 @@ const Project = require("../models/Project");
 const OperationalReport = require("../models/OperationalReport");
 const Export = require("../models/Export");
 const RawMaterial = require("../models/RawMaterial");
-const Workforce = require("../models/Workforce");
 const Buyer = require("../models/Buyer");
 const Financial = require("../models/Financial");
 const Media = require("../models/Media");
@@ -61,7 +60,6 @@ router.post("/:id", auth, role(["ADMIN"]), async (req, res) => {
             'OperationalReport': OperationalReport,
             'Export': Export,
             'RawMaterial': RawMaterial,
-            'Workforce': Workforce,
             'Buyer': Buyer,
             'Financial': Financial,
             'Media': Media,
