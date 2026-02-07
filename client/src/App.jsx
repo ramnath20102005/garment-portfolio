@@ -11,6 +11,7 @@ import Facilities from "./pages/Facilities";
 import Exports from "./pages/Exports";
 import Sustainability from "./pages/Sustainability";
 import Contact from "./pages/Contact";
+import Testimonials from "./pages/Testimonials";
 
 import Login from "./auth/Login";
 import ProtectedRoute from "./auth/ProtectedRoute";
@@ -71,6 +72,7 @@ function App() {
           <Route path="/facilities" element={<Facilities />} />
           <Route path="/exports" element={<Exports />} />
           <Route path="/sustainability" element={<Sustainability />} />
+          <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
         </Route>
 

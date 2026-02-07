@@ -90,6 +90,15 @@ function Navbar() {
           </li>
           <li>
             <NavLink
+              to="/testimonials"
+              className={({ isActive }) => (isActive ? "nav-link active" : "nav-link")}
+              onClick={closeMobileMenu}
+            >
+              Testimonials
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
               to="/contact"
               className={({ isActive }) => (isActive ? "nav-link nav-link-cta active" : "nav-link nav-link-cta")}
               onClick={closeMobileMenu}
