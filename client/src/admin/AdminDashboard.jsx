@@ -19,7 +19,12 @@ import {
   ExternalLink,
   Download,
   X,
-  FileText
+  FileText,
+  Target,
+  Zap,
+  ShieldAlert,
+  Info,
+  CheckCircle2
 } from "lucide-react";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
@@ -126,6 +131,43 @@ const AdminDashboard = () => {
     } finally {
       setIsAnalysisLoading(false);
     }
+  };
+
+  const renderDetailedReport = (text) => {
+    if (!text) return null;
+
+    const sectionMapping = {
+      'CURRENT_STATUS': { label: 'Current Status', icon: <Target size={18} />, class: 'status' },
+      'OBSERVED_TREND': { label: 'Observed Trend', icon: <Zap size={18} />, class: 'trend' },
+      'CRITICAL_SIGNALS': { label: 'Critical Signals', icon: <ShieldAlert size={18} />, class: 'critical' },
+      'WHY_HAPPENING': { label: 'Why This is Happening', icon: <Info size={18} />, class: 'why' },
+      'ADMIN_ACTIONS': { label: 'What the Admin Should Do', icon: <CheckCircle2 size={18} />, class: 'actions' }
+    };
+
+    const parts = text.split('SECTION:');
+    return parts.map((part, idx) => {
+      if (!part.trim()) return null;
+      const firstLineBreak = part.indexOf('\n');
+      const key = part.substring(0, firstLineBreak).trim();
+      const content = part.substring(firstLineBreak).trim();
+      const config = sectionMapping[key];
+
+      if (!config) return <p key={idx}>{part}</p>;
+
+      return (
+        <div key={idx} className={`analysis-section-block ${config.class}`}>
+          <div className="section-block-header">
+            {config.icon}
+            <h4>{config.label}</h4>
+          </div>
+          <div className="section-block-content">
+            {content.split('\n').map((line, lidx) => (
+              <p key={lidx}>{line}</p>
+            ))}
+          </div>
+        </div>
+      );
+    });
   };
 
   const downloadAnalysis = (type) => {
@@ -768,8 +810,7 @@ const AdminDashboard = () => {
               </div>
 
               <div className="detailed-section">
-                <h3><FileText size={16} /> Detailed Analysis</h3>
-                <p>{analysisResult.detailedReport}</p>
+                {renderDetailedReport(analysisResult.detailedReport)}
               </div>
 
               <div className="download-actions">
