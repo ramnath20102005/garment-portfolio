@@ -165,8 +165,6 @@ def _run_demand_prediction(request: DemandRequest) -> DemandResponse:
         year                = request.year,
         model_used          = demand_metadata["model_name"],
     )
-
-
 # ── Step 3 canonical endpoint ────────────────────────────────────
 @app.post("/api/export/demand", response_model=DemandResponse)
 def predict_export_demand(request: DemandRequest):

@@ -64,15 +64,6 @@
   },
   {
     "region": "East Asia",
-    "country": "South Korea",
-    "category": "Nightwear",
-    "volume": 7534,
-    "value": 82874,
-    "year": 2026,
-    "createdAt": "2026-09-05T18:30:00.000Z"
-  },
-  {
-    "region": "East Asia",
     "country": "Japan",
     "category": "Knitted Wear",
     "volume": 10954,
@@ -83,29 +74,11 @@
   {
     "region": "East Asia",
     "country": "Japan",
-    "category": "Nightwear",
-    "volume": 5329,
-    "value": 53290,
-    "year": 2026,
-    "createdAt": "2026-07-24T18:30:00.000Z"
-  },
-  {
-    "region": "East Asia",
-    "country": "Japan",
     "category": "Sportswear",
     "volume": 7255,
     "value": 50785,
     "year": 2026,
     "createdAt": "2026-03-08T18:30:00.000Z"
-  },
-  {
-    "region": "East Asia",
-    "country": "Japan",
-    "category": "Knitted Wear",
-    "volume": 21505,
-    "value": 150535,
-    "year": 2026,
-    "createdAt": "2026-11-06T18:30:00.000Z"
   },
   {
     "region": "East Asia",
@@ -151,15 +124,6 @@
     "value": 119568,
     "year": 2025,
     "createdAt": "2025-05-21T18:30:00.000Z"
-  },
-  {
-    "region": "East Asia",
-    "country": "South Korea",
-    "category": "Nightwear",
-    "volume": 19051,
-    "value": 171459,
-    "year": 2026,
-    "createdAt": "2026-11-21T18:30:00.000Z"
   },
   {
     "region": "East Asia",
@@ -263,33 +227,6 @@
   {
     "region": "European Union",
     "country": "France",
-    "category": "Knitted Wear",
-    "volume": 9640,
-    "value": 86760,
-    "year": 2026,
-    "createdAt": "2026-03-10T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
-    "category": "Knitted Wear",
-    "volume": 22232,
-    "value": 222320,
-    "year": 2026,
-    "createdAt": "2026-12-10T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
-    "category": "Sportswear",
-    "volume": 11151,
-    "value": 156114,
-    "year": 2026,
-    "createdAt": "2026-11-04T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
     "category": "Outerwear",
     "volume": 4931,
     "value": 34517,
@@ -308,56 +245,11 @@
   {
     "region": "European Union",
     "country": "France",
-    "category": "Nightwear",
-    "volume": 16822,
-    "value": 168220,
-    "year": 2026,
-    "createdAt": "2026-10-02T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
-    "category": "Knitted Wear",
-    "volume": 13769,
-    "value": 123921,
-    "year": 2026,
-    "createdAt": "2026-07-02T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
     "category": "Sportswear",
     "volume": 8387,
     "value": 117418,
     "year": 2025,
     "createdAt": "2025-09-23T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
-    "category": "Sportswear",
-    "volume": 14274,
-    "value": 199836,
-    "year": 2026,
-    "createdAt": "2026-09-09T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
-    "category": "Nightwear",
-    "volume": 7200,
-    "value": 57600,
-    "year": 2026,
-    "createdAt": "2026-11-09T18:30:00.000Z"
-  },
-  {
-    "region": "European Union",
-    "country": "France",
-    "category": "Knitted Wear",
-    "volume": 5842,
-    "value": 40894,
-    "year": 2026,
-    "createdAt": "2026-08-10T18:30:00.000Z"
   },
   {
     "region": "European Union",
@@ -457,69 +349,6 @@
     "value": 155960,
     "year": 2025,
     "createdAt": "2025-01-25T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "Qatar",
-    "category": "Sportswear",
-    "volume": 13677,
-    "value": 95739,
-    "year": 2026,
-    "createdAt": "2026-06-26T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "UAE",
-    "category": "Sportswear",
-    "volume": 19894,
-    "value": 139258,
-    "year": 2026,
-    "createdAt": "2026-10-02T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "Qatar",
-    "category": "Sportswear",
-    "volume": 7112,
-    "value": 71120,
-    "year": 2026,
-    "createdAt": "2026-12-18T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "Qatar",
-    "category": "Knitted Wear",
-    "volume": 17186,
-    "value": 189046,
-    "year": 2026,
-    "createdAt": "2026-03-12T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "UAE",
-    "category": "Nightwear",
-    "volume": 16037,
-    "value": 192444,
-    "year": 2026,
-    "createdAt": "2026-08-21T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "Qatar",
-    "category": "Outerwear",
-    "volume": 10500,
-    "value": 84000,
-    "year": 2026,
-    "createdAt": "2026-11-10T18:30:00.000Z"
-  },
-  {
-    "region": "Middle East",
-    "country": "UAE",
-    "category": "Outerwear",
-    "volume": 10154,
-    "value": 132002,
-    "year": 2026,
-    "createdAt": "2026-08-13T18:30:00.000Z"
   },
   {
     "region": "Middle East",
@@ -668,15 +497,6 @@
   {
     "region": "North America",
     "country": "USA",
-    "category": "Outerwear",
-    "volume": 21250,
-    "value": 191250,
-    "year": 2026,
-    "createdAt": "2026-10-27T18:30:00.000Z"
-  },
-  {
-    "region": "North America",
-    "country": "USA",
     "category": "Nightwear",
     "volume": 16473,
     "value": 148257,
@@ -691,15 +511,6 @@
     "value": 135450,
     "year": 2025,
     "createdAt": "2025-07-14T18:30:00.000Z"
-  },
-  {
-    "region": "North America",
-    "country": "USA",
-    "category": "Knitted Wear",
-    "volume": 10918,
-    "value": 87344,
-    "year": 2026,
-    "createdAt": "2026-07-27T18:30:00.000Z"
   },
   {
     "region": "North America",
@@ -731,29 +542,11 @@
   {
     "region": "North America",
     "country": "USA",
-    "category": "Sportswear",
-    "volume": 7471,
-    "value": 52297,
-    "year": 2026,
-    "createdAt": "2026-03-15T18:30:00.000Z"
-  },
-  {
-    "region": "North America",
-    "country": "USA",
     "category": "Knitted Wear",
     "volume": 20122,
     "value": 221342,
     "year": 2025,
     "createdAt": "2025-02-21T18:30:00.000Z"
-  },
-  {
-    "region": "North America",
-    "country": "USA",
-    "category": "Knitted Wear",
-    "volume": 9698,
-    "value": 96980,
-    "year": 2026,
-    "createdAt": "2026-05-17T18:30:00.000Z"
   },
   {
     "region": "North America",
@@ -889,14 +682,5 @@
     "value": 108458,
     "year": 2024,
     "createdAt": "2024-08-10T18:30:00.000Z"
-  },
-  {
-    "region": "Oceania",
-    "country": "New Zealand",
-    "category": "Knitted Wear",
-    "volume": 14918,
-    "value": 193934,
-    "year": 2026,
-    "createdAt": "2026-07-19T18:30:00.000Z"
   }
 ]

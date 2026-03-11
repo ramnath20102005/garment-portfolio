@@ -33,11 +33,17 @@ router.get("/company", auth, role(["ADMIN"]), async (req, res) => {
 });
 
 // @route   GET /api/approvals
-// @desc    Get all pending general submissions (from Submission model)
+// @desc    Get all pending and revokable submissions
 // @access  Private (Admin)
 router.get("/", auth, role(["ADMIN"]), async (req, res) => {
     try {
-        const submissions = await Submission.find({ status: "Pending" })
+        // Find Pending OR Approved but within 24h revoke window
+        const submissions = await Submission.find({
+            $or: [
+                { status: "Pending" },
+                { status: "Approved", approvalDeadline: { $gt: new Date() } }
+            ]
+        })
             .populate("managerId", "username")
             .sort({ submittedAt: -1 });
 
@@ -79,13 +85,13 @@ router.get("/", auth, role(["ADMIN"]), async (req, res) => {
 // @access  Private (Admin)
 router.post("/:id", auth, role(["ADMIN"]), async (req, res) => {
     try {
-        const { action, comments, isCompany } = req.body; // action: 'APPROVED' or 'REJECTED' or 'Approved' or 'Rejected'
+        const { action, comments, isCompany } = req.body; 
 
         if (isCompany) {
             const company = await Company.findById(req.params.id);
             if (!company) return res.status(404).json({ msg: "Company submission not found" });
 
-            company.status = action.toUpperCase(); // Ensure it matches 'APPROVED' or 'REJECTED'
+            company.status = action.toUpperCase(); 
             if (company.status === 'APPROVED') {
                 company.approvedBy = req.user.id;
                 company.approvedAt = Date.now();
@@ -104,20 +110,8 @@ router.post("/:id", auth, role(["ADMIN"]), async (req, res) => {
             return res.json({ msg: `Company profile ${company.status}` });
         }
 
-        // Handle regular Submissions
         const submission = await Submission.findById(req.params.id);
         if (!submission) return res.status(404).json({ msg: "Submission not found" });
-
-        submission.status = action;
-        await submission.save();
-
-        const approval = new Approval({
-            submissionId: submission._id,
-            adminId: req.user.id,
-            action,
-            comments
-        });
-        await approval.save();
 
         const Model = {
             'Employee': Employee,
@@ -132,6 +126,28 @@ router.post("/:id", auth, role(["ADMIN"]), async (req, res) => {
             'Company': Company,
             'Product': Product
         }[submission.entityType];
+
+        if (!Model) return res.status(400).json({ msg: "Invalid entity type for approval logic" });
+
+        // Capture previous state for rollback if approving
+        if (action === 'Approved' || action === 'APPROVED') {
+            const currentEntity = await Model.findById(submission.entityId);
+            if (currentEntity) {
+                submission.previousData = currentEntity.toObject();
+                submission.approvalDeadline = new Date(Date.now() + 24 * 60 * 60 * 1000); // 24h window
+            }
+        }
+
+        submission.status = action;
+        await submission.save();
+
+        const approval = new Approval({
+            submissionId: submission._id,
+            adminId: req.user.id,
+            action,
+            comments
+        });
+        await approval.save();
 
         if (Model) {
             const entityStatus = (action === 'Approved' || action === 'APPROVED') ? 'Approved' : 'Rejected';
@@ -159,6 +175,79 @@ router.post("/:id", auth, role(["ADMIN"]), async (req, res) => {
         await activity.save();
 
         res.json({ msg: `Submission ${action}` });
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).json({ msg: "Server Error" });
+    }
+});
+
+// @route   POST /api/approvals/:id/revoke
+// @desc    Revoke an approved submission within 24 hours
+// @access  Private (Admin)
+router.post("/:id/revoke", auth, role(["ADMIN"]), async (req, res) => {
+    try {
+        const { reason } = req.body;
+        const submission = await Submission.findById(req.params.id);
+
+        if (!submission) return res.status(404).json({ msg: "Submission not found" });
+
+        if (submission.status !== 'Approved') {
+            return res.status(400).json({ msg: "Only approved submissions can be revoked." });
+        }
+
+        if (submission.approvalDeadline && new Date() > submission.approvalDeadline) {
+            return res.status(400).json({ msg: "Revoke window (24h) has expired." });
+        }
+
+        if (!submission.previousData) {
+            return res.status(400).json({ msg: "No rollback data available for this submission." });
+        }
+
+        const Model = {
+            'Employee': Employee,
+            'Project': Project,
+            'OperationalReport': OperationalReport,
+            'Export': Export,
+            'RawMaterial': RawMaterial,
+            'Buyer': Buyer,
+            'Financial': Financial,
+            'Media': Media,
+            'Update': Update,
+            'Company': Company,
+            'Product': Product
+        }[submission.entityType];
+
+        if (Model) {
+            // Restore previous state
+            const rollbackData = { ...submission.previousData };
+            // Ensure status is reset or maintained as per logic (usually 'Pending' again)
+            if (submission.entityType === 'Company') {
+                rollbackData.status = 'PENDING';
+            } else {
+                rollbackData.submissionStatus = 'Pending';
+            }
+
+            await Model.findByIdAndUpdate(submission.entityId, rollbackData, { overwrite: true });
+        }
+
+        // Update submission status
+        submission.status = 'Revoked';
+        submission.revokedBy = req.user.id;
+        submission.revokedAt = Date.now();
+        submission.revokeReason = reason || "Accidental approval";
+        await submission.save();
+
+        // Log activity
+        const activity = new Activity({
+            userId: req.user.id,
+            action: 'REVOKED',
+            entityType: submission.entityType,
+            entityId: submission.entityId,
+            details: `Admin revoked approval for ${submission.entityType}`
+        });
+        await activity.save();
+
+        res.json({ msg: "Approval successfully revoked and data rolled back." });
     } catch (err) {
         console.error(err.message);
         res.status(500).json({ msg: "Server Error" });

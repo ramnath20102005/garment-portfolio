@@ -65,12 +65,17 @@ const seedLargeDataset = async () => {
 
         if (neededExports > 0) {
             for (let i = 0; i < neededExports; i++) {
-                const buyer = getRandom(buyerDocs);
-                const manager = getRandom(managers);
+                const now = new Date();
                 const year = getRandom([2024, 2025, 2026]);
                 const month = getRandomInt(0, 11);
                 const day = getRandomInt(1, 28);
                 const date = new Date(year, month, day);
+                
+                // Skip if generated date is in the future
+                if (date > now) {
+                    i--; // Try again
+                    continue;
+                }
                 
                 let seasonalMultiplier = (month >= 9) ? 1.4 : (month <= 2 ? 1.2 : 0.9);
                 const volume = Math.floor(getRandomInt(4000, 18000) * seasonalMultiplier);
@@ -100,10 +105,16 @@ const seedLargeDataset = async () => {
 
         if (neededFin > 0) {
             for (let i = 0; i < neededFin; i++) {
+                const now = new Date();
                 const manager = getRandom(managers);
                 const year = getRandom([2024, 2025, 2026]);
                 const month = getRandomInt(0, 11);
                 const date = new Date(year, month, 15);
+                
+                if (date > now) {
+                    i--;
+                    continue;
+                }
                 
                 const revenue = getRandomInt(100000, 500000);
                 const expenses = Math.floor(revenue * (getRandomInt(70, 95) / 100));

@@ -449,64 +449,6 @@
     "year": 2025
   },
   {
-    "revenue": 161408,
-    "expenses": 117827,
-    "profit": 43581,
-    "growthIndicator": 0,
-    "costCategories": [
-      {
-        "name": "Production",
-        "amount": 64804,
-        "_id": "69abb59790098a7391be9a52"
-      },
-      {
-        "name": "Labor",
-        "amount": 29456,
-        "_id": "69abb59790098a7391be9a53"
-      },
-      {
-        "name": "Logistics",
-        "amount": 17674,
-        "_id": "69abb59790098a7391be9a54"
-      },
-      {
-        "name": "Admin",
-        "amount": 5891,
-        "_id": "69abb59790098a7391be9a55"
-      }
-    ],
-    "year": 2026
-  },
-  {
-    "revenue": 455662,
-    "expenses": 369086,
-    "profit": 86576,
-    "growthIndicator": 6,
-    "costCategories": [
-      {
-        "name": "Production",
-        "amount": 202997,
-        "_id": "69abb59790098a7391be9a58"
-      },
-      {
-        "name": "Labor",
-        "amount": 92271,
-        "_id": "69abb59790098a7391be9a59"
-      },
-      {
-        "name": "Logistics",
-        "amount": 55362,
-        "_id": "69abb59790098a7391be9a5a"
-      },
-      {
-        "name": "Admin",
-        "amount": 18454,
-        "_id": "69abb59790098a7391be9a5b"
-      }
-    ],
-    "year": 2026
-  },
-  {
     "revenue": 169691,
     "expenses": 147631,
     "profit": 22060,
@@ -679,34 +621,5 @@
       }
     ],
     "year": 2024
-  },
-  {
-    "revenue": 136528,
-    "expenses": 113318,
-    "profit": 23210,
-    "growthIndicator": 8,
-    "costCategories": [
-      {
-        "name": "Production",
-        "amount": 62324,
-        "_id": "69abb59790098a7391be9a82"
-      },
-      {
-        "name": "Labor",
-        "amount": 28329,
-        "_id": "69abb59790098a7391be9a83"
-      },
-      {
-        "name": "Logistics",
-        "amount": 16997,
-        "_id": "69abb59790098a7391be9a84"
-      },
-      {
-        "name": "Admin",
-        "amount": 5665,
-        "_id": "69abb59790098a7391be9a85"
-      }
-    ],
-    "year": 2026
   }
 ]

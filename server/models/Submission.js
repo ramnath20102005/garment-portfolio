@@ -22,8 +22,24 @@ const SubmissionSchema = new mongoose.Schema({
     },
     status: {
         type: String,
-        enum: ['Pending', 'Approved', 'Rejected'],
+        enum: ['Pending', 'Approved', 'Rejected', 'Revoked', 'Finalized'],
         default: 'Pending'
+    },
+    approvalDeadline: {
+        type: Date
+    },
+    revokedBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    revokedAt: {
+        type: Date
+    },
+    revokeReason: {
+        type: String
+    },
+    previousData: {
+        type: Object
     },
     submittedAt: {
         type: Date,
