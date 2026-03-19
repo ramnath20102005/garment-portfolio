@@ -93,12 +93,30 @@ console.log("-----------------------------------------");
 console.log("All systems online and routing clear.");
 console.log("-----------------------------------------");
 
-// MongoDB connection
-mongoose.connect(process.env.MONGODB_URI || "mongodb://127.0.0.1:27017/garment-portfolio")
-  .then(() => console.log("MongoDB connected: Deployment Target Reached"))
-  .catch(err => {
-    console.error("Critical Connection Error (MDB):", err.message);
-  });
+// ✅ Robust MongoDB Connection for Production
+(async () => {
+    try {
+        console.log("-----------------------------------------");
+        console.log("Attempting database synchronization...");
+        
+        // Hide sensitive password in logs but show the target
+        const maskedUri = (process.env.MONGODB_URI || "").replace(/:([^@]+)@/, ":****@");
+        console.log(`Connection target identifies as: ${maskedUri}`);
+
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+
+        console.log("MongoDB Connected ✅ (Status: 1/1 Online)");
+        console.log("-----------------------------------------");
+    } catch (err) {
+        console.error("MongoDB Connection Failed ❌ (Critical Fault)");
+        console.error("Error Blueprint:", err.message);
+        console.log("-----------------------------------------");
+        // process.exit(1); // Optional: Stop server if DB is essential
+    }
+})();
 
 // Test route
 app.get("/", (req, res) => {
