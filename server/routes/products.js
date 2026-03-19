@@ -7,6 +7,9 @@ const role = require("../middleware/role");
 
 const router = express.Router();
 
+// Debugging for production logs
+console.log("Loading Inventory Control Module: /api/products");
+
 // @route   GET /api/products
 // @desc    Get approved products for public portfolio
 // @access  Public
@@ -15,7 +18,8 @@ router.get("/", async (req, res) => {
     const products = await Product.find({ submissionStatus: 'Approved' }).sort({ createdAt: -1 });
     res.json(products);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching products" });
+    console.error("Fetch Approved Inventory Failure:", error.message);
+    res.status(500).json({ error: "System failed to retrieve the public product catalogue." });
   }
 });
 
@@ -27,7 +31,24 @@ router.get("/all", auth, role(['MANAGER', 'ADMIN']), async (req, res) => {
     const products = await Product.find().sort({ createdAt: -1 });
     res.json(products);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching all products" });
+    console.error("Fetch Internal Registry Failure:", error.message);
+    res.status(500).json({ error: "Management Intel failed to aggregate full inventory dataset." });
+  }
+});
+
+// @route   GET /api/products/:id
+// @desc    Get single product details
+// @access  Public
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (!product) {
+      return res.status(404).json({ error: "Specified node not found in product registry." });
+    }
+    res.json(product);
+  } catch (error) {
+    console.error("Individual Node Fetch Error:", error.message);
+    res.status(500).json({ error: "System reported a retrieval fault for this specific unit." });
   }
 });
 
@@ -64,14 +85,18 @@ router.post("/", auth, role(["MANAGER", "ADMIN"]), async (req, res) => {
       action: status === 'PendingApproval' ? 'Submitted' : (status === 'Approved' ? 'Created' : 'Drafted'),
       entityType: 'Product',
       entityId: product._id,
-      details: `Product: ${name}`
+      details: `Product Node: ${name} Initialized`
     });
     await activity.save();
 
-    res.json(product);
+    res.status(201).json({ 
+      msg: "Product entry successfully synchronized.", 
+      id: product._id,
+      status: product.submissionStatus 
+    });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Error saving product" });
+    console.error("Inventory Entry Failure:", error.message);
+    res.status(500).json({ error: "Registry addition protocols encountered a storage block." });
   }
 });
 
@@ -81,7 +106,7 @@ router.post("/", auth, role(["MANAGER", "ADMIN"]), async (req, res) => {
 router.delete("/:id", auth, role(["ADMIN"]), async (req, res) => {
   try {
     const product = await Product.findById(req.params.id);
-    if (!product) return res.status(404).json({ msg: "Product not found" });
+    if (!product) return res.status(404).json({ error: "No matching record for purging." });
 
     await Product.findByIdAndDelete(req.params.id);
 
@@ -90,13 +115,14 @@ router.delete("/:id", auth, role(["ADMIN"]), async (req, res) => {
       action: 'Deleted',
       entityType: 'Product',
       entityId: product._id,
-      details: `Product: ${product.name}`
+      details: `Product Purge: ${product.name}`
     });
     await activity.save();
 
-    res.json({ msg: "Product removed from portfolio" });
+    res.json({ msg: "Record successfully de-indexed and purged from portfolio." });
   } catch (err) {
-    res.status(500).json({ msg: "Server error" });
+    console.error("Purge Protocol Error:", err.message);
+    res.status(500).json({ error: "Critical failure during record de-indexing." });
   }
 });
 
