@@ -9,7 +9,7 @@ const isProduction = import.meta.env.PROD;
 // Backend API Base URL
 // Replace with your actual Render URL when deploying
 export const API_BASE_URL = isProduction 
-    ? "https://your-backend.onrender.com" 
+    ? "https://garment-portfolio.onrender.com" 
     : "http://localhost:5000";
 
 // Note: ML calls are now proxied through the backend for security and simplicity.
