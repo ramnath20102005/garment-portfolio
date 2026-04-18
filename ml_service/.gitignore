@@ -1,9 +1,0 @@
-__pycache__/
-*.pyc
-*.log
-.env
-.venv/
-env/
-venv/
-.ipynb_checkpoints/
-.pytest_cache/

@@ -16,8 +16,6 @@ const adminRoutes = require("./routes/admin");
 const mediaRoutes = require("./routes/media");
 const updateRoutes = require("./routes/updates");
 const contactRoutes = require("./routes/contact");
-const mlRoutes = require("./routes/ml");
-
 const app = express();
 
 // Middleware
@@ -82,9 +80,6 @@ console.log("✅ Intelligence Feed: /api/updates");
 
 app.use("/api/contact", contactRoutes);
 console.log("✅ External Nexus: /api/contact");
-
-app.use("/api/ml", mlRoutes);
-console.log("✅ Machine Intelligence Proxy: /api/ml");
 
 app.use("/api/dashboard", require("./routes/dashboard"));
 console.log("✅ Dashboard Hub: /api/dashboard");

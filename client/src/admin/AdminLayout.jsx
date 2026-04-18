@@ -15,8 +15,7 @@ import {
   Database,
   TrendingUp,
   MessageSquare,
-  Package,
-  BrainCircuit
+  Package
 } from "lucide-react";
 import "./admin_css/AdminLayout.css";
 
@@ -104,7 +103,6 @@ const AdminLayout = () => {
               <NavItem to="/admin/users" icon={Users} label="Management Directory" />
               <NavItem to="/admin/inquiries" icon={MessageSquare} label="Contact Inquiries" />
               <NavItem to="/admin/products" icon={Package} label="Product collections" />
-              <NavItem to="/admin/ai-insights" icon={BrainCircuit} label="Export AI Insights" />
             </div>
           </div>
 

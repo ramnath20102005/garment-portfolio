@@ -23,7 +23,6 @@ import CompanyApprovals from "./admin/CompanyApprovals";
 import AdminLayout from "./admin/AdminLayout";
 import Inquiries from "./admin/Inquiries";
 import AdminProducts from "./admin/AdminProducts";
-import ExportAIInsights from "./admin/ExportAIInsights";
 import ManagerLayout from "./manager/ManagerLayout";
 import ManagerDashboard from "./manager/ManagerDashboard";
 import CompanyManagement from "./manager/CompanyManagement";
@@ -93,7 +92,6 @@ function App() {
               <Route path="/admin/company-approvals" element={<CompanyApprovals />} />
               <Route path="/admin/inquiries" element={<Inquiries />} />
               <Route path="/admin/products" element={<AdminProducts />} />
-              <Route path="/admin/ai-insights" element={<ExportAIInsights />} />
             </Route>
           </Route>
 
